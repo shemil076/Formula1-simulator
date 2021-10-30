@@ -1,10 +1,17 @@
+import java.util.Scanner;
+
 public class Formula1ChampionshipManager implements ChampionshipManager{
     private int numberOfDrivers;
     private int numberOfCars;
+    public static Scanner input = new Scanner(System.in);
 
 
     public static void main(String[] args) {
-        printMenu();
+        while(true){
+            printMenu();
+            mainMenu();
+        }
+
     }
 
 
@@ -27,9 +34,80 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
         System.out.println("|      106 or SIF      |       Save in a File                    |");
         System.out.println("+----------------------------------------------------------------+");
 
+        System.out.println("Enter the respective code for your requirement: ");
+
 
     }
 
 
+    public static void mainMenu(){
+        if (input.hasNext()){
+            String option = input.next();
+            switch (option.toUpperCase()){
+                case "100":
+                case "CND":
+                    System.out.println("+--------------------------------------------------------+");
+                    System.out.println("|                 Create a New Driver                    |");
+                    System.out.println("+--------------------------------------------------------+\n");
+
+                    break;
+
+                case "101":
+                case "DDT":
+                    System.out.println("+--------------------------------------------------------+");
+                    System.out.println("|              Delete a Driver and Team                  |");
+                    System.out.println("+--------------------------------------------------------+\n");
+
+                    break;
+
+                case "102":
+                case "CTD":
+                    System.out.println("+--------------------------------------------------------+");
+                    System.out.println("|                  Change the Driver                     |");
+                    System.out.println("+--------------------------------------------------------+\n");
+
+                    break;
+
+                case "103":
+                case "DVS":
+                    System.out.println("+--------------------------------------------------------+");
+                    System.out.println("|               Display the Various Statics              |");
+                    System.out.println("+--------------------------------------------------------+\n");
+
+                    break;
+
+
+                case "104":
+                case "DFT":
+                    System.out.println("+--------------------------------------------------------+");
+                    System.out.println("|             Display Formula1 Driver Table              |");
+                    System.out.println("+--------------------------------------------------------+\n");
+
+                    break;
+
+                case "105":
+                case "ARC":
+                    System.out.println("+--------------------------------------------------------+");
+                    System.out.println("|                 Add a Race Completed                   |");
+                    System.out.println("+--------------------------------------------------------+\n");
+
+                    break;
+
+                case "106":
+                case "SIF":
+                    System.out.println("+--------------------------------------------------------+");
+                    System.out.println("|                    Save in a File                      |");
+                    System.out.println("+--------------------------------------------------------+\n");
+
+                    break;
+
+                default:
+                    System.out.println("Invalid option selected, 'Input out of range'");
+            }
+        }else {
+            System.out.println("Invalid out-put");                                                                      //if the user input an invalid input, the program will not terminate, just repeat bye passing a warning
+        }
+
+    }
 }
 
