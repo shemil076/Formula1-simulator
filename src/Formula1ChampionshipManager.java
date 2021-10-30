@@ -8,7 +8,7 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
 
     public static void main(String[] args) {
         welcome();
-        thankYou();
+//        thankYou();
         while(true){
             printMenu();
             mainMenu();
@@ -24,7 +24,6 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
         System.out.println("     )    (  /(__)\\  _)(_  )  (    )    (  )__)  )  (  )(__)( ");
         System.out.println("    (_/\\/\\_)(__)(__)(____)(_)\\_)  (_/\\/\\_)(____)(_)\\_)(______)");
 
-        System.out.println("");
         System.out.println("+----------------------------------------------------------------+");
         System.out.println("|      INPUT CODE      |              OPTION                     |");
         System.out.println("+----------------------------------------------------------------+");
@@ -35,6 +34,7 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
         System.out.println("|      104 or DFT      |       Display Formula1 Driver Table     |");
         System.out.println("|      105 or ARC      |       Add a Race Completed              |");
         System.out.println("|      106 or SIF      |       Save in a File                    |");
+        System.out.println("|      999 or EXT      |       Exit                              |");
         System.out.println("+----------------------------------------------------------------+");
 
         System.out.println("Enter the respective code for your requirement: ");
@@ -49,58 +49,66 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
             switch (option.toUpperCase()){
                 case "100":
                 case "CND":
-                    System.out.println("+--------------------------------------------------------+");
-                    System.out.println("|                 Create a New Driver                    |");
-                    System.out.println("+--------------------------------------------------------+\n");
+                    System.out.println("+----------------------------------------------------------------+");
+                    System.out.println("|                      Create a New Driver                       |");
+                    System.out.println("+----------------------------------------------------------------+\n");
 
                     break;
 
                 case "101":
                 case "DDT":
-                    System.out.println("+--------------------------------------------------------+");
-                    System.out.println("|              Delete a Driver and Team                  |");
-                    System.out.println("+--------------------------------------------------------+\n");
+                    System.out.println("+----------------------------------------------------------------+");
+                    System.out.println("|                   Delete a Driver and Team                     |");
+                    System.out.println("+----------------------------------------------------------------+\n");
 
                     break;
 
                 case "102":
                 case "CTD":
-                    System.out.println("+--------------------------------------------------------+");
-                    System.out.println("|                  Change the Driver                     |");
-                    System.out.println("+--------------------------------------------------------+\n");
+                    System.out.println("+----------------------------------------------------------------+");
+                    System.out.println("|                       Change the Driver                        |");
+                    System.out.println("+----------------------------------------------------------------+\n");
 
                     break;
 
                 case "103":
                 case "DVS":
-                    System.out.println("+--------------------------------------------------------+");
-                    System.out.println("|               Display the Various Statics              |");
-                    System.out.println("+--------------------------------------------------------+\n");
+                    System.out.println("+----------------------------------------------------------------+");
+                    System.out.println("|                    Display the Various Statics                 |");
+                    System.out.println("+----------------------------------------------------------------+\n");
 
                     break;
 
 
                 case "104":
                 case "DFT":
-                    System.out.println("+--------------------------------------------------------+");
-                    System.out.println("|             Display Formula1 Driver Table              |");
-                    System.out.println("+--------------------------------------------------------+\n");
+                    System.out.println("+----------------------------------------------------------------+");
+                    System.out.println("|                  Display Formula1 Driver Table                 |");
+                    System.out.println("+----------------------------------------------------------------+\n");
 
                     break;
 
                 case "105":
                 case "ARC":
-                    System.out.println("+--------------------------------------------------------+");
-                    System.out.println("|                 Add a Race Completed                   |");
-                    System.out.println("+--------------------------------------------------------+\n");
+                    System.out.println("+----------------------------------------------------------------+");
+                    System.out.println("|                       Add a Race Completed                     |");
+                    System.out.println("+----------------------------------------------------------------+\n");
 
                     break;
 
                 case "106":
                 case "SIF":
-                    System.out.println("+--------------------------------------------------------+");
-                    System.out.println("|                    Save in a File                      |");
-                    System.out.println("+--------------------------------------------------------+\n");
+                    System.out.println("+----------------------------------------------------------------+");
+                    System.out.println("|                         Save in a File                         |");
+                    System.out.println("+----------------------------------------------------------------+\n");
+
+                    break;
+
+                case "999":
+                case "EXT":
+                    System.out.println("+----------------------------------------------------------------+");
+                    System.out.println("|                              Exit                              |");
+                    System.out.println("+----------------------------------------------------------------+\n");
 
                     break;
 
@@ -108,17 +116,17 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
                     System.out.println("Invalid option selected, 'Input out of range'");
             }
         }else {
-            System.out.println("Invalid out-put");                                                                      //if the user input an invalid input, the program will not terminate, just repeat bye passing a warning
+            System.out.println("Invalid out-put");                                                                      //if the user input an invalid input, the program will not terminate, just repeat by passing a warning
         }
     }
 
     public static void welcome() {
-        System.out.println("██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗");
-        System.out.println("██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝");
-        System.out.println("██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗  ");
-        System.out.println("██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝  ");
-        System.out.println("╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗");
-        System.out.println(" ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝");
+        System.out.println("  ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗");
+        System.out.println("  ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝");
+        System.out.println("  ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗  ");
+        System.out.println("  ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝  ");
+        System.out.println("  ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗");
+        System.out.println("   ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝");
     }
 
     public static void thankYou(){
