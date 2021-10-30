@@ -7,6 +7,7 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
 
 
     public static void main(String[] args) {
+        welcome();
         while(true){
             printMenu();
             mainMenu();
@@ -107,7 +108,16 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
         }else {
             System.out.println("Invalid out-put");                                                                      //if the user input an invalid input, the program will not terminate, just repeat bye passing a warning
         }
+    }
 
+    public static void welcome() {
+        System.out.println("██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗");
+        System.out.println("██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝");
+        System.out.println("██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗  ");
+        System.out.println("██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝  ");
+        System.out.println("╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗");
+        System.out.println(" ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝");
+        
     }
 }
 
