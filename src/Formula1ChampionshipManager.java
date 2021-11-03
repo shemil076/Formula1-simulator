@@ -53,7 +53,7 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
                     System.out.println("+------------------------------------------------------------------------+");
                     System.out.println("|                          Create a New Driver                           |");
                     System.out.println("+------------------------------------------------------------------------+");
-                    CreateANewDriver();
+                    createANewDriver();
                     break;
 
                 case "101":
@@ -116,7 +116,7 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
     }
 
 
-    public  void CreateANewDriver(){
+    public  void createANewDriver(){
         System.out.println("+------------------------------------------------------------------------+");
         System.out.println("|         INPUT CODE         |              OPTION                       |");
         System.out.println("+------------------------------------------------------------------------+");
