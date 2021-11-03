@@ -7,20 +7,21 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
 
 
     public static void main(String[] args) {
-        welcome();
-////        thankYou();
-        logo();
-        CreateANewDriver();
-//        while(true){
-//            printMenu();
-//            mainMenu();
-//        }
+        Formula1ChampionshipManager championManager = new Formula1ChampionshipManager();
+        championManager.welcome();
+        championManager.thankYou();
+        championManager.logo();
+        championManager.CreateANewDriver();
+        while(true){
+            championManager.printMenu();
+          championManager.mainMenu();
+        }
 
 
     }
 
 
-    public static void printMenu() {
+    public void printMenu() {
         System.out.println("     __  __    __    ____  _  _    __  __  ____  _  _  __  __ ");
         System.out.println("    (  \\/  )  /__\\  (_  _)( \\( )  (  \\/  )( ___)( \\( )(  )(  )");
         System.out.println("     )    (  /(__)\\  _)(_  )  (    )    (  )__)  )  (  )(__)( ");
@@ -45,7 +46,7 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
     }
 
 
-    public static void mainMenu(){
+    public  void mainMenu(){
         if (input.hasNext()){
             String option = input.next();
             switch (option.toUpperCase()){
@@ -115,7 +116,7 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
     }
 
 
-    public static void CreateANewDriver(){
+    public  void CreateANewDriver(){
         System.out.println("+----------------------------------------------------------------+");
         System.out.println("|      INPUT CODE      |              OPTION                     |");
         System.out.println("+----------------------------------------------------------------+");
@@ -169,7 +170,7 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
 
 
 
-    public static void welcome() {
+    public  void welcome() {
         System.out.println("  ██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗");
         System.out.println("  ██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝");
         System.out.println("  ██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗  ");
@@ -178,7 +179,7 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
         System.out.println("   ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝");
     }
 
-    public static void thankYou(){
+    public  void thankYou(){
         System.out.println("████████╗██╗  ██╗ █████╗ ███╗   ██╗██╗  ██╗    ██╗   ██╗ ██████╗ ██╗   ██╗");
         System.out.println("╚══██╔══╝██║  ██║██╔══██╗████╗  ██║██║ ██╔╝    ╚██╗ ██╔╝██╔═══██╗██║   ██║");
         System.out.println("   ██║   ███████║███████║██╔██╗ ██║█████╔╝      ╚████╔╝ ██║   ██║██║   ██║");
@@ -187,7 +188,7 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
         System.out.println("   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝       ╚═╝    ╚═════╝  ╚═════╝ ");
     }
 
-    public static void logo(){
+    public  void logo(){
         System.out.println("  _    _             /'_'_/.-''/                             _______");
         System.out.println("  \\`../ |o_..__     / /__   / /  -= WORLD CHAMPIONSHIP =-   _\\=.o.=/_");
         System.out.println("`.,(_)______(_).>  / ___/  / /                             |_|_____|_|");
