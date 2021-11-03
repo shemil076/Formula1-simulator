@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Formula1ChampionshipManager implements ChampionshipManager{
@@ -5,6 +6,8 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
     private int numberOfCars;
     public  Scanner input = new Scanner(System.in);
     private static boolean run = true;
+
+    ArrayList<Formula1Driver> formula1Drivers = new ArrayList<Formula1Driver>();
 
 
     public static void main(String[] args) {
@@ -163,30 +166,6 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
     }
 
     public void addToExistingTeam(){
-
-        while (true){
-            System.out.println("Select the team to add the driver");
-            System.out.println("+------------------------------------------------------------------------+");
-            System.out.println("|           001          |                MERCEDES                       |");
-            System.out.println("|           002          |                RED BULL                       |");
-            System.out.println("|           003          |                MCLAREN                        |");
-            System.out.println("|           004          |                FERRARI                        |");
-            System.out.println("|           005          |                ALPINE                         |");
-            System.out.println("|           006          |                ALFA TAURI                     |");
-            System.out.println("|           007          |                ASTON MARTIN                   |");
-            System.out.println("|           008          |                WILLIAMS                       |");
-            System.out.println("|           009          |                ALFA ROMEO RACING              |");
-            System.out.println("|           010          |                HAAS F1 TEAM                   |");
-            System.out.println("+------------------------------------------------------------------------+");
-            System.out.println("Enter the respective code for the team you prefer or enter 999 to exit: ");
-
-            if (input.hasNextInt()){
-                int teamNumber = input.nextInt();
-                if (teamNumber == 999 ){
-                    break;
-                }
-            }
-        }
     }
 
     public void exitTheProgram(){

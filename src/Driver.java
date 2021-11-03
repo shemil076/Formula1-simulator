@@ -4,6 +4,14 @@ public abstract class Driver {
     private String teamOfDriver;
     private int driverStatics;
 
+    public Driver(){}
+
+    public Driver(String driverName, String driverLocation, String teamOfDriver, int driverStatics){
+        this.driverName = driverName;
+        this.driverLocation = driverLocation;
+        this.teamOfDriver = teamOfDriver;
+        this.driverStatics = driverStatics;
+    }
 
     public String getDriverName() {
         return driverName;
