@@ -12,6 +12,7 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
 
         championManager.welcome();
         championManager.logo();
+
         while(run){
             championManager.printMenu();
           championManager.mainMenu();
@@ -22,11 +23,8 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
 
 
     public void printMenu() {
-        System.out.println("       __  __    __    ____  _  _    __  __  ____  _  _  __  __ ");
-        System.out.println("      (  \\/  )  /__\\  (_  _)( \\( )  (  \\/  )( ___)( \\( )(  )(  )");
-        System.out.println("       )    (  /(__)\\  _)(_  )  (    )    (  )__)  )  (  )(__)( ");
-        System.out.println("      (_/\\/\\_)(__)(__)(____)(_)\\_)  (_/\\/\\_)(____)(_)\\_)(______)");
 
+        System.out.println("|                              MAIN MENU                                 |");
         System.out.println("+------------------------------------------------------------------------+");
         System.out.println("|           INPUT CODE         |              OPTION                     |");
         System.out.println("+------------------------------------------------------------------------+");
@@ -188,13 +186,7 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
                     break;
                 }
             }
-
-
-
         }
-
-
-
     }
 
     public void exitTheProgram(){
@@ -208,6 +200,8 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
         System.out.println("     ██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝  ");
         System.out.println("     ╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗");
         System.out.println("      ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝");
+        System.out.println("");
+
     }
 
     public  void thankYou(){
@@ -224,9 +218,8 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
         System.out.println("  \\`../ |o_..__     / /__   / /  -= WORLD CHAMPIONSHIP =-   _\\=.o.=/_");
         System.out.println("`.,(_)______(_).>  / ___/  / /                             |_|_____|_|");
         System.out.println("~~~~~~~~~~~~~~~~~~/_/~~~~~/_/~~~~~~~~~~~simulator~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("");
     }
-
-
 
 }
 
