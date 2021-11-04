@@ -8,7 +8,9 @@ public class Formula1Driver extends Driver{
 
     public Formula1Driver(){}
 
-    public Formula1Driver(int firstPositions, int secondPositions, int thirdPositions, int achievedSeasons, int currentPoints, int numberOfRaces){
+
+    public Formula1Driver (String driverName, String driverLocation, String teamOfDriver,int driverStatics, int firstPositions, int secondPositions, int thirdPositions, int achievedSeasons, int currentPoints, int numberOfRaces){
+        super(driverName, driverLocation, teamOfDriver,driverStatics);
         this.firstPositions = firstPositions;
         this.secondPositions = secondPositions;
         this.thirdPositions = thirdPositions;
@@ -16,4 +18,5 @@ public class Formula1Driver extends Driver{
         this.currentPoints = currentPoints;
         this.numberOfRaces = numberOfRaces;
     }
+
 }

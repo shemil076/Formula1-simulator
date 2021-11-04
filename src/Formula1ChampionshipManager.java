@@ -1,27 +1,34 @@
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Scanner;
 
-public class Formula1ChampionshipManager implements ChampionshipManager{
+
+public class Formula1ChampionshipManager<HashTable> implements ChampionshipManager{
     private int numberOfDrivers;
     private int numberOfCars;
     public  Scanner input = new Scanner(System.in);
     private static boolean run = true;
+    private boolean vacantTeams = true;
+    private int [] rangeNumber ={0,1,2,3,4,5,6,7,8,9};
+    private boolean check = false;
 
-    ArrayList<Formula1Driver> formula1Drivers = new ArrayList<Formula1Driver>();
-
+//    ArrayList<Formula1Driver> formula1DriversTeam = new ArrayList<Formula1Driver>();
+    Hashtable<Integer, String> teams = new Hashtable<Integer, String>();
 
     public static void main(String[] args) {
         Formula1ChampionshipManager championManager = new Formula1ChampionshipManager();
+        Formula1Driver [] formula1DriversTeam = new Formula1Driver[10];
+
+        championManager.initialize(formula1DriversTeam);
+//        championManager.checkVacantTeam(formula1DriversTeam);
 
         championManager.welcome();
         championManager.logo();
 
         while(run){
             championManager.printMenu();
-          championManager.mainMenu();
+          championManager.mainMenu(formula1DriversTeam);
         }
-
-
     }
 
 
@@ -47,7 +54,7 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
     }
 
 
-    public  void mainMenu(){
+    public  void mainMenu(Formula1Driver[] formula1DriversTeam){
         if (input.hasNext()){
             String option = input.next();
             switch (option.toUpperCase()){
@@ -56,7 +63,7 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
                     System.out.println("+------------------------------------------------------------------------+");
                     System.out.println("|                          Create a New Driver                           |");
                     System.out.println("+------------------------------------------------------------------------+");
-                    createANewDriver();
+                    createANewDriver(formula1DriversTeam);
                     break;
 
                 case "101":
@@ -118,8 +125,28 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
         }
     }
 
+    public void initialize(Formula1Driver[] formula1DriversTeam){
+        for (int i = 0 ; i < formula1DriversTeam.length; i++){
+            formula1DriversTeam[i] = new Formula1Driver("~", "~","~",0,0,0,0,0,0,0);
+        }
+        teams.put(0," 0 - MERCEDES");
+        teams.put(1," 1 - RED BULL");
+        teams.put(2," 2 - MCLAREN");
+        teams.put(3," 3 - FERRARI");
+        teams.put(4," 4 - ALPINE");
+        teams.put(5," 5 - ALFA TAURI");
+        teams.put(6," 6 - ASTON MARTIN");
+        teams.put(7," 7 - WILLIAMS");
+        teams.put(8," 8 - ALFA ROMEO RACING");
+        teams.put(9," 9 - HAAS F1 TEAM");
 
-    public  void createANewDriver(){
+
+
+    }
+
+
+
+    public  void createANewDriver(Formula1Driver[] formula1DriversTeam){
         System.out.println("+------------------------------------------------------------------------+");
         System.out.println("|         INPUT CODE         |              OPTION                       |");
         System.out.println("+------------------------------------------------------------------------+");
@@ -138,7 +165,7 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
                     System.out.println("+------------------------------------------------------------------------+");
                     System.out.println("|                    Add a driver to an existing team                    |");
                     System.out.println("+------------------------------------------------------------------------+");
-                    addToExistingTeam();
+                    addToExistingTeam(formula1DriversTeam);
                     break;
 
                 case "2":
@@ -165,8 +192,69 @@ public class Formula1ChampionshipManager implements ChampionshipManager{
 
     }
 
-    public void addToExistingTeam(){
+
+
+    public void addToExistingTeam(Formula1Driver[] formula1DriversTeam){
+        checkVacantTeam(formula1DriversTeam);
+        if (vacantTeams){
+            System.out.println("Enter the respective number of the team you prefer or enter 999 to return back : ");
+            if (input.hasNextInt()){
+                int teamNumber = input.nextInt();
+                findTeamsNumber(teamNumber);
+                if (check){
+                    if (!formula1DriversTeam[teamNumber].getDriverName().equals("~")){
+                        System.out.println("Already the team has a driver");
+
+                    }else {
+                        System.out.println("Enter the name of the driver");
+                        if (input.hasNext()){
+                            String name = input.next();
+                            formula1DriversTeam[teamNumber].setDriverName(name.toUpperCase());
+                            System.out.println("");
+                            System.out.println("Requirement is successfully completed");
+                            System.out.println(name + " is added to the team " + teams.get(teamNumber));
+
+                        }
+                    }
+                }
+
+            }
+        }
+
     }
+
+    public void checkVacantTeam(Formula1Driver[] formula1DriversTeam){
+        String [] vacantTeam = new String[formula1DriversTeam.length];
+        for (int i = 0 ; i < formula1DriversTeam.length ; i++){
+            vacantTeam[i] = formula1DriversTeam[i].getDriverName();
+        }
+        if ((vacantTeam[0].equals("~")) || (vacantTeam[1].equals("~")) || (vacantTeam[2].equals("~")) || (vacantTeam[3].equals("~")) || (vacantTeam[4].equals("~")) || (vacantTeam[5].equals("~")) || (vacantTeam[6].equals("~")) || (vacantTeam[7].equals("~0")) ||(vacantTeam[8].equals("~")) || (vacantTeam[9].equals("~"))){
+            System.out.println("Vacant teams: ");
+
+            if ((!vacantTeam[0].equals("~")) && (!vacantTeam[1].equals("~")) && (vacantTeam[2].equals("~")) && (vacantTeam[3].equals("~")) && (vacantTeam[4].equals("~")) && (vacantTeam[5].equals("~")) && vacantTeam[6].equals("~") && (vacantTeam[7].equals("~")) && vacantTeam[8].equals("~") && (vacantTeam[9].equals("~"))){
+                System.out.println("NONE of the teams are vacant :(");
+                System.out.println("Please try to a the driver to a custom team :D");
+                System.out.println("");
+                vacantTeams = false;
+            }else{
+                for (int i = 0 ; i < vacantTeam.length ; i++){
+                    if (vacantTeam[i].equals("~")){
+                        System.out.println(teams.get(i));
+                    }
+                }
+
+            }
+        }
+    }
+
+    public void findTeamsNumber(int number){
+        for (int i = 0; i < rangeNumber.length ; i++){
+            if(rangeNumber[i] == number){
+                check = true;
+            }
+        }
+    }
+
 
     public void exitTheProgram(){
         thankYou();
