@@ -1,5 +1,5 @@
 public interface ChampionshipManager {
-//    void createANewDriver();
+    void createANewDriver(Formula1Driver[] formula1DriversTeam);
 
 //    void deleteADriverAndTeam();
 //

@@ -19,17 +19,18 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     public static void main(String[] args) {
         Formula1ChampionshipManager championManager = new Formula1ChampionshipManager();
         Formula1Driver[] formula1DriversTeam = new Formula1Driver[10];
+        championManager.printCountryTable();
 
-        championManager.initialize(formula1DriversTeam);
-//        championManager.checkVacantTeam(formula1DriversTeam);
-
-        championManager.welcome();
-        championManager.logo();
-
-        while (run) {
-            championManager.printMenu();
-            championManager.mainMenu(formula1DriversTeam);
-        }
+//        championManager.initialize(formula1DriversTeam);
+//
+//
+//        championManager.welcome();
+//        championManager.logo();
+//
+//        while (run) {
+//            championManager.printMenu();
+//            championManager.mainMenu(formula1DriversTeam);
+//        }
     }
 
 
@@ -142,7 +143,6 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         teams.put(7, " 7 - WILLIAMS");
         teams.put(8, " 8 - ALFA ROMEO RACING");
         teams.put(9, " 9 - HAAS F1 TEAM");
-
     }
 
 
@@ -177,6 +177,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                         System.out.println("+------------------------------------------------------------------------+");
 
                         break;
+
                     case "9":
                     case "BCK":
                         checkCreateANewDriver = false;
@@ -185,7 +186,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                         System.out.println("Invalid option selected, 'Input out of range'");
                 }
             } else {
-                System.out.println("Invalid out-put");                                                                      //if the user input an invalid input, the program will not terminate, just repeat by passing a warning
+                System.out.println("Invalid in-put");                                                                      //if the user input an invalid input, the program will not terminate, just repeat by passing a warning
             }
         }
         checkCreateANewDriver = true;
@@ -213,7 +214,9 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                 System.out.println("Enter the name of the driver");
                                 if (input.hasNext()) {
                                     String name = input.next();
+
                                     formula1DriversTeam[teamNumber].setDriverName(name.toUpperCase());
+
                                     System.out.println("");
                                     System.out.println("Requirement is successfully completed");
                                     System.out.println(name + " is added to the team " + teams.get(teamNumber));
@@ -315,5 +318,23 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         System.out.println("");
     }
 
+    public void printCountryTable(){
+        System.out.println("+------------------------------------------------------------------------+");
+        System.out.println("|Code -  Country  |Code -  Country  |Code -  Country   |Code - country   |");
+        System.out.println("+-----------------+-----------------+------------------+-----------------+");
+        System.out.println("|ARG - Argentina  |AUS  -Australia  |AUT  - Austria    |BHR  - Bahrain   |");
+        System.out.println("|BEL - Belgium    |BRA  - Brazil    |CAN  - Canada     |CHL  - Chile     |");
+        System.out.println("|COL - Colombia   |CZE-CzechRepublic|DNK  - Denmark    |FIN  - Finland   |");
+        System.out.println("|FRA - France     |DEU  - Germany   |HUN  - Hungary    |IND  - India     |");
+        System.out.println("|IRL - Ireland    |ITA  - Italy     |JPN  - Japan      |LIE-Liechtenstein|");
+        System.out.println("|MYS - Malaysia   |MEX  - Mexico    |MCO  - Monaco     |MAR  - Morocco   |");
+        System.out.println("|NLD - Netherlands|NZL- New Zealand |POL  - Poland     |PRT  - Portugal  |");
+        System.out.println("|RUS - Russia     |ZAF-South Africa |ESP  - Spain      |SWE  - Sweden    |");
+        System.out.println("|CHE - Switzerland|THA  - Thailand  |GBR-UnitedKingdom |USA-United States|");
+        System.out.println("|URY - Uruguay    |VEN  - Venezuela |ARE - United Arab Emirates          |");
+        System.out.println("+------------------------------------------------------------------------+");
+
+
+    }
 }
 
