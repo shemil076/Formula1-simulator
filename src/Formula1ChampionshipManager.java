@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
 
@@ -10,27 +9,30 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     private static boolean run = true;
     private boolean vacantTeams = true;
     private int[] rangeNumber = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    private boolean check = false;
+    private String[] countryCodes = {"ARG", "AUS", "AUT", "BHR", "BEL", "BRA", "CAN", "CHL", "COL", "CZE", "DNK", "FIN", "FRA", "DEU", "HUN", "IND", "IRL", "ITA", "JAP", "LIE", "MYS", "MEX", "MCO", "MAR", "NLD", "NZL", "POL", "PRT", "RUS", "ZAF", "ESP", "SWE", "CHE", "THA", "GBR", "USA", "URY", "VEN", "ARE"};
+    private boolean checkNumber = false;
+    private boolean checkCountryCode = false;
     private boolean checkCreateANewDriver = true;
 
     //    ArrayList<Formula1Driver> formula1DriversTeam = new ArrayList<Formula1Driver>();
     Hashtable<Integer, String> teams = new Hashtable<Integer, String>();
+    Hashtable<String, String> countries = new Hashtable<String, String>();
 
     public static void main(String[] args) {
         Formula1ChampionshipManager championManager = new Formula1ChampionshipManager();
         Formula1Driver[] formula1DriversTeam = new Formula1Driver[10];
-        championManager.printCountryTable();
+//        championManager.printCountryTable();
 
-//        championManager.initialize(formula1DriversTeam);
-//
-//
-//        championManager.welcome();
-//        championManager.logo();
-//
-//        while (run) {
-//            championManager.printMenu();
-//            championManager.mainMenu(formula1DriversTeam);
-//        }
+        championManager.initialize(formula1DriversTeam);
+
+
+        championManager.welcome();
+        championManager.logo();
+
+        while (run) {
+            championManager.printMenu();
+            championManager.mainMenu(formula1DriversTeam);
+        }
     }
 
 
@@ -194,7 +196,6 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     }
 
 
-
     public void addToExistingTeam(Formula1Driver[] formula1DriversTeam) {
         checkVacantTeam(formula1DriversTeam);
         if (vacantTeams) {
@@ -206,14 +207,38 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                         break;
                     } else {
                         findTeamsNumber(teamNumber);
-                        if (check) {
+                        if (checkNumber) {
                             if (!formula1DriversTeam[teamNumber].getDriverName().equals("~")) {
                                 System.out.println("Already the team has a driver");
-
                             } else {
                                 System.out.println("Enter the name of the driver");
                                 if (input.hasNext()) {
                                     String name = input.next();
+                                    System.out.println("");
+                                    System.out.println("Enter the country code you prefer from the following or \nenter 9 to add a custom country:  ");
+
+                                    printCountryTable();
+                                    System.out.println("");
+
+                                    while (true) {
+
+                                        System.out.println("Enter the code or enter 9 to add a custom country : ");
+                                        String country = input.next().toUpperCase();
+                                        if (country.equalsIgnoreCase("9")) {
+                                            System.out.println("Enter the country of the driver :");
+                                            String customCountry = input.next().toUpperCase();
+                                            formula1DriversTeam[teamNumber].setDriverLocation(customCountry);
+                                            break;
+                                        } else {
+                                            findCountryCode(country);
+                                            if (checkCountryCode) {
+                                                formula1DriversTeam[teamNumber].setDriverLocation(countries.get(country));
+                                                break;
+                                            } else {
+                                                System.out.println("Invalid country code! :(");
+                                            }
+                                        }
+                                    }
 
                                     formula1DriversTeam[teamNumber].setDriverName(name.toUpperCase());
 
@@ -237,7 +262,8 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     System.out.println("Invalid input data type, Integer Required");
                     input.next();
                 }
-                check = false;
+                checkNumber = false;
+                checkCountryCode = false;
 
             }
         } else {
@@ -277,11 +303,18 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     public void findTeamsNumber(int number) {
         for (int i = 0; i < rangeNumber.length; i++) {
             if (rangeNumber[i] == number) {
-                check = true;
+                checkNumber = true;
             }
         }
     }
 
+    private void findCountryCode(String countryCode) {
+        for (int i = 0; i < countryCodes.length; i++) {
+            if (countryCodes[i].equals(countryCode)) {
+                checkCountryCode = true;
+            }
+        }
+    }
 
     public void exitTheProgram() {
         thankYou();
@@ -318,21 +351,61 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         System.out.println("");
     }
 
-    public void printCountryTable(){
-        System.out.println("+------------------------------------------------------------------------+");
-        System.out.println("|Code -  Country  |Code -  Country  |Code -  Country   |Code - country   |");
-        System.out.println("+-----------------+-----------------+------------------+-----------------+");
-        System.out.println("|ARG - Argentina  |AUS  -Australia  |AUT  - Austria    |BHR  - Bahrain   |");
-        System.out.println("|BEL - Belgium    |BRA  - Brazil    |CAN  - Canada     |CHL  - Chile     |");
-        System.out.println("|COL - Colombia   |CZE-CzechRepublic|DNK  - Denmark    |FIN  - Finland   |");
-        System.out.println("|FRA - France     |DEU  - Germany   |HUN  - Hungary    |IND  - India     |");
-        System.out.println("|IRL - Ireland    |ITA  - Italy     |JPN  - Japan      |LIE-Liechtenstein|");
-        System.out.println("|MYS - Malaysia   |MEX  - Mexico    |MCO  - Monaco     |MAR  - Morocco   |");
-        System.out.println("|NLD - Netherlands|NZL- New Zealand |POL  - Poland     |PRT  - Portugal  |");
-        System.out.println("|RUS - Russia     |ZAF-South Africa |ESP  - Spain      |SWE  - Sweden    |");
-        System.out.println("|CHE - Switzerland|THA  - Thailand  |GBR-UnitedKingdom |USA-United States|");
-        System.out.println("|URY - Uruguay    |VEN  - Venezuela |ARE - United Arab Emirates          |");
-        System.out.println("+------------------------------------------------------------------------+");
+    public void printCountryTable() {
+        countries.put("ARG", "Argentina");
+        countries.put("AUS", "Australia");
+        countries.put("AUT", "Austria");
+        countries.put("BHR", "Bahrain");
+        countries.put("BEL", "Belgium");
+        countries.put("BRA", "Brazil");
+        countries.put("CAN", "Canada");
+        countries.put("CHL", "Chile");
+        countries.put("COL", "Colombia");
+        countries.put("CZE", "CzechRepublic");
+        countries.put("DNK", "Denmark");
+        countries.put("FIN", "Finland");
+        countries.put("FRA", "France");
+        countries.put("DEU", "Germany");
+        countries.put("HUN", "Hungary");
+        countries.put("IND", "India");
+        countries.put("IRL", "Ireland");
+        countries.put("ITA", "Italy");
+        countries.put("JAP", "Japan");
+        countries.put("LIE", "Liechtenstein");
+        countries.put("MYS", "Malaysia");
+        countries.put("MEX", "Mexico");
+        countries.put("MCO", "Monaco");
+        countries.put("MAR", "Morocco");
+        countries.put("NLD", "Netherlands");
+        countries.put("NZL", "New Zealand");
+        countries.put("POL", "Poland");
+        countries.put("PRT", "Portugal");
+        countries.put("RUS", "Russia");
+        countries.put("ZAF", "South Africa");
+        countries.put("ESP", "Spain");
+        countries.put("SWE", "Sweden");
+        countries.put("CHE", "Switzerland");
+        countries.put("THA", "Thailand");
+        countries.put("GBR", "UnitedKingdom");
+        countries.put("USA", "United States");
+        countries.put("URY", "Uruguay");
+        countries.put("VEN", "Venezuela");
+        countries.put("ARE", "United Arab Emirates");
+
+        System.out.println("+------------------------------------------------------------------------------------+");
+        System.out.println("| Code -  Country   | Code -  Country    | Code -  Country     | Code - country      |");
+        System.out.println("+-------------------+--------------------+---------------------+---------------------+");
+        System.out.println("| ARG - Argentina   | AUS -Australia     | AUT - Austria       | BHR - Bahrain       |");
+        System.out.println("| BEL - Belgium     | BRA - Brazil       | CAN - Canada        | CHL - Chile         |");
+        System.out.println("| COL - Colombia    | CZE - CzechRepublic| DNK - Denmark       | FIN - Finland       |");
+        System.out.println("| FRA - France      | DEU - Germany      | HUN - Hungary       | IND - India         |");
+        System.out.println("| IRL - Ireland     | ITA - Italy        | JPN - Japan         | LIE - Liechtenstein |");
+        System.out.println("| MYS - Malaysia    | MEX - Mexico       | MCO - Monaco        | MAR - Morocco       |");
+        System.out.println("| NLD - Netherlands | NZL - New Zealand  | POL - Poland        | PRT - Portugal      |");
+        System.out.println("| RUS - Russia      | ZAF - South Africa | ESP - Spain         | SWE - Sweden        |");
+        System.out.println("| CHE - Switzerland | THA - Thailand     | GBR - UnitedKingdom | USA - United States |");
+        System.out.println("| URY - Uruguay     | VEN - Venezuela    | ARE - United Arab Emirates                |");
+        System.out.println("+------------------------------------------------------------------------------------+");
 
 
     }
