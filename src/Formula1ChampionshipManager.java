@@ -45,6 +45,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         System.out.println("|           104 or DFT         |       Display Formula1 Driver Table     |");
         System.out.println("|           105 or ARC         |       Add a Race Completed              |");
         System.out.println("|           106 or SIF         |       Save in a File                    |");
+        System.out.println("|           107 or SIF         |       Save in a File                    |");
         System.out.println("|           999 or EXT         |       Exit the program                  |");
         System.out.println("+------------------------------------------------------------------------+");
 
@@ -109,6 +110,8 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     System.out.println("+------------------------------------------------------------------------+");
                     break;
 
+
+
                 case "999":
                 case "EXT":
                     System.out.println("+------------------------------------------------------------------------+");
@@ -139,8 +142,6 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         teams.put(7," 7 - WILLIAMS");
         teams.put(8," 8 - ALFA ROMEO RACING");
         teams.put(9," 9 - HAAS F1 TEAM");
-
-
 
     }
 
@@ -197,30 +198,49 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     public void addToExistingTeam(Formula1Driver[] formula1DriversTeam){
         checkVacantTeam(formula1DriversTeam);
         if (vacantTeams){
+            while(true){
             System.out.println("Enter the respective number of the team you prefer or enter 999 to return back : ");
             if (input.hasNextInt()){
                 int teamNumber = input.nextInt();
-                findTeamsNumber(teamNumber);
-                if (check){
-                    if (!formula1DriversTeam[teamNumber].getDriverName().equals("~")){
-                        System.out.println("Already the team has a driver");
+                if (teamNumber == 999){
+                    break;
+                }else {
+                    findTeamsNumber(teamNumber);
+                    if (check){
+                        if (!formula1DriversTeam[teamNumber].getDriverName().equals("~")){
+                            System.out.println("Already the team has a driver");
 
-                    }else {
-                        System.out.println("Enter the name of the driver");
-                        if (input.hasNext()){
-                            String name = input.next();
-                            formula1DriversTeam[teamNumber].setDriverName(name.toUpperCase());
-                            System.out.println("");
-                            System.out.println("Requirement is successfully completed");
-                            System.out.println(name + " is added to the team " + teams.get(teamNumber));
+                        }else {
+                            System.out.println("Enter the name of the driver");
+                            if (input.hasNext()){
+                                String name = input.next();
+                                formula1DriversTeam[teamNumber].setDriverName(name.toUpperCase());
+                                System.out.println("");
+                                System.out.println("Requirement is successfully completed");
+                                System.out.println(name + " is added to the team " + teams.get(teamNumber));
 
+                            }else{
+                                System.out.println("Invalid input data type, String Required");
+                                input.next();
+                            }
                         }
+                    }else {
+                        System.out.println("Team number is out of range");
+
                     }
+
                 }
 
+            } else {
+                System.out.println("Invalid input data type, Integer Required");
+                input.next();
             }
-        }
+            check = false;
 
+            }
+        }else {
+            System.out.println("No vacancy Please use custom team");
+        }
     }
 
     public void checkVacantTeam(Formula1Driver[] formula1DriversTeam){
@@ -231,7 +251,8 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         if ((vacantTeam[0].equals("~")) || (vacantTeam[1].equals("~")) || (vacantTeam[2].equals("~")) || (vacantTeam[3].equals("~")) || (vacantTeam[4].equals("~")) || (vacantTeam[5].equals("~")) || (vacantTeam[6].equals("~")) || (vacantTeam[7].equals("~0")) ||(vacantTeam[8].equals("~")) || (vacantTeam[9].equals("~"))){
             System.out.println("Vacant teams: ");
 
-            if ((!vacantTeam[0].equals("~")) && (!vacantTeam[1].equals("~")) && (vacantTeam[2].equals("~")) && (vacantTeam[3].equals("~")) && (vacantTeam[4].equals("~")) && (vacantTeam[5].equals("~")) && vacantTeam[6].equals("~") && (vacantTeam[7].equals("~")) && vacantTeam[8].equals("~") && (vacantTeam[9].equals("~"))){
+
+            if ((!vacantTeam[0].equals("~")) && (!vacantTeam[1].equals("~")) && (!vacantTeam[2].equals("~")) && (!vacantTeam[3].equals("~")) && (!vacantTeam[4].equals("~")) && (!vacantTeam[5].equals("~")) && (!vacantTeam[6].equals("~")) && (!vacantTeam[7].equals("~")) && (!vacantTeam[8].equals("~")) && (!vacantTeam[9].equals("~"))){
                 System.out.println("NONE of the teams are vacant :(");
                 System.out.println("Please try to a the driver to a custom team :D");
                 System.out.println("");
@@ -242,10 +263,14 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                         System.out.println(teams.get(i));
                     }
                 }
-
             }
         }
+        else {
+            System.out.println("No vacancy, Please try a custom team");
+        }
     }
+
+
 
     public void findTeamsNumber(int number){
         for (int i = 0; i < rangeNumber.length ; i++){
