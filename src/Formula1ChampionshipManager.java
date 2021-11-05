@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Scanner;
 
@@ -14,13 +15,15 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     private boolean checkCountryCode = false;
     private boolean checkCreateANewDriver = true;
 
-    //    ArrayList<Formula1Driver> formula1DriversTeam = new ArrayList<Formula1Driver>();
+        ;
     Hashtable<Integer, String> teams = new Hashtable<Integer, String>();
     Hashtable<String, String> countries = new Hashtable<String, String>();
+    ArrayList<Formula1Driver> formula1DriversTeamArray = new ArrayList<Formula1Driver>();
 
     public static void main(String[] args) {
         Formula1ChampionshipManager championManager = new Formula1ChampionshipManager();
         Formula1Driver[] formula1DriversTeam = new Formula1Driver[10];
+
 //        championManager.printCountryTable();
 
         championManager.initialize(formula1DriversTeam);
@@ -177,7 +180,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                         System.out.println("+------------------------------------------------------------------------+");
                         System.out.println("|                     Add a driver to a custom team                      |");
                         System.out.println("+------------------------------------------------------------------------+");
-
+                        addToCustomTeam();
                         break;
 
                     case "9":
@@ -299,6 +302,9 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         }
     }
 
+    public void addToCustomTeam(){
+        System.out.println("Hope to implement the custom team adding");
+    }
 
     public void findTeamsNumber(int number) {
         for (int i = 0; i < rangeNumber.length; i++) {
@@ -406,8 +412,6 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         System.out.println("| CHE - Switzerland | THA - Thailand     | GBR - UnitedKingdom | USA - United States |");
         System.out.println("| URY - Uruguay     | VEN - Venezuela    | ARE - United Arab Emirates                |");
         System.out.println("+------------------------------------------------------------------------------------+");
-
-
     }
 }
 
