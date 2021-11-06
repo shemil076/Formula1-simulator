@@ -10,16 +10,11 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     public Scanner delimiterInput = new Scanner(System.in).useDelimiter("\n");
     private int countryIndex = 0;
     private static boolean run = true;
-    private boolean vacantTeams = true;
     private int[] rangeNumber = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     private String[] countryCodes = {"ARG", "AUS", "AUT", "BHR", "BEL", "BRA", "CAN", "CHL", "COL", "CZE", "DNK", "FIN", "FRA", "DEU", "HUN", "IND", "IRL", "ITA", "JAP", "LIE", "MYS", "MEX", "MCO", "MAR", "NLD", "NZL", "POL", "PRT", "RUS", "ZAF", "ESP", "SWE", "CHE", "THA", "GBR", "USA", "URY", "VEN", "ARE"};
     private String[] existingTeamsArray = {"MERCEDES", "RED BULL", "MCLAREN", "FERRARI", "ALPINE", "ALFA TAURI", "ASTON MARTIN", "WILLIAMS", "ALFA ROMEO RACING", "HAAS F1 TEAM"};
-    private boolean checkNumber = false;
-    private boolean checkCountryCode = false;
-    private boolean checkCreateANewDriver = true;
-    private boolean checkTeamName = true;
-    private boolean checkExistingTeamTeamName = true;
-    private boolean checkDisplayTheVariousStatics = true;
+    private boolean checkNumber = false, checkCountryCode = false , occupiedTeam = false;
+    private boolean checkExistingTeamTeamName = true, checkDisplayTheVariousStatics = true, checkTeamName = true, checkCreateANewDriver = true, vacantTeams = true;
 
     private int firstPositions, secondPositions, thirdPositions, achievedSeasons, currentPoints, numberOfRaces;
 
@@ -660,7 +655,28 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         checkDisplayTheVariousStatics = true;
     }
 
-    public void checkOccupiedTeams(){
+    public void checkOccupiedTeams(Formula1Driver[] formula1DriversTeam){
+        String[] occupiedTeams = new String[formula1DriversTeam.length];
+        for (int i = 0 ; i < formula1DriversTeam.length; i++){
+            occupiedTeams[i] = formula1DriversTeam[i].getTeamOfDriver();
+        }
+        if ((occupiedTeams[0].equals("~")) || (occupiedTeams[1].equals("~")) || (occupiedTeams[2].equals("~")) || (occupiedTeams[3].equals("~")) || (occupiedTeams[4].equals("~")) || (occupiedTeams[5].equals("~")) || (occupiedTeams[6].equals("~")) || (occupiedTeams[7].equals("~")) || (occupiedTeams[8].equals("~")) || (occupiedTeams[9].equals("~"))){
+            System.out.println("Occupied Teams");
+
+            if ((occupiedTeams[0].equals("~")) && (occupiedTeams[1].equals("~")) && (occupiedTeams[2].equals("~")) && (occupiedTeams[3].equals("~")) && (occupiedTeams[4].equals("~")) && (occupiedTeams[5].equals("~")) && (occupiedTeams[6].equals("~")) && (occupiedTeams[7].equals("~")) && (occupiedTeams[8].equals("~")) && (occupiedTeams[9].equals("~"))){
+                System.out.println("None");
+                System.out.println("");
+                occupiedTeam = true;
+            }else {
+                for (int i = 0; i < occupiedTeams.length; i++){
+                    if(!occupiedTeams[i].equals("~")){
+                        System.out.println(teams.get(i));
+                    }
+                }
+            }
+
+        }
+
 
     }
 
