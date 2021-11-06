@@ -19,6 +19,8 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     private boolean checkCreateANewDriver = true;
     private boolean checkTeamName = true;
     private boolean checkExistingTeamTeamName = true;
+    private boolean checkDisplayTheVariousStatics = true;
+
     private int firstPositions, secondPositions, thirdPositions, achievedSeasons, currentPoints, numberOfRaces;
 
 
@@ -612,9 +614,49 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     }
 
     public void displayTheVariousStatics(){
+        while (checkDisplayTheVariousStatics) {
 
+            System.out.println("+------------------------------------------------------------------------+");
+            System.out.println("|         INPUT CODE         |              OPTION                       |");
+            System.out.println("+------------------------------------------------------------------------+");
+            System.out.println("|         1 or SBT           |     Select a driver from pre build team   |");
+            System.out.println("|         2 or SCT           |     Select a diver from custom team       |");
+            System.out.println("|         9 or BCK           |     Return To the main menu               |");
+            System.out.println("+------------------------------------------------------------------------+");
+            System.out.println("Enter the respective code for your requirement: ");
+
+
+            if (input.hasNext()) {
+                String respond = input.next();
+                switch (respond.toUpperCase()) {
+                    case "1":
+                    case "SBT":
+                        System.out.println("+------------------------------------------------------------------------+");
+                        System.out.println("|                 Select a driver from pre build team                    |");
+                        System.out.println("+------------------------------------------------------------------------+");
+
+                        break;
+
+                    case "2":
+                    case "SCT":
+                        System.out.println("+------------------------------------------------------------------------+");
+                        System.out.println("|                   Select a diver from custom team                      |");
+                        System.out.println("+------------------------------------------------------------------------+");
+
+                        break;
+
+                    case "9":
+                    case "BCK":
+                        checkDisplayTheVariousStatics = false;
+                        break;
+                    default:
+                        System.out.println("Invalid option selected, 'Input out of range'");
+                }
+            } else {
+                System.out.println("Invalid in-put");                                                                      //if the user input an invalid input, the program will not terminate, just repeat by passing a warning
+            }
+        }
+        checkDisplayTheVariousStatics = true;
     }
-
-
 }
 
