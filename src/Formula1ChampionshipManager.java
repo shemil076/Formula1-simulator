@@ -98,6 +98,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     System.out.println("+------------------------------------------------------------------------+");
                     System.out.println("|                       Display the Various Statics                      |");
                     System.out.println("+------------------------------------------------------------------------+");
+                    displayTheVariousStatics();
                     break;
 
 
@@ -658,5 +659,13 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         }
         checkDisplayTheVariousStatics = true;
     }
+
+    public void checkOccupiedTeams(){
+
+    }
+
+
+
+
 }
 
