@@ -242,6 +242,8 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                             formula1DriversTeam[teamNumber].setThirdPositions(thirdPositions);
                                             formula1DriversTeam[teamNumber].setAchievedSeasons(achievedSeasons);
                                             formula1DriversTeam[teamNumber].setNumberOfRaces(numberOfRaces);
+                                            formula1DriversTeam[teamNumber].calculatePoints();
+
 
 
                                             break;
@@ -256,6 +258,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                                 formula1DriversTeam[teamNumber].setThirdPositions(thirdPositions);
                                                 formula1DriversTeam[teamNumber].setAchievedSeasons(achievedSeasons);
                                                 formula1DriversTeam[teamNumber].setNumberOfRaces(numberOfRaces);
+                                                formula1DriversTeam[teamNumber].calculatePoints();
 
                                                 break;
                                             } else {
@@ -414,6 +417,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                 newFormula1Driver.setThirdPositions(thirdPositions);
                                 newFormula1Driver.setNumberOfRaces(numberOfRaces);
                                 newFormula1Driver.setAchievedSeasons(achievedSeasons);
+                                newFormula1Driver.setCurrentPoints(newFormula1Driver.getCurrentPoints());
 
                                 customTeamArray.add(countryIndex, newFormula1Driver);
 
@@ -433,6 +437,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                     newFormula1Driver.setThirdPositions(thirdPositions);
                                     newFormula1Driver.setNumberOfRaces(numberOfRaces);
                                     newFormula1Driver.setAchievedSeasons(achievedSeasons);
+                                    newFormula1Driver.setCurrentPoints(newFormula1Driver.getCurrentPoints());
 
                                     customTeamArray.add(countryIndex, newFormula1Driver);
 

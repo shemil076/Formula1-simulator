@@ -6,6 +6,7 @@ public class Formula1Driver extends Driver{
     private int currentPoints;
     private int numberOfRaces;
 
+
     public Formula1Driver(){}
 
 
@@ -15,7 +16,7 @@ public class Formula1Driver extends Driver{
         this.setSecondPositions(secondPositions);
         this.setThirdPositions(thirdPositions);
         this.setAchievedSeasons(achievedSeasons);
-        this.currentPoints = currentPoints;
+        this.setCurrentPoints(currentPoints);
         this.setNumberOfRaces(numberOfRaces);
     }
 
@@ -57,5 +58,17 @@ public class Formula1Driver extends Driver{
 
     public void setNumberOfRaces(int numberOfRaces) {
         this.numberOfRaces = numberOfRaces;
+    }
+
+    public void calculatePoints() {
+        this.setCurrentPoints(((firstPositions * 25) + (secondPositions * 18) + (thirdPositions + 15)));
+    }
+
+    public int getCurrentPoints() {
+        return currentPoints;
+    }
+
+    public void setCurrentPoints(int currentPoints) {
+        this.currentPoints = currentPoints;
     }
 }
