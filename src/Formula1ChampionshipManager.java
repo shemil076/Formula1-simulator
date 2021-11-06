@@ -19,6 +19,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     private boolean checkCreateANewDriver = true;
     private boolean checkTeamName = true;
     private boolean checkExistingTeamTeamName = true;
+    private int firstPositions, secondPositions, thirdPositions, achievedSeasons, currentPoints, numberOfRaces;
 
 
 
@@ -31,11 +32,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         Formula1ChampionshipManager championManager = new Formula1ChampionshipManager();
         Formula1Driver[] formula1DriversTeam = new Formula1Driver[10];
 
-//        championManager.printCountryTable();
-
         championManager.initialize(formula1DriversTeam);
-
-
         championManager.welcome();
         championManager.logo();
 
@@ -237,18 +234,36 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                         if (country.equalsIgnoreCase("9")) {
                                             System.out.println("Enter the country of the driver :");
                                             String customCountry = delimiterInput.next().toUpperCase();
+                                            getStatistics();
+
                                             formula1DriversTeam[teamNumber].setDriverLocation(customCountry);
+                                            formula1DriversTeam[teamNumber].setFirstPositions(firstPositions);
+                                            formula1DriversTeam[teamNumber].setSecondPositions(secondPositions);
+                                            formula1DriversTeam[teamNumber].setThirdPositions(thirdPositions);
+                                            formula1DriversTeam[teamNumber].setAchievedSeasons(achievedSeasons);
+                                            formula1DriversTeam[teamNumber].setNumberOfRaces(numberOfRaces);
+
+
                                             break;
                                         } else {
                                             findCountryCode(country);
                                             if (checkCountryCode) {
+                                                getStatistics();
+
                                                 formula1DriversTeam[teamNumber].setDriverLocation(countries.get(country));
+                                                formula1DriversTeam[teamNumber].setFirstPositions(firstPositions);
+                                                formula1DriversTeam[teamNumber].setSecondPositions(secondPositions);
+                                                formula1DriversTeam[teamNumber].setThirdPositions(thirdPositions);
+                                                formula1DriversTeam[teamNumber].setAchievedSeasons(achievedSeasons);
+                                                formula1DriversTeam[teamNumber].setNumberOfRaces(numberOfRaces);
+
                                                 break;
                                             } else {
                                                 System.out.println("Invalid country code! :(");
                                             }
                                         }
                                     }
+
 
                                     formula1DriversTeam[teamNumber].setDriverName(name.toUpperCase());
 
@@ -393,7 +408,15 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                 System.out.println("Enter the country of the driver :");
                                 String customCountry = delimiterInput.next().toUpperCase();
                                 customCountryIndex.put(customCountry, countryIndex);
+                                getStatistics();
+                                newFormula1Driver.setFirstPositions(firstPositions);
+                                newFormula1Driver.setSecondPositions(secondPositions);
+                                newFormula1Driver.setThirdPositions(thirdPositions);
+                                newFormula1Driver.setNumberOfRaces(numberOfRaces);
+                                newFormula1Driver.setAchievedSeasons(achievedSeasons);
+
                                 customTeamArray.add(countryIndex, newFormula1Driver);
+
 
                                 countryIndex++;
                                 System.out.println("Requirement is successfully completed");
@@ -404,6 +427,13 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                 findCountryCode(country);
                                 if (checkCountryCode) {
                                     customCountryIndex.put(country, countryIndex);
+                                    getStatistics();
+                                    newFormula1Driver.setFirstPositions(firstPositions);
+                                    newFormula1Driver.setSecondPositions(secondPositions);
+                                    newFormula1Driver.setThirdPositions(thirdPositions);
+                                    newFormula1Driver.setNumberOfRaces(numberOfRaces);
+                                    newFormula1Driver.setAchievedSeasons(achievedSeasons);
+
                                     customTeamArray.add(countryIndex, newFormula1Driver);
 
                                     countryIndex++;
@@ -560,5 +590,66 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         System.out.println("| URY - Uruguay     | VEN - Venezuela    | ARE - United Arab Emirates                |");
         System.out.println("+------------------------------------------------------------------------------------+");
     }
+
+    public void getStatistics(){
+        while (true){
+            System.out.println("Enter the number of first positions the driver achieved: ");
+            if (input.hasNextInt()){
+                firstPositions = input.nextInt();
+                break;
+            }else {
+                System.out.println("Invalid data input");
+                System.out.println("");
+                input.next();
+            }
+        }
+
+        while (true){
+            System.out.println("Enter the number of second positions the driver achieved: ");
+            if (input.hasNextInt()){
+                secondPositions = input.nextInt();
+                break;
+            }else {
+                System.out.println("Invalid data input");
+                System.out.println("");
+                input.next();
+            }
+        }
+         while(true){
+             System.out.println("Enter the number of third positions the driver achieved:");
+             if (input.hasNextInt()){
+                 thirdPositions = input.nextInt();
+                 break;
+             }else {
+                 System.out.println("Invalid data input");
+                 System.out.println("");
+                 input.next();
+             }
+         }
+         while (true){
+             System.out.println("Enter the number of seasons achieved: ");
+             if (input.hasNextInt()){
+                 achievedSeasons = input.nextInt();
+                 break;
+             }
+             System.out.println("Invalid data input");
+             System.out.println("");
+             input.next();
+         }
+         while(true){
+             System.out.println("Enter the number of participated races: ");
+             if (input.hasNextInt()){
+                 numberOfRaces = input.nextInt();
+                 break;
+             }else {
+                 System.out.println("Invalid data input");
+                 System.out.println("");
+                 input.next();
+             }
+         }
+    }
+
+
+
 }
 
