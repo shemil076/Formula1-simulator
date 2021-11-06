@@ -611,6 +611,10 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         }
     }
 
+    public void displayTheVariousStatics(){
+
+    }
+
 
 }
 
