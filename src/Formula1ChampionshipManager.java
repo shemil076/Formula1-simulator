@@ -216,8 +216,8 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                 System.out.println("Already the team has a driver");
                             } else {
                                 System.out.println("Enter the name of the driver");
-                                if (input.hasNext()) {
-                                    String name = input.next();
+                                if (delimiterInput.hasNext()) {
+                                    String name = delimiterInput.next();
                                     System.out.println("");
                                     System.out.println("Enter the country code you prefer from the following or \nenter 9 to add a custom country:  ");
 
@@ -706,14 +706,18 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                             System.out.println("");
                             System.out.println("Diver's team name            : " + formula1DriversTeam[teamIndex].getTeamOfDriver());
                             System.out.println("");
+                            System.out.println("Total participated races     : " + formula1DriversTeam[teamIndex].getNumberOfRaces());
+                            System.out.println("");
+                            System.out.println("Total achieved seasons       : " + formula1DriversTeam[teamIndex].getAchievedSeasons());
+                            System.out.println("");
                             System.out.println("Current points of the driver : " + formula1DriversTeam[teamIndex].getCurrentPoints());
                             System.out.println("");
                             System.out.println("");
-                            System.out.println("------------------ HISTOGRAM ANALYSIS-------------------------------------");
+                            System.out.println("+-----------------------HORIZONTAL HISTOGRAM ANALYSIS--------------------+");
                             System.out.println("");
-                            System.out.println("First Positions  =" + positionOne + "|" +  ("*").repeat(formula1DriversTeam[teamIndex].getFirstPositions()) );
-                            System.out.println("Second Positions =" + positionTwo + "|"+("*").repeat(formula1DriversTeam[teamIndex].getSecondPositions()) );
-                            System.out.println("Third Positions  =" + positionThree + "|" + ("*").repeat(formula1DriversTeam[teamIndex].getThirdPositions()) );
+                            System.out.println("First Positions  =" + positionOne + " |" +  ("*").repeat(formula1DriversTeam[teamIndex].getFirstPositions()) );
+                            System.out.println("Second Positions =" + positionTwo + " |"+("*").repeat(formula1DriversTeam[teamIndex].getSecondPositions()) );
+                            System.out.println("Third Positions  =" + positionThree + " |" + ("*").repeat(formula1DriversTeam[teamIndex].getThirdPositions()) );
 
                             System.out.println("+------------------------------------------------------------------------+");
                         }else {
