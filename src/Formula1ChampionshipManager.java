@@ -737,6 +737,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     System.out.println("");
                     input.next();
                 }
+                checkNumber = false;
             }
         } else {
             System.out.println("Please add a team before this function :-(");
