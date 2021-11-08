@@ -11,7 +11,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     private int customTeamIndex = 0;
     private static boolean run = true;
     private int[] rangeNumber = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    private String[] countryCodes = {"ARG", "AUS", "AUT", "BHR", "BEL", "BRA", "CAN", "CHL", "COL", "CZE", "DNK", "FIN", "FRA", "DEU", "HUN", "IND", "IRL", "ITA", "JAP", "LIE", "MYS", "MEX", "MCO", "MAR", "NLD", "NZL", "POL", "PRT", "RUS", "ZAF", "ESP", "SWE", "CHE", "THA", "GBR", "USA", "URY", "VEN", "ARE"};
+    private String[] countryCodes = {"ARG", "AUS", "AUT", "BHR", "BEL", "BRA", "CAN", "CHL", "COL", "CZE", "DNK", "FIN", "FRA", "DEU", "HUN", "IND", "IRL", "ITA", "JPN", "LIE", "MYS", "MEX", "MCO", "MAR", "NLD", "NZL", "POL", "PRT", "RUS", "ZAF", "ESP", "SWE", "CHE", "THA", "GBR", "USA", "URY", "VEN", "ARE"};
     private String[] existingTeamsArray = {"MERCEDES", "RED BULL", "MCLAREN", "FERRARI", "ALPINE", "ALFA TAURI", "ASTON MARTIN", "WILLIAMS", "ALFA ROMEO RACING", "HAAS F1 TEAM"};
     private boolean checkNumber = false, checkCountryCode = false;
     private boolean checkExistingTeamTeamName = true, checkDisplayTheVariousStatics = true, checkTeamName = true, checkCreateANewDriver = true, vacantTeams = true, occupiedTeam = true, checkCustomOccupiedTeam = true;
@@ -516,7 +516,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         countries.put("IND", "India");
         countries.put("IRL", "Ireland");
         countries.put("ITA", "Italy");
-        countries.put("JAP", "Japan");
+        countries.put("JPN", "Japan");
         countries.put("LIE", "Liechtenstein");
         countries.put("MYS", "Malaysia");
         countries.put("MEX", "Mexico");
@@ -642,6 +642,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                         System.out.println("+------------------------------------------------------------------------+");
                         System.out.println("|                   Select a diver from custom team                      |");
                         System.out.println("+------------------------------------------------------------------------+");
+                        selectADiverFromCustomTeam();
 
                         break;
 
@@ -676,6 +677,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                 for (int i = 0; i < occupiedTeams.length; i++) {
                     if (!occupiedTeams[i].equals("~")) {
                         System.out.println(teams.get(i));
+                        occupiedTeam = true;
                     }
                 }
             }
@@ -727,17 +729,23 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                         }
                     }
                 }
+                else {
+                    System.out.println("Invalid data input");
+                    System.out.println("");
+                    input.next();
+                }
             }
         } else {
             System.out.println("Please add a team before this function :-(");
         }
-        occupiedTeam = false;
+        occupiedTeam = true;
     }
 
     public void checkCustomOccupiedTeams() {
         if (customTeamArray.size() > 0) {
             for (int i = 0; i < customTeamArray.size(); i++) {
                 System.out.println(i + " - " + customTeamArray.get(i).getTeamOfDriver());
+                checkCustomOccupiedTeam = true;
             }
         } else {
             System.out.println("None");
@@ -746,7 +754,60 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         }
     }
 
-    public void selectADiverFromCustomTeam(){}
+    public void selectADiverFromCustomTeam(){
+        checkCustomOccupiedTeams();
+        if (checkCustomOccupiedTeam){
+            while(true){
+                System.out.println("Enter the number respective to the team name or \nenter 999 to return back: ");
+                if(input.hasNextInt()){
+                    int customTeamIndex = input.nextInt();
+                    if (customTeamIndex == 999){
+                        break;
+                    }else {
+                        if ((customTeamIndex >= 0) && (customTeamIndex < customTeamArray.size())){
+                            String positionOne = String.format("%8d",customTeamArray.get(customTeamIndex).getFirstPositions());
+                            String positionTwo = String.format("%8d",customTeamArray.get(customTeamIndex).getSecondPositions());
+                            String positionThree = String.format("%8d",customTeamArray.get(customTeamIndex).getThirdPositions());
+
+                            System.out.println("+------------------------------------------------------------------------+");
+                            System.out.println("Name of the Driver           : " + customTeamArray.get(customTeamIndex).getDriverName());
+                            System.out.println("");
+                            System.out.println("Diver's location             : " + customTeamArray.get(customTeamIndex).getDriverLocation());
+                            System.out.println("");
+                            System.out.println("Diver's team name            : " + customTeamArray.get(customTeamIndex).getTeamOfDriver());
+                            System.out.println("");
+                            System.out.println("Total participated races     : " + customTeamArray.get(customTeamIndex).getNumberOfRaces());
+                            System.out.println("");
+                            System.out.println("Total achieved seasons       : " + customTeamArray.get(customTeamIndex).getAchievedSeasons());
+                            System.out.println("");
+                            System.out.println("Current points of the driver : " + customTeamArray.get(customTeamIndex).getCurrentPoints());
+                            System.out.println("");
+                            System.out.println("");
+                            System.out.println("+-----------------------HORIZONTAL HISTOGRAM ANALYSIS--------------------+");
+                            System.out.println("");
+                            System.out.println("First Positions  =" + positionOne + " |" + ("*").repeat(customTeamArray.get(customTeamIndex).getFirstPositions()));
+                            System.out.println("Second Positions =" + positionTwo + " |" + ("*").repeat(customTeamArray.get(customTeamIndex).getSecondPositions()));
+                            System.out.println("Third Positions  =" + positionThree + " |" + ("*").repeat(customTeamArray.get(customTeamIndex).getThirdPositions()));
+
+                            System.out.println("+------------------------------------------------------------------------+");
+
+
+                        }else {
+                            System.out.println("Invalid input range");
+                        }
+                    }
+
+                }else {
+                    System.out.println("Invalid data input");
+                    System.out.println("");
+                    input.next();
+                }
+            }
+
+        }else{
+            System.out.println("Please add a team before this function :-(");
+        }
+    }
 
 }
 
