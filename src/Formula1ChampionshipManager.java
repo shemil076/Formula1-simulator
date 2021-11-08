@@ -79,7 +79,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     System.out.println("+------------------------------------------------------------------------+");
                     System.out.println("|                         Delete a Driver and Team                       |");
                     System.out.println("+------------------------------------------------------------------------+");
-                    deleteADriverAndTeam();
+                    deleteADriverAndTeam(formula1DriversTeam);
                     break;
 
                 case "102":
@@ -812,15 +812,15 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         }
     }
 
-    public void deleteADriverAndTeam(){
+    public void deleteADriverAndTeam(Formula1Driver[] formula1DriversTeam){
         while (checkDeleteADriverAndTeam) {
 
             System.out.println("+------------------------------------------------------------------------+");
-            System.out.println("|         INPUT CODE         |              OPTION                       |");
+            System.out.println("|         INPUT CODE  |              OPTION                              |");
             System.out.println("+------------------------------------------------------------------------+");
-            System.out.println("|         1 or DBT           |     Delete driver from pre build team     |");
-            System.out.println("|         2 or DCT           |     Delete a diver from custom team       |");
-            System.out.println("|         9 or BCK           |     Return To the main menu               |");
+            System.out.println("|         1 or DBT    | Delete a driver and the team from pre build team |");
+            System.out.println("|         2 or DCT    | Delete a diver and the team from custom team     |");
+            System.out.println("|         9 or BCK    | Return To the main menu                          |");
             System.out.println("+------------------------------------------------------------------------+");
             System.out.println("Enter the respective code for your requirement: ");
 
@@ -831,8 +831,9 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     case "1":
                     case "DBT":
                         System.out.println("+------------------------------------------------------------------------+");
-                        System.out.println("|                 Select a driver from pre build team                    |");
+                        System.out.println("|                 Delete a driver from pre build team                    |");
                         System.out.println("+------------------------------------------------------------------------+");
+                        deleteADriverFromPreBuildTeam(formula1DriversTeam);
 
 
                         break;
@@ -840,7 +841,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     case "2":
                     case "DCT":
                         System.out.println("+------------------------------------------------------------------------+");
-                        System.out.println("|                   Select a diver from custom team                      |");
+                        System.out.println("|                   Delete a diver from custom team                      |");
                         System.out.println("+------------------------------------------------------------------------+");
 
 
@@ -860,6 +861,47 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         checkDeleteADriverAndTeam = true;
     }
 
+    public void deleteADriverFromPreBuildTeam(Formula1Driver[] formula1DriversTeam){
+        checkOccupiedTeams(formula1DriversTeam);
+        if(occupiedTeam){
+            while (true){
+                System.out.println("Enter the number respective to the team name or \nenter 999 to return back: ");
+                if (input.hasNextInt()){
+                    int teamNumber = input.nextInt();
+                    if (teamNumber == 999){
+                        break;
+                    }else {
+                        findTeamsNumber(teamNumber);
+                        if (checkNumber){
+                            if(formula1DriversTeam[teamNumber].getDriverName().equals("~")){
+                                System.out.println("Already the team" +formula1DriversTeam[teamNumber].getTeamOfDriver()+ "is vacant");
+                            } else {
+                                formula1DriversTeam[teamNumber].setDriverLocation("~");
+                                formula1DriversTeam[teamNumber].setFirstPositions(0);
+                                formula1DriversTeam[teamNumber].setSecondPositions(0);
+                                formula1DriversTeam[teamNumber].setThirdPositions(0);
+                                formula1DriversTeam[teamNumber].setAchievedSeasons(0);
+                                formula1DriversTeam[teamNumber].setNumberOfRaces(0);
+                                formula1DriversTeam[teamNumber].setTeamOfDriver("~");
+                                formula1DriversTeam[teamNumber].calculatePoints();
+
+                            }
+
+                        }else{
+                            System.out.println("Invalid input range");
+                        }
+                    }
+                } else {
+                    System.out.println("Invalid input data type, Integer required");
+                    input.next();
+                }
+            }
+        }else {
+            System.out.println("Please add a team before this function :-(");
+        }
+        occupiedTeam = false;
+
+    }
 
 
 
