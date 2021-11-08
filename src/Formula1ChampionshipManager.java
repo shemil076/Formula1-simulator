@@ -15,7 +15,6 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     private String[] existingTeamsArray = {"MERCEDES", "RED BULL", "MCLAREN", "FERRARI", "ALPINE", "ALFA TAURI", "ASTON MARTIN", "WILLIAMS", "ALFA ROMEO RACING", "HAAS F1 TEAM"};
     private boolean checkNumber = false, checkCountryCode = false;
     private boolean checkExistingTeamTeamName = true, checkDisplayTheVariousStatics = true, checkTeamName = true, checkCreateANewDriver = true, vacantTeams = true, occupiedTeam = true, checkCustomOccupiedTeam = true, checkDeleteADriverAndTeam = true;
-
     private int firstPositions, secondPositions, thirdPositions, achievedSeasons, currentPoints, numberOfRaces;
 
 
@@ -52,7 +51,6 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         System.out.println("|           104 or DFT         |       Display Formula1 Driver Table     |");
         System.out.println("|           105 or ARC         |       Add a Race Completed              |");
         System.out.println("|           106 or SIF         |       Save in a File                    |");
-        System.out.println("|           107 or SIF         |       Save in a File                    |");
         System.out.println("|           999 or EXT         |       Exit the program                  |");
         System.out.println("+------------------------------------------------------------------------+");
 
@@ -297,7 +295,6 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
             System.out.println("No vacancy, Please try a custom team");
         }
     }
-
 
     public void checkVacantTeam(Formula1Driver[] formula1DriversTeam) {
         String[] vacantTeam = new String[formula1DriversTeam.length];
@@ -843,8 +840,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                         System.out.println("+------------------------------------------------------------------------+");
                         System.out.println("|                   Delete a diver from custom team                      |");
                         System.out.println("+------------------------------------------------------------------------+");
-
-
+                        deleteADiverFromCustomTeam();
                         break;
 
                     case "9":
@@ -883,8 +879,10 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                 formula1DriversTeam[teamNumber].setAchievedSeasons(0);
                                 formula1DriversTeam[teamNumber].setNumberOfRaces(0);
                                 formula1DriversTeam[teamNumber].setTeamOfDriver("~");
+                                formula1DriversTeam[teamNumber].setDriverName("~");
                                 formula1DriversTeam[teamNumber].calculatePoints();
 
+                                System.out.println("Request successfully completed");
                             }
 
                         }else{
@@ -903,10 +901,35 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 
     }
 
+    public void deleteADiverFromCustomTeam(){
+        checkCustomOccupiedTeams();
+        if (checkCustomOccupiedTeam){
+            while(true){
+                System.out.println("Enter the number respective to the team name or \nenter 999 to return back: ");
+                if(input.hasNextInt()){
+                    int customTeamNumber = input.nextInt();
+                    if (customTeamNumber == 999){
+                        break;
+                    }else {
+                        if ((customTeamNumber >= 0) && (customTeamNumber < customTeamArray.size())){
+                            customTeamArray.remove(customTeamNumber);
+                            System.out.println("Request successfully completed");
 
+                        }else {
+                            System.out.println("Invalid input range");
+                        }
+                    }
 
-
-
+                }else {
+                    System.out.println("Invalid data input");
+                    System.out.println("");
+                    input.next();
+                }
+            }
+        }else{
+            System.out.println("Please add a team before this function :-(");
+        }
+    }
 
 
 }
