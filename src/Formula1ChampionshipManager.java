@@ -293,13 +293,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 
             }
         } else {
-            System.out.println("Enter the name of the driver");
-            if (input.hasNext()) {
-                String name = input.next();
-
-            } else {
-                System.out.println("Invalid input");
-            }
+            System.out.println("No vacancy, Please try a custom team");
         }
     }
 
@@ -681,7 +675,16 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     }
                 }
             }
+        }else {
+            for (int i = 0; i < occupiedTeams.length; i++) {
+                if (!occupiedTeams[i].equals("~")) {
+                    System.out.println(teams.get(i));
+                    occupiedTeam = true;
+                }
+            }
         }
+
+
     }
 
 
