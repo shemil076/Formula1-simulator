@@ -8,20 +8,20 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     private int numberOfCars;
     public Scanner input = new Scanner(System.in);
     public Scanner delimiterInput = new Scanner(System.in).useDelimiter("\n");
-    private int countryIndex = 0;
+    private int customTeamIndex = 0;
     private static boolean run = true;
     private int[] rangeNumber = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     private String[] countryCodes = {"ARG", "AUS", "AUT", "BHR", "BEL", "BRA", "CAN", "CHL", "COL", "CZE", "DNK", "FIN", "FRA", "DEU", "HUN", "IND", "IRL", "ITA", "JAP", "LIE", "MYS", "MEX", "MCO", "MAR", "NLD", "NZL", "POL", "PRT", "RUS", "ZAF", "ESP", "SWE", "CHE", "THA", "GBR", "USA", "URY", "VEN", "ARE"};
     private String[] existingTeamsArray = {"MERCEDES", "RED BULL", "MCLAREN", "FERRARI", "ALPINE", "ALFA TAURI", "ASTON MARTIN", "WILLIAMS", "ALFA ROMEO RACING", "HAAS F1 TEAM"};
-    private boolean checkNumber = false, checkCountryCode = false  ;
-    private boolean checkExistingTeamTeamName = true, checkDisplayTheVariousStatics = true, checkTeamName = true, checkCreateANewDriver = true, vacantTeams = true, occupiedTeam = true;
+    private boolean checkNumber = false, checkCountryCode = false;
+    private boolean checkExistingTeamTeamName = true, checkDisplayTheVariousStatics = true, checkTeamName = true, checkCreateANewDriver = true, vacantTeams = true, occupiedTeam = true, checkCustomOccupiedTeam = true;
 
     private int firstPositions, secondPositions, thirdPositions, achievedSeasons, currentPoints, numberOfRaces;
 
 
     Hashtable<Integer, String> teams = new Hashtable<Integer, String>();
     Hashtable<String, String> countries = new Hashtable<String, String>();
-    Hashtable<String, Integer> customCountryIndex = new Hashtable<String, Integer>();
+    //    Hashtable<String, Integer> customCountryIndex = new Hashtable<String, Integer>();
     ArrayList<Formula1Driver> customTeamArray = new ArrayList<Formula1Driver>();
 
     public static void main(String[] args) {
@@ -332,8 +332,6 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     }
 
 
-
-
     public void addToCustomTeam() {
         Formula1Driver newFormula1Driver = new Formula1Driver();
         while (true) {
@@ -367,7 +365,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                 if (country.equalsIgnoreCase("9")) {
                                     System.out.println("Enter the country of the driver :");
                                     String customCountry = delimiterInput.next().toUpperCase();
-                                    customCountryIndex.put(customCountry, countryIndex);
+//                                    customCountryIndex.put(customCountry, countryIndex);
                                     getStatistics();
                                     newFormula1Driver.setFirstPositions(firstPositions);
                                     newFormula1Driver.setSecondPositions(secondPositions);
@@ -375,11 +373,12 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                     newFormula1Driver.setNumberOfRaces(numberOfRaces);
                                     newFormula1Driver.setAchievedSeasons(achievedSeasons);
                                     newFormula1Driver.setCurrentPoints(newFormula1Driver.getCurrentPoints());
+                                    newFormula1Driver.setDriverLocation(customCountry);
 
-                                    customTeamArray.add(countryIndex, newFormula1Driver);
+                                    customTeamArray.add(customTeamIndex, newFormula1Driver);
 
 
-                                    countryIndex++;
+                                    customTeamIndex++;
                                     System.out.println("Requirement is successfully completed");
                                     System.out.println(name + " was added to the team " + newFormula1Driver.getTeamOfDriver());
                                     System.out.println("");
@@ -387,7 +386,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                 } else {
                                     findCountryCode(country);
                                     if (checkCountryCode) {
-                                        customCountryIndex.put(country, countryIndex);
+//                                        customCountryIndex.put(country, countryIndex);
                                         getStatistics();
                                         newFormula1Driver.setFirstPositions(firstPositions);
                                         newFormula1Driver.setSecondPositions(secondPositions);
@@ -395,10 +394,12 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                         newFormula1Driver.setNumberOfRaces(numberOfRaces);
                                         newFormula1Driver.setAchievedSeasons(achievedSeasons);
                                         newFormula1Driver.setCurrentPoints(newFormula1Driver.getCurrentPoints());
+                                        newFormula1Driver.setDriverLocation(countries.get(country));
 
-                                        customTeamArray.add(countryIndex, newFormula1Driver);
 
-                                        countryIndex++;
+                                        customTeamArray.add(customTeamIndex, newFormula1Driver);
+
+                                        customTeamIndex++;
                                         System.out.println("Requirement is successfully completed");
                                         System.out.println(name + " was added to the team " + newFormula1Driver.getTeamOfDriver());
                                         System.out.println("");
@@ -611,7 +612,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         }
     }
 
-    public void displayTheVariousStatics(Formula1Driver[] formula1DriversTeam){
+    public void displayTheVariousStatics(Formula1Driver[] formula1DriversTeam) {
         while (checkDisplayTheVariousStatics) {
 
             System.out.println("+------------------------------------------------------------------------+");
@@ -658,22 +659,22 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         checkDisplayTheVariousStatics = true;
     }
 
-    public void checkOccupiedTeams(Formula1Driver[] formula1DriversTeam){
+    public void checkOccupiedTeams(Formula1Driver[] formula1DriversTeam) {
         String[] occupiedTeams = new String[formula1DriversTeam.length];
-        for (int i = 0 ; i < formula1DriversTeam.length; i++){
+        for (int i = 0; i < formula1DriversTeam.length; i++) {
             occupiedTeams[i] = formula1DriversTeam[i].getTeamOfDriver();
         }
-        if ((occupiedTeams[0].equals("~")) || (occupiedTeams[1].equals("~")) || (occupiedTeams[2].equals("~")) || (occupiedTeams[3].equals("~")) || (occupiedTeams[4].equals("~")) || (occupiedTeams[5].equals("~")) || (occupiedTeams[6].equals("~")) || (occupiedTeams[7].equals("~")) || (occupiedTeams[8].equals("~")) || (occupiedTeams[9].equals("~"))){
+        if ((occupiedTeams[0].equals("~")) || (occupiedTeams[1].equals("~")) || (occupiedTeams[2].equals("~")) || (occupiedTeams[3].equals("~")) || (occupiedTeams[4].equals("~")) || (occupiedTeams[5].equals("~")) || (occupiedTeams[6].equals("~")) || (occupiedTeams[7].equals("~")) || (occupiedTeams[8].equals("~")) || (occupiedTeams[9].equals("~"))) {
             System.out.println("Occupied Teams");
 
-            if ((occupiedTeams[0].equals("~")) && (occupiedTeams[1].equals("~")) && (occupiedTeams[2].equals("~")) && (occupiedTeams[3].equals("~")) && (occupiedTeams[4].equals("~")) && (occupiedTeams[5].equals("~")) && (occupiedTeams[6].equals("~")) && (occupiedTeams[7].equals("~")) && (occupiedTeams[8].equals("~")) && (occupiedTeams[9].equals("~"))){
+            if ((occupiedTeams[0].equals("~")) && (occupiedTeams[1].equals("~")) && (occupiedTeams[2].equals("~")) && (occupiedTeams[3].equals("~")) && (occupiedTeams[4].equals("~")) && (occupiedTeams[5].equals("~")) && (occupiedTeams[6].equals("~")) && (occupiedTeams[7].equals("~")) && (occupiedTeams[8].equals("~")) && (occupiedTeams[9].equals("~"))) {
                 System.out.println("None");
                 System.out.println("");
 //
                 occupiedTeam = false;
-            }else {
-                for (int i = 0; i < occupiedTeams.length; i++){
-                    if(!occupiedTeams[i].equals("~")){
+            } else {
+                for (int i = 0; i < occupiedTeams.length; i++) {
+                    if (!occupiedTeams[i].equals("~")) {
                         System.out.println(teams.get(i));
                     }
                 }
@@ -682,22 +683,22 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     }
 
 
-    public void selectADriverFromPreBuildTeam(Formula1Driver[] formula1DriversTeam){
+    public void selectADriverFromPreBuildTeam(Formula1Driver[] formula1DriversTeam) {
         checkOccupiedTeams(formula1DriversTeam);
-        if (occupiedTeam){
-            while(true){
+        if (occupiedTeam) {
+            while (true) {
                 System.out.println("Enter the number respective to the team name or \nenter 999 to return back: ");
-                if (input.hasNextInt()){
+                if (input.hasNextInt()) {
                     int teamIndex = input.nextInt();
-                    if (teamIndex == 999){
+                    if (teamIndex == 999) {
                         break;
-                    }else {
+                    } else {
                         findTeamsNumber(teamIndex);
-                        if(checkNumber){
+                        if (checkNumber) {
 
-                            String positionOne = String.format("%8d",formula1DriversTeam[teamIndex].getFirstPositions());
-                            String positionTwo = String.format("%8d",formula1DriversTeam[teamIndex].getSecondPositions());
-                            String positionThree = String.format("%8d",formula1DriversTeam[teamIndex].getThirdPositions());
+                            String positionOne = String.format("%8d", formula1DriversTeam[teamIndex].getFirstPositions());
+                            String positionTwo = String.format("%8d", formula1DriversTeam[teamIndex].getSecondPositions());
+                            String positionThree = String.format("%8d", formula1DriversTeam[teamIndex].getThirdPositions());
 
 
                             System.out.println("+------------------------------------------------------------------------+");
@@ -716,27 +717,36 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                             System.out.println("");
                             System.out.println("+-----------------------HORIZONTAL HISTOGRAM ANALYSIS--------------------+");
                             System.out.println("");
-                            System.out.println("First Positions  =" + positionOne + " |" +  ("*").repeat(formula1DriversTeam[teamIndex].getFirstPositions()) );
-                            System.out.println("Second Positions =" + positionTwo + " |"+("*").repeat(formula1DriversTeam[teamIndex].getSecondPositions()) );
-                            System.out.println("Third Positions  =" + positionThree + " |" + ("*").repeat(formula1DriversTeam[teamIndex].getThirdPositions()) );
+                            System.out.println("First Positions  =" + positionOne + " |" + ("*").repeat(formula1DriversTeam[teamIndex].getFirstPositions()));
+                            System.out.println("Second Positions =" + positionTwo + " |" + ("*").repeat(formula1DriversTeam[teamIndex].getSecondPositions()));
+                            System.out.println("Third Positions  =" + positionThree + " |" + ("*").repeat(formula1DriversTeam[teamIndex].getThirdPositions()));
 
                             System.out.println("+------------------------------------------------------------------------+");
-                        }else {
+                        } else {
                             System.out.println("Team number out of range...");
                         }
                     }
-
                 }
             }
+        } else {
+            System.out.println("Please add a team before this function :-(");
         }
-        System.out.println("Please add a team before this function :-(");
+        occupiedTeam = false;
     }
 
-    public void checkCustomOccupiedTeams(){}
+    public void checkCustomOccupiedTeams() {
+        if (customTeamArray.size() > 0) {
+            for (int i = 0; i < customTeamArray.size(); i++) {
+                System.out.println(i + " - " + customTeamArray.get(i).getTeamOfDriver());
+            }
+        } else {
+            System.out.println("None");
+            System.out.println("");
+            checkCustomOccupiedTeam = false;
+        }
+    }
 
-
-
-
+    public void selectADiverFromCustomTeam(){}
 
 }
 
