@@ -669,7 +669,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
             if ((occupiedTeams[0].equals("~")) && (occupiedTeams[1].equals("~")) && (occupiedTeams[2].equals("~")) && (occupiedTeams[3].equals("~")) && (occupiedTeams[4].equals("~")) && (occupiedTeams[5].equals("~")) && (occupiedTeams[6].equals("~")) && (occupiedTeams[7].equals("~")) && (occupiedTeams[8].equals("~")) && (occupiedTeams[9].equals("~"))){
                 System.out.println("None");
                 System.out.println("");
-                System.out.println("Please add a team before this function :-(");
+//
                 occupiedTeam = false;
             }else {
                 for (int i = 0; i < occupiedTeams.length; i++){
@@ -729,8 +729,14 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                 }
             }
         }
-
+        System.out.println("Please add a team before this function :-(");
     }
+
+    public void checkCustomOccupiedTeams(){}
+
+
+
+
 
 }
 

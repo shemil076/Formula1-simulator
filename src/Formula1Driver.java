@@ -61,7 +61,7 @@ public class Formula1Driver extends Driver{
     }
 
     public void calculatePoints() {
-        this.setCurrentPoints(((firstPositions * 25) + (secondPositions * 18) + (thirdPositions + 15)));
+        this.setCurrentPoints(((firstPositions * 25) + (secondPositions * 18) + (thirdPositions * 15)));
     }
 
     public int getCurrentPoints() {
