@@ -946,6 +946,21 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         }
     }
 
+    public void checkFinalArray(){
+        if (finalTeamArray.size() > 0){
+            System.out.println("All the occupied teams in the system");
+            for (int i = 0 ; i < finalTeamArray.size() ; i++){
+                System.out.println(i + finalTeamArray.get(i).getTeamOfDriver() + finalTeamArray.get(i).getDriverName());
+            }
+        }else {
+            System.out.println("Please add teams");
+        }
+    }
+
+
+
+
+
 
 
 
