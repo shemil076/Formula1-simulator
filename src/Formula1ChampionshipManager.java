@@ -940,6 +940,10 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                 continue;
             }
         }
+
+        for (int i = 0 ; i < customTeamArray.size() ; i++){
+            finalTeamArray.add(customTeamArray.get(i));
+        }
     }
 
 
