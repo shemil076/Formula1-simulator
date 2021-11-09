@@ -325,6 +325,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 //            System.out.println("No vacancy, Please try a custom team");
             vacantTeams = false;
         }
+        vacantTeams = true;
     }
 
 
@@ -939,6 +940,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                         if ((customTeamNumber >= 0) && (customTeamNumber < customTeamArray.size())) {
                             customTeamArray.remove(customTeamNumber);
                             System.out.println("Request successfully completed");
+                            break;
 
                         } else {
                             System.out.println("Invalid input range");
