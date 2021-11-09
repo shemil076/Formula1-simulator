@@ -1,3 +1,4 @@
+import java.util.Comparator;
 public class Formula1Driver extends Driver{
     private int firstPositions;
     private int secondPositions;
@@ -60,9 +61,6 @@ public class Formula1Driver extends Driver{
         this.numberOfRaces = numberOfRaces;
     }
 
-    public void calculatePoints() {
-        this.setCurrentPoints(((firstPositions * 25) + (secondPositions * 18) + (thirdPositions * 15)));
-    }
 
     public int getCurrentPoints() {
         return currentPoints;
@@ -70,5 +68,22 @@ public class Formula1Driver extends Driver{
 
     public void setCurrentPoints(int currentPoints) {
         this.currentPoints = currentPoints;
+    }
+
+
+    public static Comparator<Formula1Driver> Formula1DriverPoints = new Comparator<Formula1Driver>() {
+        public int compare(Formula1Driver driver1, Formula1Driver driver2){
+            int pointsOfDriver1 = driver1.getCurrentPoints();
+            int pointsOfDriver2 = driver2.getCurrentPoints();
+
+            return pointsOfDriver2 - pointsOfDriver1;
+        }
+    };
+
+    @Override
+    public String toString(){
+
+
+        return "[ Name of the driver : " +  super.getDriverName() + " Team Name: " + super.getTeamOfDriver() +  " Number of Points: " + currentPoints + " ] ";
     }
 }
