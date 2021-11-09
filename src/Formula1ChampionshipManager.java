@@ -102,6 +102,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     System.out.println("+------------------------------------------------------------------------+");
                     System.out.println("|                      Display Formula1 Driver Table                     |");
                     System.out.println("+------------------------------------------------------------------------+");
+                    displayFormula1DriverTable(formula1DriversTeam);
                     break;
 
                 case "105":
@@ -861,6 +862,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     public void deleteADriverFromPreBuildTeam(Formula1Driver[] formula1DriversTeam){
         checkOccupiedTeams(formula1DriversTeam);
         if(occupiedTeam){
+            finalTeamArray.clear();
             while (true){
                 System.out.println("Enter the number respective to the team name or \nenter 999 to return back: ");
                 if (input.hasNextInt()){
@@ -894,6 +896,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     System.out.println("Invalid input data type, Integer required");
                     input.next();
                 }
+                checkNumber = false;
             }
         }else {
             System.out.println("Please add a team before this function :-(");
@@ -905,6 +908,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     public void deleteADiverFromCustomTeam(){
         checkCustomOccupiedTeams();
         if (checkCustomOccupiedTeam){
+            finalTeamArray.clear();
             while(true){
                 System.out.println("Enter the number respective to the team name or \nenter 999 to return back: ");
                 if(input.hasNextInt()){
@@ -958,7 +962,12 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     }
 
 
+    public void displayFormula1DriverTable(Formula1Driver[] formula1DriversTeam){
+        addAllToAnArrayList(formula1DriversTeam);
+        checkFinalArray();
 
+
+    }
 
 
 
