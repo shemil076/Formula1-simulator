@@ -22,6 +22,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     Hashtable<String, String> countries = new Hashtable<String, String>();
     //    Hashtable<String, Integer> customCountryIndex = new Hashtable<String, Integer>();
     ArrayList<Formula1Driver> customTeamArray = new ArrayList<Formula1Driver>();
+    ArrayList<Formula1Driver> finalTeamArray = new ArrayList<Formula1Driver>();
 
     public static void main(String[] args) {
         Formula1ChampionshipManager championManager = new Formula1ChampionshipManager();
@@ -930,6 +931,18 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
             System.out.println("Please add a team before this function :-(");
         }
     }
+
+    public void addAllToAnArrayList(Formula1Driver[] formula1DriversTeam){
+        for (int i = 0 ; i < formula1DriversTeam.length ; i++){
+            if ((!formula1DriversTeam[i].getDriverName().equals("~")) && (!formula1DriversTeam[i].getDriverName().equals("~"))){
+                finalTeamArray.add(formula1DriversTeam[i]);
+            } else {
+                continue;
+            }
+        }
+    }
+
+
 
 
 }
