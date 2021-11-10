@@ -2,15 +2,12 @@ public abstract class Driver {
     private String driverName;
     private String driverLocation;
     private String teamOfDriver;
-    private int driverStatics;
 
-    public Driver(){}
 
-    public Driver(String driverName, String driverLocation, String teamOfDriver, int driverStatics){
+    public Driver(String driverName, String driverLocation, String teamOfDriver){
         this.driverName = driverName;
         this.driverLocation = driverLocation;
         this.teamOfDriver = teamOfDriver;
-        this.driverStatics = driverStatics;
     }
 
 
@@ -39,12 +36,5 @@ public abstract class Driver {
         this.teamOfDriver = teamOfDriver;
     }
 
-    public int getDriverStatics() {
-        return driverStatics;
-    }
-
-    public void setDriverStatics(int driverStatics) {
-        this.driverStatics = driverStatics;
-    }
 }
 
