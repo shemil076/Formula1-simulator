@@ -15,7 +15,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     private String[] countryCodes = {"ARG", "AUS", "AUT", "BHR", "BEL", "BRA", "CAN", "CHL", "COL", "CZE", "DNK", "FIN", "FRA", "DEU", "HUN", "IND", "IRL", "ITA", "JPN", "LIE", "MYS", "MEX", "MCO", "MAR", "NLD", "NZL", "POL", "PRT", "RUS", "ZAF", "ESP", "SWE", "CHE", "THA", "GBR", "USA", "URY", "VEN", "ARE"};
     private String[] existingTeamsArray = {"MERCEDES", "RED BULL", "MCLAREN", "FERRARI", "ALPINE", "ALFA TAURI", "ASTON MARTIN", "WILLIAMS", "ALFA ROMEO RACING", "HAAS F1 TEAM"};
     private boolean checkNumber = false, checkCountryCode = false;
-    private boolean checkExistingTeamTeamName = true, checkDisplayTheVariousStatics = true, checkTeamName = true, checkCreateANewDriver = true, vacantTeams = true, occupiedTeam = true, checkCustomOccupiedTeam = true, checkDeleteADriverAndTeam = true;
+    private boolean checkExistingTeamTeamName = true, checkDisplayTheVariousStatics = true, checkTeamName = true, checkCreateANewDriver = true, vacantTeams = true, occupiedTeam = true, checkCustomOccupiedTeam = true, checkDeleteADriverAndTeam = true, checkChangeTheDriver = true;
     private int firstPositions, secondPositions, thirdPositions, achievedSeasons, currentPoints, numberOfRaces;
 
 
@@ -1002,5 +1002,54 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         sortTeamArray.clear();
         finalTeamArray.clear();
     }
+
+    public void changeTheDriver(){
+        while (checkChangeTheDriver) {
+
+            System.out.println("+------------------------------------------------------------------------+");
+            System.out.println("|         INPUT CODE       |              OPTION                         |");
+            System.out.println("+------------------------------------------------------------------------+");
+            System.out.println("|         1 or DBT         | Change a driver  from pre build team        |");
+            System.out.println("|         2 or DCT         | Change a diver from custom team             |");
+            System.out.println("|         9 or BCK         | Return To the main menu                     |");
+            System.out.println("+------------------------------------------------------------------------+");
+            System.out.println("Enter the respective code for your requirement: ");
+
+
+            if (input.hasNext()) {
+                String respond = input.next();
+                switch (respond.toUpperCase()) {
+                    case "1":
+                    case "DBT":
+                        System.out.println("+------------------------------------------------------------------------+");
+                        System.out.println("|                 Change a driver  from pre build team                   |");
+                        System.out.println("+------------------------------------------------------------------------+");
+
+
+
+                        break;
+
+                    case "2":
+                    case "DCT":
+                        System.out.println("+------------------------------------------------------------------------+");
+                        System.out.println("|                   Change a diver from custom team                      |");
+                        System.out.println("+------------------------------------------------------------------------+");
+
+                        break;
+
+                    case "9":
+                    case "BCK":
+                        checkChangeTheDriver = false;
+                        break;
+                    default:
+                        System.out.println("Invalid option selected, 'Input out of range'");
+                }
+            } else {
+                System.out.println("Invalid in-put");                                                                      //if the user input an invalid input, the program will not terminate, just repeat by passing a warning
+            }
+        }
+        checkChangeTheDriver = true;
+    }
+
 }
 
