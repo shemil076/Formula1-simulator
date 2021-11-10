@@ -88,6 +88,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     System.out.println("+------------------------------------------------------------------------+");
                     System.out.println("|                           Change the Driver                            |");
                     System.out.println("+------------------------------------------------------------------------+");
+                    changeTheDriver(formula1DriversTeam);
                     break;
 
                 case "103":
@@ -783,34 +784,34 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
             while (true) {
                 System.out.println("Enter the number respective to the team name or \nenter 999 to return back: ");
                 if (input.hasNextInt()) {
-                    int customTeamIndex = input.nextInt();
-                    if (customTeamIndex == 999) {
+                    int selectedCustomTeamNumber = input.nextInt();
+                    if (selectedCustomTeamNumber == 999) {
                         break;
                     } else {
-                        if ((customTeamIndex >= 0) && (customTeamIndex < customTeamArray.size())) {
-                            String positionOne = String.format("%8d", customTeamArray.get(customTeamIndex).getFirstPositions());
-                            String positionTwo = String.format("%8d", customTeamArray.get(customTeamIndex).getSecondPositions());
-                            String positionThree = String.format("%8d", customTeamArray.get(customTeamIndex).getThirdPositions());
+                        if ((selectedCustomTeamNumber >= 0) && (selectedCustomTeamNumber < customTeamArray.size())) {
+                            String positionOne = String.format("%8d", customTeamArray.get(selectedCustomTeamNumber).getFirstPositions());
+                            String positionTwo = String.format("%8d", customTeamArray.get(selectedCustomTeamNumber).getSecondPositions());
+                            String positionThree = String.format("%8d", customTeamArray.get(selectedCustomTeamNumber).getThirdPositions());
 
                             System.out.println("+------------------------------------------------------------------------+");
-                            System.out.println("Name of the Driver           : " + customTeamArray.get(customTeamIndex).getDriverName());
+                            System.out.println("Name of the Driver           : " + customTeamArray.get(selectedCustomTeamNumber).getDriverName());
                             System.out.println("");
-                            System.out.println("Diver's location             : " + customTeamArray.get(customTeamIndex).getDriverLocation());
+                            System.out.println("Diver's location             : " + customTeamArray.get(selectedCustomTeamNumber).getDriverLocation());
                             System.out.println("");
-                            System.out.println("Diver's team name            : " + customTeamArray.get(customTeamIndex).getTeamOfDriver());
+                            System.out.println("Diver's team name            : " + customTeamArray.get(selectedCustomTeamNumber).getTeamOfDriver());
                             System.out.println("");
-                            System.out.println("Total participated races     : " + customTeamArray.get(customTeamIndex).getNumberOfRaces());
+                            System.out.println("Total participated races     : " + customTeamArray.get(selectedCustomTeamNumber).getNumberOfRaces());
                             System.out.println("");
-                            System.out.println("Total achieved seasons       : " + customTeamArray.get(customTeamIndex).getAchievedSeasons());
+                            System.out.println("Total achieved seasons       : " + customTeamArray.get(selectedCustomTeamNumber).getAchievedSeasons());
                             System.out.println("");
-                            System.out.println("Current points of the driver : " + customTeamArray.get(customTeamIndex).getCurrentPoints());
+                            System.out.println("Current points of the driver : " + customTeamArray.get(selectedCustomTeamNumber).getCurrentPoints());
                             System.out.println("");
                             System.out.println("");
                             System.out.println("+-----------------------HORIZONTAL HISTOGRAM ANALYSIS--------------------+");
                             System.out.println("");
-                            System.out.println("First Positions  =" + positionOne + " |" + ("*").repeat(customTeamArray.get(customTeamIndex).getFirstPositions()));
-                            System.out.println("Second Positions =" + positionTwo + " |" + ("*").repeat(customTeamArray.get(customTeamIndex).getSecondPositions()));
-                            System.out.println("Third Positions  =" + positionThree + " |" + ("*").repeat(customTeamArray.get(customTeamIndex).getThirdPositions()));
+                            System.out.println("First Positions  =" + positionOne + " |" + ("*").repeat(customTeamArray.get(selectedCustomTeamNumber).getFirstPositions()));
+                            System.out.println("Second Positions =" + positionTwo + " |" + ("*").repeat(customTeamArray.get(selectedCustomTeamNumber).getSecondPositions()));
+                            System.out.println("Third Positions  =" + positionThree + " |" + ("*").repeat(customTeamArray.get(selectedCustomTeamNumber).getThirdPositions()));
 
                             System.out.println("+------------------------------------------------------------------------+");
 
@@ -923,7 +924,6 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
             System.out.println("Please add a team before this function :-(");
         }
         occupiedTeam = false;
-
     }
 
     public void deleteADiverFromCustomTeam() {
@@ -1003,7 +1003,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         finalTeamArray.clear();
     }
 
-    public void changeTheDriver(){
+    public void changeTheDriver(Formula1Driver[] formula1DriversTeam){
         while (checkChangeTheDriver) {
 
             System.out.println("+------------------------------------------------------------------------+");
@@ -1024,8 +1024,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                         System.out.println("+------------------------------------------------------------------------+");
                         System.out.println("|                 Change a driver  from pre build team                   |");
                         System.out.println("+------------------------------------------------------------------------+");
-
-
+                        changeADriverFromPreBuildTeam(formula1DriversTeam);
 
                         break;
 
@@ -1050,6 +1049,13 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         }
         checkChangeTheDriver = true;
     }
+
+
+    public void changeADriverFromPreBuildTeam(Formula1Driver[] formula1DriversTeam){
+
+
+    }
+
 
 }
 
