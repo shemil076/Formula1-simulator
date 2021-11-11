@@ -89,6 +89,8 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                 case "CTD":
                     System.out.println("+------------------------------------------------------------------------+");
                     System.out.println("|                           Change the Driver                            |");
+                    System.out.println("|        ^_^ WARNING the team will be deleted from the system            |");
+                    System.out.println("|         while changing the driver to an existing team ^_^              |");
                     System.out.println("+------------------------------------------------------------------------+");
 //                    changeTheDriver(formula1DriversTeam);
                     changeTheDriver();
@@ -110,7 +112,8 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     System.out.println("|                      Display Formula1 Driver Table                     |");
                     System.out.println("+------------------------------------------------------------------------+");
 //                    displayFormula1DriverTable(formula1DriversTeam);
-                    displayFormula1DriverTable();
+//                    displayFormula1DriverTable();
+                    formula1DriversTable();
                     break;
 
                 case "105":
@@ -1160,24 +1163,49 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 //    }
 
 
-    public void displayFormula1DriverTable() {
-//        addAllToAnArrayList(formula1DriversTeam);
-        if (customTeamArray.size() > 0) {
-            for (int i = 0; i < customTeamArray.size(); i++) {
-                sortTeamArray.add(customTeamArray.get(i));
-            }
-
+//    public void displayFormula1DriverTable() {
+////        addAllToAnArrayList(formula1DriversTeam);
+//        if (customTeamArray.size() > 0) {
+//            for (int i = 0; i < customTeamArray.size(); i++) {
+//                sortTeamArray.add(customTeamArray.get(i));
+//            }
+//
 //            Collections.sort(sortTeamArray, Formula1Driver.Formula1DriverPoints);
-            for (Formula1Driver driver : sortTeamArray) {
-                System.out.println(driver);
-            }
+//            for (Formula1Driver driver : sortTeamArray) {
+//                System.out.println(driver);
+//            }
+//
+//        } else {
+//            System.out.println("Please add teams");
+//        }
+//        sortTeamArray.clear();
+//        finalTeamArray.clear();
+//    }
 
-        } else {
-            System.out.println("Please add teams");
-        }
-        sortTeamArray.clear();
-        finalTeamArray.clear();
+    public void formula1DriversTable(){
+       if (customTeamArray.size() > 0){
+           Collections.sort(customTeamArray);
+           System.out.println("Number of teams: " + customTeamArray.size());
+           System.out.println("");
+           String formulaTableFormat = "| %-4d | %-20s | %-25s | %-25s | %-6d |\n";
+           System.out.format("+------+----------------------+---------------------------+---------------------------+--------+\n");
+           System.out.format("| POSE |      TEAM NAME       |       DRIVER NAME         |           COUNTRY         | POINTS |\n");
+           System.out.format("+------+----------------------+---------------------------+---------------------------+--------+\n");
+
+           for (int i = 0 ; i < customTeamArray.size() ; i++){
+               System.out.format(formulaTableFormat, i+1 ,customTeamArray.get(i).getTeamOfDriver(), customTeamArray.get(i).getDriverName(), customTeamArray.get(i).getDriverLocation(), customTeamArray.get(i).getCurrentPoints());
+               System.out.format("+------+----------------------+---------------------------+---------------------------+--------+\n");
+           }
+           System.out.println("\n");
+       }
+       else {
+           System.out.println("Add teams to display the FORMULA 1 DRIVER TABLE");
+       }
+
     }
+
+
+
 
 //    public void changeTheDriver(Formula1Driver[] formula1DriversTeam){
 //        while (checkChangeTheDriver) {
@@ -1231,7 +1259,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
            checkCustomOccupiedTeams();
            if (checkCustomOccupiedTeam){
                while(true){
-                   System.out.println("Enter the respective code to the team name to change the driver or \nenter 999 to return back:");
+                   System.out.println("Enter the respective code to the team name to change the driver or \nenter 999 to return back: ");
                    if (input.hasNextInt()){
                        int changeFromTeamNumber = input.nextInt();
                        if(changeFromTeamNumber == 999){

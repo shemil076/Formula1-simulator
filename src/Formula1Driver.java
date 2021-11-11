@@ -71,16 +71,18 @@ public class Formula1Driver extends Driver implements Comparable<Formula1Driver>
     }
 
     @Override
-    public int compareTo(Formula1Driver temp){
-        if (temp.getCurrentPoints() == this.currentPoints){
-            return temp.firstPositions - this.firstPositions;
+    public int compareTo(Formula1Driver sortingTemp){
+        if (sortingTemp.getCurrentPoints() == this.currentPoints){
+            return sortingTemp.firstPositions - this.firstPositions;
         }else {
-            return temp.getCurrentPoints() - this.currentPoints;
+            return sortingTemp.getCurrentPoints() - this.currentPoints;
         }
     }
 
 
+
 //    public static Comparator<Formula1Driver> Formula1DriverPoints = new Comparator<Formula1Driver>() {
+//        @Override
 //        public int compare(Formula1Driver driver1, Formula1Driver driver2){
 //            int pointsOfDriver1 = driver1.getCurrentPoints();
 //            int pointsOfDriver2 = driver2.getCurrentPoints();
@@ -89,7 +91,17 @@ public class Formula1Driver extends Driver implements Comparable<Formula1Driver>
 //        }
 //    };
 
-
+//    public static Comparator<Formula1Driver> Formula1DriverPoints = new Comparator<Formula1Driver>() {
+//        @Override
+//        public int compare(Formula1Driver driver1, Formula1Driver driver2){
+//            int pointsOfDriver1 = driver1.getCurrentPoints();
+//            int pointsOfDriver2 = driver2.getCurrentPoints();
+//
+//            return pointsOfDriver2 - pointsOfDriver1;
+//        }
+//    };
+//
+//
 //    @Override
 //    public String toString(){
 //
