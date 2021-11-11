@@ -2,11 +2,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
 import java.util.Scanner;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Formula1ChampionshipManager<HashTable> implements ChampionshipManager {
-    private int numberOfDrivers;
-    private int numberOfCars;
     public Scanner input = new Scanner(System.in);
     public Scanner delimiterInput = new Scanner(System.in).useDelimiter("\n");
     private int customTeamIndex = 0;
@@ -15,9 +14,10 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     private String[] countryCodes = {"ARG", "AUS", "AUT", "BHR", "BEL", "BRA", "CAN", "CHL", "COL", "CZE", "DNK", "FIN", "FRA", "DEU", "HUN", "IND", "IRL", "ITA", "JPN", "LIE", "MYS", "MEX", "MCO", "MAR", "NLD", "NZL", "POL", "PRT", "RUS", "ZAF", "ESP", "SWE", "CHE", "THA", "GBR", "USA", "URY", "VEN", "ARE"};
     public String[] existingTeamsArray = {"MERCEDES", "RED BULL", "MCLAREN", "FERRARI", "ALPINE", "ALFA TAURI", "ASTON MARTIN", "WILLIAMS", "ALFA ROMEO RACING", "HAAS F1 TEAM"};
     private static boolean checkNumber = false, checkCountryCode = false, checkSuggestions = false;
-    private static boolean checkExistingTeamName = true, checkDisplayTheVariousStatics = true, checkCreateANewDriver = true, vacantTeams = true, occupiedTeam = true, checkCustomOccupiedTeam = true, checkDeleteADriverAndTeam = true, checkChangeTheDriver = true, checkdriverName = true;
+    private static boolean checkExistingTeamName = true, checkDisplayTheVariousStatics = true, checkCreateANewDriver = true, vacantTeams = true, occupiedTeam = true, checkCustomOccupiedTeam = true, checkDeleteADriverAndTeam = true, checkChangeTheDriver = true, checkDriverName = true;
     private int firstPositions, secondPositions, thirdPositions, achievedSeasons, currentPoints, numberOfRaces;
     private static boolean checkTeamName = true;
+    private String stringDate = new String();
 
 
     Hashtable<Integer, String> teams = new Hashtable<Integer, String>();
@@ -26,6 +26,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     ArrayList<Formula1Driver> customTeamArray = new ArrayList<Formula1Driver>();
     ArrayList<Formula1Driver> finalTeamArray = new ArrayList<Formula1Driver>();
     ArrayList<Formula1Driver> sortTeamArray = new ArrayList<Formula1Driver>();
+    ArrayList<String> dateArray = new ArrayList<String>();
 
 
     public static void main(String[] args) {
@@ -121,6 +122,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     System.out.println("+------------------------------------------------------------------------+");
                     System.out.println("|                             Add a Race Completed                       |");
                     System.out.println("+------------------------------------------------------------------------+");
+                    addARaceCompleted();
                     break;
 
                 case "106":
@@ -475,7 +477,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 
                 driverNameCheck(name);
 
-                if (checkdriverName) {
+                if (checkDriverName) {
 
                     if (name.equalsIgnoreCase("999")) {
                         break;
@@ -561,7 +563,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     System.out.println("Driver name was already exist");
                     System.out.println("");
                 }
-                checkdriverName = true;
+                checkDriverName = true;
 
             } else {
                 System.out.println("Invalid data input");
@@ -607,7 +609,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     public void driverNameCheck(String driverName) {
         for (int i = 0; i < customTeamArray.size(); i++) {
             if (customTeamArray.get(i).getDriverName().contains(driverName)) {
-                checkdriverName = false;
+                checkDriverName = false;
             }
         }
     }
@@ -1311,5 +1313,52 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
        }
 
     }
+
+    public void addARaceCompleted(){
+//        if (customTeamArray.size() > 0){
+
+            while(true){
+                if(checkDate()){
+                    System.out.println("\n+------------------------------------------------------------------------+");
+                    System.out.println("| INSTRUCTIONS:-                                                         |");
+                    System.out.println("|           ⚠ Enter the position of the driver as a int value (1,2,3,etc)|");
+                    System.out.println("|           ⚠ Enter 0 if the driver was not participated to the race     |");
+                    System.out.println("+------------------------------------------------------------------------+\n");
+
+                    System.out.println("  _    _             _    _         ");
+                    System.out.println(" \\\\`../ |o_..__     \\\\`../ |o_..__  ");
+                    System.out.println("`.,(_)______(_).>  `.,(_)______(_).>");
+                    System.out.println("\t\t\t\t\t\t\t\tRace Date:- 🏎️ " + stringDate);
+
+                    dateArray.add(stringDate);
+
+
+
+
+                }else {
+                    System.out.println("⏲️Please enter a valid date 📅\n");
+                }
+            }
+
+//        }else {
+//            System.out.println("Please add teams before adding a race 🏎️🏎️🏎️🏎️");
+//        }
+    }
+
+    public boolean checkDate(){
+        System.out.println("Enter the date with the following format\n DD/MM/YYYY");
+        stringDate = input.nextLine();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
+        try {
+            Date date = dateFormat.parse(stringDate);
+//            System.out.println("TRUE");
+            return true;
+        } catch (Exception e) {
+//            System.out.println("FALSE");
+            return false;
+        }
+    }
+
 }
 
