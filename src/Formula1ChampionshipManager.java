@@ -14,8 +14,8 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     private int[] rangeNumber = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     private String[] countryCodes = {"ARG", "AUS", "AUT", "BHR", "BEL", "BRA", "CAN", "CHL", "COL", "CZE", "DNK", "FIN", "FRA", "DEU", "HUN", "IND", "IRL", "ITA", "JPN", "LIE", "MYS", "MEX", "MCO", "MAR", "NLD", "NZL", "POL", "PRT", "RUS", "ZAF", "ESP", "SWE", "CHE", "THA", "GBR", "USA", "URY", "VEN", "ARE"};
     public String[] existingTeamsArray = {"MERCEDES", "RED BULL", "MCLAREN", "FERRARI", "ALPINE", "ALFA TAURI", "ASTON MARTIN", "WILLIAMS", "ALFA ROMEO RACING", "HAAS F1 TEAM"};
-    private boolean checkNumber = false, checkCountryCode = false, checkSuggestions = false;
-    private boolean checkExistingTeamName = true, checkDisplayTheVariousStatics = true, checkCreateANewDriver = true, vacantTeams = true, occupiedTeam = true, checkCustomOccupiedTeam = true, checkDeleteADriverAndTeam = true, checkChangeTheDriver = true, checkdriverName = true;
+    private static boolean checkNumber = false, checkCountryCode = false, checkSuggestions = false;
+    private static boolean checkExistingTeamName = true, checkDisplayTheVariousStatics = true, checkCreateANewDriver = true, vacantTeams = true, occupiedTeam = true, checkCustomOccupiedTeam = true, checkDeleteADriverAndTeam = true, checkChangeTheDriver = true, checkdriverName = true;
     private int firstPositions, secondPositions, thirdPositions, achievedSeasons, currentPoints, numberOfRaces;
     private static boolean checkTeamName = true;
 
@@ -65,8 +65,8 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 
 
     public void mainMenu() {
-        if (input.hasNext()) {
-            String option = input.next();
+        if (delimiterInput.hasNext()) {
+            String option = delimiterInput.next();
             switch (option.toUpperCase()) {
                 case "100":
                 case "CND":
@@ -91,6 +91,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     System.out.println("|                           Change the Driver                            |");
                     System.out.println("+------------------------------------------------------------------------+");
 //                    changeTheDriver(formula1DriversTeam);
+                    changeTheDriver();
                     break;
 
                 case "103":
@@ -512,7 +513,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 //                                customTeamArray.add(newFormula1Driver);
 
                                     System.out.println("Requirement is successfully completed");
-//                                System.out.println(name + " was added to the team " + newFormula1Driver.getTeamOfDriver());
+                                System.out.println(name + " was added to the team " + teamName);
                                     System.out.println("");
                                     break;
 
@@ -535,7 +536,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                         customTeamArray.add(new Formula1Driver(name, countries.get(country), teamName, firstPositions, secondPositions, thirdPositions, achievedSeasons, currentPoints, numberOfRaces));
 
                                         System.out.println("Requirement is successfully completed");
-//                                    System.out.println(name + " was added to the team " + newFormula1Driver.getTeamOfDriver());
+                                    System.out.println(name + " was added to the team " + teamName);
                                         System.out.println("");
                                         break;
 
@@ -944,7 +945,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     public void checkCustomOccupiedTeams() {
         if (customTeamArray.size() > 0) {
             for (int i = 0; i < customTeamArray.size(); i++) {
-                System.out.println(i + " - " + customTeamArray.get(i).getTeamOfDriver());
+                System.out.println(i + " - " + customTeamArray.get(i).getTeamOfDriver() + " \n\tDriver : " +customTeamArray.get(i).getDriverName() + "\n");
                 checkCustomOccupiedTeam = true;
             }
         } else {
@@ -1105,7 +1106,6 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     public void deleteADiverFromCustomTeam() {
         checkCustomOccupiedTeams();
         if (checkCustomOccupiedTeam) {
-            finalTeamArray.clear();
             while (true) {
                 System.out.println("Enter the number respective to the team name or \nenter 999 to return back: ");
                 if (input.hasNextInt()) {
@@ -1226,5 +1226,62 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 //        checkChangeTheDriver = true;
 //    }
 
+    public void changeTheDriver(){
+       if (customTeamArray.size() > 1){
+           checkCustomOccupiedTeams();
+           if (checkCustomOccupiedTeam){
+               while(true){
+                   System.out.println("Enter the respective code to the team name to change the driver or \nenter 999 to return back:");
+                   if (input.hasNextInt()){
+                       int changeFromTeamNumber = input.nextInt();
+                       if(changeFromTeamNumber == 999){
+                           break;
+                       }else {
+                           if ((changeFromTeamNumber >=0) && (changeFromTeamNumber < customTeamArray.size())){
+                               for (int i = 0 ; i < customTeamArray.size() ; i++){
+                                   if (!(i == changeFromTeamNumber)){
+                                       System.out.println(i + " - " + customTeamArray.get(i).getTeamOfDriver() + " \n\tDriver : " +customTeamArray.get(i).getDriverName() + "\n");
+
+                                   }
+                               }
+                               System.out.println("Enter the code respect to the team you want to change with: ");
+                               if (input.hasNextInt()){
+                                   int changeToTeamNumber = input.nextInt();
+
+                                   if ((changeToTeamNumber >= 0) && changeToTeamNumber < customTeamArray.size()){
+                                       Formula1Driver getDriver = customTeamArray.get(changeToTeamNumber);
+                                       System.out.println("Request successfully completed and deleted the team " + customTeamArray.get(changeFromTeamNumber).getTeamOfDriver() + "\n");
+                                       System.out.println("Preview Details \n");
+                                       System.out.println("Team Name       : " + customTeamArray.get(changeToTeamNumber).getTeamOfDriver());
+                                       System.out.println("Driver Name     : " + customTeamArray.get(changeToTeamNumber).getDriverName());
+                                       System.out.println("Driver Location : " + customTeamArray.get(changeToTeamNumber).getDriverLocation());
+                                       System.out.println("Current points  : " + customTeamArray.get(changeToTeamNumber).getCurrentPoints());
+
+                                       customTeamArray.remove(changeFromTeamNumber);
+                                       break;
+                                   }else {
+                                       System.out.println("Input out of range :(");
+                                   }
+                               }else {
+                                   System.out.println("Invalid input data type! Integer required :(");
+                               }
+                           }else {
+                               System.out.println("Input out of range :(");
+                           }
+                       }
+
+                   }else {
+                       System.out.println("Invalid input data type! Integer required :( ");
+                   }
+               }
+
+           }else {
+               System.out.println("Add teams before changing ");
+           }
+       }else {
+           System.out.println("Please add more teams to change the driver");
+       }
+
+    }
 }
 
