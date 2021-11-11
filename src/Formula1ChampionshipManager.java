@@ -1187,14 +1187,14 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
            Collections.sort(customTeamArray);
            System.out.println("Number of teams: " + customTeamArray.size());
            System.out.println("");
-           String formulaTableFormat = "| %-4d | %-20s | %-25s | %-25s | %-6d |\n";
-           System.out.format("+------+----------------------+---------------------------+---------------------------+--------+\n");
-           System.out.format("| POSE |      TEAM NAME       |       DRIVER NAME         |           COUNTRY         | POINTS |\n");
-           System.out.format("+------+----------------------+---------------------------+---------------------------+--------+\n");
+           String formulaTableFormat = "| %-4d | %-20s | %-25s | %-24s| %-6d | %-8d |\n";
+           System.out.format("+------+----------------------+---------------------------+-------------------------+--------+----------+\n");
+           System.out.format("| POS  |      TEAM NAME       |       DRIVER NAME         |          COUNTRY        | POINTS | 1stPOSES |\n");
+           System.out.format("+------+----------------------+---------------------------+-------------------------+--------+----------+\n");
 
            for (int i = 0 ; i < customTeamArray.size() ; i++){
-               System.out.format(formulaTableFormat, i+1 ,customTeamArray.get(i).getTeamOfDriver(), customTeamArray.get(i).getDriverName(), customTeamArray.get(i).getDriverLocation(), customTeamArray.get(i).getCurrentPoints());
-               System.out.format("+------+----------------------+---------------------------+---------------------------+--------+\n");
+               System.out.format(formulaTableFormat, i+1 ,customTeamArray.get(i).getTeamOfDriver(), customTeamArray.get(i).getDriverName(), customTeamArray.get(i).getDriverLocation(), customTeamArray.get(i).getCurrentPoints(), customTeamArray.get(i).getFirstPositions());
+               System.out.format("+------+----------------------+---------------------------+-------------------------+--------+----------+\n");
            }
            System.out.println("\n");
        }
