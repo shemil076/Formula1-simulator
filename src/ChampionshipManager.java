@@ -7,7 +7,7 @@ public interface ChampionshipManager {
 
     void displayTheVariousStatics();
 
-//    void displayFormula1DriverTable();
+    void displayFormula1DriverTable();
 
     void addARaceCompleted();
 
