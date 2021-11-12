@@ -18,6 +18,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     private int firstPositions, secondPositions, thirdPositions, achievedSeasons, currentPoints, numberOfRaces;
     private static boolean checkTeamName = true;
     private String stringDate = new String();
+    private boolean checkPosition;
 
 
     Hashtable<Integer, String> teams = new Hashtable<Integer, String>();
@@ -27,7 +28,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     ArrayList<Formula1Driver> finalTeamArray = new ArrayList<Formula1Driver>();
     ArrayList<Formula1Driver> sortTeamArray = new ArrayList<Formula1Driver>();
     ArrayList<String> dateArray = new ArrayList<String>();
-
+    ArrayList<Integer> positionsArrayList = new ArrayList<Integer>();
 
     public static void main(String[] args) {
         Formula1ChampionshipManager championManager = new Formula1ChampionshipManager();
@@ -1279,7 +1280,18 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                    int changeToTeamNumber = input.nextInt();
 
                                    if ((changeToTeamNumber >= 0) && changeToTeamNumber < customTeamArray.size()){
-                                       Formula1Driver getDriver = customTeamArray.get(changeToTeamNumber);
+
+//
+                                       customTeamArray.get(changeToTeamNumber).setDriverName(customTeamArray.get(changeFromTeamNumber).getDriverName());
+                                       customTeamArray.get(changeToTeamNumber).setDriverLocation(customTeamArray.get(changeFromTeamNumber).getDriverLocation());
+                                       customTeamArray.get(changeToTeamNumber).setFirstPositions(customTeamArray.get(changeFromTeamNumber).getFirstPositions());
+                                       customTeamArray.get(changeToTeamNumber).setSecondPositions(customTeamArray.get(changeFromTeamNumber).getSecondPositions());
+                                       customTeamArray.get(changeToTeamNumber).setThirdPositions(customTeamArray.get(changeFromTeamNumber).getThirdPositions());
+                                       customTeamArray.get(changeToTeamNumber).setAchievedSeasons(customTeamArray.get(changeFromTeamNumber).getAchievedSeasons());
+                                       customTeamArray.get(changeToTeamNumber).setNumberOfRaces(customTeamArray.get(changeFromTeamNumber).getNumberOfRaces());
+                                       customTeamArray.get(changeToTeamNumber).setCurrentPoints(customTeamArray.get(changeFromTeamNumber).getCurrentPoints());
+
+
                                        System.out.println("Request successfully completed and deleted the team " + customTeamArray.get(changeFromTeamNumber).getTeamOfDriver() + "\n");
                                        System.out.println("Preview Details \n");
                                        System.out.println("Team Name       : " + customTeamArray.get(changeToTeamNumber).getTeamOfDriver());
@@ -1317,20 +1329,73 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     public void addARaceCompleted(){
 //        if (customTeamArray.size() > 0){
 
+
             while(true){
                 if(checkDate()){
                     System.out.println("\n+------------------------------------------------------------------------+");
-                    System.out.println("| INSTRUCTIONS:-                                                         |");
-                    System.out.println("|           ⚠ Enter the position of the driver as a int value (1,2,3,etc)|");
-                    System.out.println("|           ⚠ Enter 0 if the driver was not participated to the race     |");
+                    System.out.println("| INSTRUCTIONS:-                                                           |");
+                    System.out.println("|           ⚠ Enter the position of the driver as a int value (1,2,3,etc)  |");
+                    System.out.println("|           ⚠ Enter 0 if the driver was not participated to the race       |");
                     System.out.println("+------------------------------------------------------------------------+\n");
 
                     System.out.println("  _    _             _    _         ");
                     System.out.println(" \\\\`../ |o_..__     \\\\`../ |o_..__  ");
                     System.out.println("`.,(_)______(_).>  `.,(_)______(_).>");
                     System.out.println("\t\t\t\t\t\t\t\tRace Date:- 🏎️ " + stringDate);
+                    System.out.println("");
 
                     dateArray.add(stringDate);
+
+                    for (int i = 0; i < customTeamArray.size(); i++) {
+                        System.out.println("Enter the position of team : " + customTeamArray.get(i).getTeamOfDriver() +" \n\t\tDriver : "+ customTeamArray.get(i).getDriverName()+" :");
+                       while(true){
+                           if (input.hasNextInt()){
+                               int position = input.nextInt();
+                               if ((position >= 0) && (position <= customTeamArray.size())){
+                                   if (checkPositions(position)){
+
+                                       switch (position){
+                                           case 1 :
+//                                               customTeamArray.set(i).
+                                               break;
+                                           case 2 :
+                                               break;
+                                           case 3 :
+                                               break;
+                                           case 4 :
+                                               break;
+                                           case 5 :
+                                               break;
+                                           case 6 :
+                                               break;
+                                           case 7 :
+                                               break;
+                                           case 8 :
+                                               break;
+                                           case 9 :
+                                               break;
+                                           case 10 :
+                                               break;
+
+                                           default:
+                                               break;
+
+                                       }
+
+                                       positionsArrayList.add(position);
+                                   }else {
+                                       System.out.println("⚠️The position is taken by another player");
+                                   }
+
+                               }else {
+                                   System.out.println("Invalid input range ⚠️");
+                               }
+
+                           }else {
+                               System.out.println("Invalid input type ⚠️");
+                           }
+                       }
+                    }
 
 
 
@@ -1347,7 +1412,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 
     public boolean checkDate(){
         System.out.println("Enter the date with the following format\n DD/MM/YYYY");
-        stringDate = input.nextLine();
+        stringDate = input.next();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateFormat.setLenient(false);
         try {
@@ -1357,6 +1422,23 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         } catch (Exception e) {
 //            System.out.println("FALSE");
             return false;
+        }
+    }
+
+    public boolean checkPositions(int position){
+        if (customTeamArray.size() == 0){
+            return true;
+        }else{
+            for (int i = 0; i < positionsArrayList.size(); i++){
+                if (position == positionsArrayList.get(i)){
+                     checkPosition = false;
+//                    return false;
+                }else {
+//                    return true;
+                     checkPosition = true;
+                }
+            }
+            return checkPosition;
         }
     }
 
