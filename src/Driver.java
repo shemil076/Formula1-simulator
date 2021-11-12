@@ -1,4 +1,6 @@
-public abstract class Driver {
+import java.io.Serializable;
+
+public abstract class Driver implements Serializable {
     private String driverName;
     private String driverLocation;
     private String teamOfDriver;

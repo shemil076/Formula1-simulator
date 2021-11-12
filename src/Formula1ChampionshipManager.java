@@ -1,9 +1,10 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Hashtable;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
+//import java.util.Collections;
+//import java.util.Hashtable;
+//import java.util.Scanner;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+//import java.util.Date;
 
 public class Formula1ChampionshipManager<HashTable> implements ChampionshipManager {
     public Scanner input = new Scanner(System.in);
@@ -37,11 +38,12 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 //        championManager.initialize(formula1DriversTeam);
         championManager.welcome();
         championManager.logo();
-
+        championManager.loadTeamDetails();
         while (run) {
             championManager.printMenu();
             championManager.mainMenu();
         }
+        championManager.saveInformationInAFile();
     }
 
 
@@ -57,6 +59,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         System.out.println("|           103 or DVS         |       Display the Various Statics       |");
         System.out.println("|           104 or DFT         |       Display Formula1 Driver Table     |");
         System.out.println("|           105 or ARC         |       Add a Race Completed              |");
+        System.out.println("|           106 or CTI         |       Change information in the team    |");
         System.out.println("|           999 or EXT         |       Exit the program                  |");
         System.out.println("+------------------------------------------------------------------------+");
 
@@ -126,12 +129,13 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     addARaceCompleted();
                     break;
 
-//                case "106":
-//                case "SIF":
-//                    System.out.println("+------------------------------------------------------------------------+");
-//                    System.out.println("|                               Save in a File                           |");
-//                    System.out.println("+------------------------------------------------------------------------+");
-//                    break;
+                case "106":
+                case "CTI":
+                    System.out.println("+------------------------------------------------------------------------+");
+                    System.out.println("|                    Change information in the team                      |");
+                    System.out.println("+------------------------------------------------------------------------+");
+//                    changeInformationInTheTeam();
+                    break;
 
 
                 case "999":
@@ -143,10 +147,10 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     break;
 
                 default:
-                    System.out.println("⚠️Invalid option selected, 'Input out of range'");
+                    System.out.println("⚠️Invalid option selected, 'Input out of range'\n");
             }
         } else {
-            System.out.println("⚠️Invalid out-put");                                                                      //if the user input an invalid input, the program will not terminate, just repeat by passing a warning
+            System.out.println("⚠️Invalid out-put\n");                                                                      //if the user input an invalid input, the program will not terminate, just repeat by passing a warning
         }
     }
 
@@ -548,26 +552,26 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 
 
                                     } else {
-                                        System.out.println("⚠️Invalid country code! :(");
+                                        System.out.println("⚠️Invalid country code! :(\n");
                                     }
                                 }
                             }
                             checkCountryCode = false;
 
                         } else {
-                            System.out.println("⚠️Team name was already exist");
+                            System.out.println("⚠️Team name was already exist\n");
                             System.out.println("");
                         }
 //                    checkTeamName = true;
                     }
                 } else {
-                    System.out.println("⚠️Driver name was already exist");
+                    System.out.println("⚠️Driver name was already exist\n");
                     System.out.println("");
                 }
                 checkDriverName = true;
 
             } else {
-                System.out.println("⚠️Invalid data input");
+                System.out.println("⚠️Invalid data input\n");
             }
         }
 
@@ -591,8 +595,8 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     }
 
     public void customTeamCheck(String teamName) {
-        for (Formula1Driver f1d : customTeamArray) {
-            if (f1d.getTeamOfDriver().equals(teamName)) {
+        for (Formula1Driver f1driver : customTeamArray) {
+            if (f1driver.getTeamOfDriver().equals(teamName)) {
                 checkTeamName = false;
             } else {
                 checkTeamName = true;
@@ -741,10 +745,10 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                 if (secondPositions >= 0) {
                     break;
                 } else {
-                    System.out.println("⚠️Please input a valid number");
+                    System.out.println("⚠️Please input a valid number\n");
                 }
             } else {
-                System.out.println("⚠️Invalid data input");
+                System.out.println("⚠️Invalid data input\n");
                 System.out.println("");
                 input.next();
             }
@@ -756,10 +760,10 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                 if (thirdPositions >= 0) {
                     break;
                 } else {
-                    System.out.println("⚠️Please input a valid number");
+                    System.out.println("⚠️Please input a valid number\n");
                 }
             } else {
-                System.out.println("⚠️Invalid data input");
+                System.out.println("⚠️Invalid data input\n");
                 System.out.println("");
                 input.next();
             }
@@ -771,10 +775,10 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                 if (achievedSeasons >= 0) {
                     break;
                 } else {
-                    System.out.println("⚠️Please input a valid number");
+                    System.out.println("⚠️Please input a valid number\n");
                 }
             } else {
-                System.out.println("⚠️Invalid data input");
+                System.out.println("⚠️Invalid data input\n");
                 System.out.println("");
                 input.next();
             }
@@ -786,25 +790,25 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                 if (numberOfRaces >= 0) {
                     break;
                 } else {
-                    System.out.println("⚠️Please input a valid number");
+                    System.out.println("⚠️Please input a valid number\n");
                 }
             } else {
-                System.out.println("⚠️Invalid data input");
+                System.out.println("⚠️Invalid data input\n");
                 System.out.println("");
                 input.next();
             }
         }
         while (true) {
-            System.out.println("Enter the number of points the driver owned: ");
+            System.out.println("Enter the number of points the driver owned: \n");
             if (input.hasNextInt()) {
                 currentPoints = input.nextInt();
                 if (currentPoints >= 0) {
                     break;
                 } else {
-                    System.out.println("⚠️Please input a valid number");
+                    System.out.println("⚠️Please input a valid number\n");
                 }
             } else {
-                System.out.println("⚠️Invalid data input");
+                System.out.println("⚠️Invalid data input\n");
                 System.out.println("");
                 input.next();
             }
@@ -962,6 +966,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     }
 
     public void selectADiverFromCustomTeam() {
+        System.out.println("Teams available in the system:");
         checkCustomOccupiedTeams();
         if (checkCustomOccupiedTeam) {
             while (true) {
@@ -1000,19 +1005,19 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 
 
                         } else {
-                            System.out.println("⚠️Invalid input range");
+                            System.out.println("⚠️Invalid input range\n");
                         }
                     }
 
                 } else {
-                    System.out.println("⚠️Invalid data input");
+                    System.out.println("⚠️Invalid data input\n");
                     System.out.println("");
                     input.next();
                 }
             }
 
         } else {
-            System.out.println("⚠️Please add a team before this function :-(");
+            System.out.println("⚠️Please add a team before this function :-(\n");
         }
     }
 
@@ -1110,6 +1115,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 //    }
 
     public void deleteADiverFromCustomTeam() {
+        System.out.println("Teams available in the system:");
         checkCustomOccupiedTeams();
         if (checkCustomOccupiedTeam) {
             while (true) {
@@ -1121,22 +1127,22 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     } else {
                         if ((customTeamNumber >= 0) && (customTeamNumber < customTeamArray.size())) {
                             customTeamArray.remove(customTeamNumber);
-                            System.out.println("Request successfully completed");
+                            System.out.println("Request successfully completed\n");
                             break;
 
                         } else {
-                            System.out.println("⚠️Invalid input range");
+                            System.out.println("⚠️Invalid input range\n");
                         }
                     }
 
                 } else {
-                    System.out.println("⚠️Invalid data input");
+                    System.out.println("⚠️Invalid data input\n");
                     System.out.println("");
                     input.next();
                 }
             }
         } else {
-            System.out.println("⚠️Please add a team before this function :-(");
+            System.out.println("⚠️Please add a team before this function :-(\n");
         }
     }
 
@@ -1201,7 +1207,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
             }
             System.out.println("\n");
         } else {
-            System.out.println("Add teams to display the FORMULA 1 DRIVER TABLE");
+            System.out.println("⚠️Add teams to display the FORMULA 1 DRIVER TABLE\n");
         }
 
     }
@@ -1299,41 +1305,41 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                         customTeamArray.remove(changeFromTeamNumber);
                                         break;
                                     } else {
-                                        System.out.println("⚠️Input out of range :(");
+                                        System.out.println("⚠️Input out of range :(\n");
                                     }
                                 } else {
-                                    System.out.println("⚠️Invalid input data type! Integer required :(");
+                                    System.out.println("⚠️Invalid input data type! Integer required :(\n");
                                     input.next();
                                 }
                             } else {
-                                System.out.println("⚠️Input out of range :(");
+                                System.out.println("⚠️Input out of range :(\n");
                             }
                         }
 
                     } else {
-                        System.out.println("⚠️Invalid input data type! Integer required :( ");
+                        System.out.println("⚠️Invalid input data type! Integer required :( \n");
                         input.next();
                     }
                 }
 
             } else {
-                System.out.println("⚠️Add teams before changing ");
+                System.out.println("⚠️Add teams before changing\n");
             }
         } else {
-            System.out.println("⚠️Please add more teams to change the driver");
+            System.out.println("⚠️Please add more teams to change the driver\n");
         }
 
     }
 
     public void addARaceCompleted() {
-        if (customTeamArray.size() > 0) {
+        if (customTeamArray.size() > 1) {
             positionsArrayList.clear();
             while (true) {
                 if (checkDate()) {
                     System.out.println("\n+------------------------------------------------------------------------+");
-                    System.out.println("| INSTRUCTIONS:-                                                           |");
-                    System.out.println("|           ⚠ Enter the position of the driver as a int value (1,2,3,etc)  |");
-                    System.out.println("|           ⚠ Enter 0 if the driver was not participated to the race       |");
+                    System.out.println("| INSTRUCTIONS:-                                                         |");
+                    System.out.println("|           ⚠ Enter the position of the driver as a int value (1,2,3,etc)|");
+                    System.out.println("|           ⚠ Enter 0 if the driver was not participated to the race     |");
                     System.out.println("+------------------------------------------------------------------------+\n");
 
                     System.out.println("  _    _             _    _         ");
@@ -1428,7 +1434,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 
             }
         } else {
-            System.out.println("⚠️Please add teams before adding a race 🏎️🏎️🏎️🏎️");
+            System.out.println("⚠️Please add teams before adding a race 🏎️🏎️🏎️🏎️\n");
         }
 
     }
@@ -1461,6 +1467,81 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         }
         return checkPosition;
     }
+
+//    public void changeInformationInTheTeam(){
+////        if (customTeamArray.size() > 0){
+//            while(true){
+//                System.out.println("Do you want to change information or enter new information to the team ? [YES/NO] ");
+//                if (input.hasNext()){
+//                    String condition = input.next().toUpperCase();
+//                    switch (condition){
+//                        case "YES":
+//                            System.out.println("Available teams");
+//                            for (int i = 0; i < customTeamArray.size(); i++) {
+//                                System.out.println(i + " - " + customTeamArray.get(i).getTeamOfDriver() + " \n\tDriver : " + customTeamArray.get(i).getDriverName() + "\n");
+//                                checkCustomOccupiedTeam = true;
+//                            }
+//                            while (true){
+//                                System.out.println("Enter the number of the respective team you want to update information:");
+//                                if (input.hasNextInt()){
+//                                    int changeInformationTeamId = input.nextInt();
+//
+//
+//                                }else {
+//                                    System.out.println("⚠️Invalid input type");
+//                                    input.next();
+//                                }
+//                            }
+//
+//                        case "NO":
+//                            break;
+//
+//                        default:
+//                            System.out.println("⚠️Invalid input");
+//                            continue;
+//                    }
+//                    break;
+//                }else {
+//                    System.out.println("⚠️Invalid input type");
+//                }
+//            }
+////        }else {
+////            System.out.println("⚠️Please add teams to the system before try to change information");
+////        }
+//    }
+
+    public void saveInformationInAFile(){
+        try {
+            FileOutputStream writeInfo = new FileOutputStream("teamDetails.ser");
+            ObjectOutputStream writeStream = new ObjectOutputStream(writeInfo);
+
+            writeStream.writeObject(customTeamArray);
+            writeStream.flush();
+            writeStream.close();
+            System.out.println("INFORMATION HAS BEEN SAVED TO A FILE\n");
+        }catch(IOException e){
+            System.out.println("⚠️Something went wrong\n");
+            e.printStackTrace();
+        }
+    }
+
+    public void loadTeamDetails(){
+        try{
+            FileInputStream readInfo = new FileInputStream("teamDetails.ser");
+            ObjectInputStream readStream = new ObjectInputStream(readInfo);
+            customTeamArray = (ArrayList<Formula1Driver>)readStream.readObject();
+            readStream.close();
+            System.out.println("File loaded...\n");
+        } catch (FileNotFoundException e) {
+            System.out.println("⚠️No file to load!\n");
+//            e.printStackTrace();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("⚠️Something went wrong!\n");
+            e.printStackTrace();
+        }
+    }
+
+
 
 }
 
