@@ -1,4 +1,3 @@
-import java.util.Comparator;
 public class Formula1Driver extends Driver implements Comparable<Formula1Driver>{
     private int firstPositions;
     private int secondPositions;
@@ -6,9 +5,6 @@ public class Formula1Driver extends Driver implements Comparable<Formula1Driver>
     private int achievedSeasons;
     private int currentPoints;
     private int numberOfRaces;
-
-
-
 
 
     public Formula1Driver (String driverName, String driverLocation, String teamOfDriver, int firstPositions, int secondPositions, int thirdPositions, int achievedSeasons, int currentPoints, int numberOfRaces){
@@ -70,6 +66,11 @@ public class Formula1Driver extends Driver implements Comparable<Formula1Driver>
         this.currentPoints = currentPoints;
     }
 
+    /**
+     * Override methode of compare according to the points of the driver else according to number of first positions
+     * @param sortingTemp
+     * @return
+     */
     @Override
     public int compareTo(Formula1Driver sortingTemp){
         if (sortingTemp.getCurrentPoints() == this.currentPoints){
@@ -79,33 +80,4 @@ public class Formula1Driver extends Driver implements Comparable<Formula1Driver>
         }
     }
 
-
-
-//    public static Comparator<Formula1Driver> Formula1DriverPoints = new Comparator<Formula1Driver>() {
-//        @Override
-//        public int compare(Formula1Driver driver1, Formula1Driver driver2){
-//            int pointsOfDriver1 = driver1.getCurrentPoints();
-//            int pointsOfDriver2 = driver2.getCurrentPoints();
-//
-//            return pointsOfDriver2 - pointsOfDriver1;
-//        }
-//    };
-
-//    public static Comparator<Formula1Driver> Formula1DriverPoints = new Comparator<Formula1Driver>() {
-//        @Override
-//        public int compare(Formula1Driver driver1, Formula1Driver driver2){
-//            int pointsOfDriver1 = driver1.getCurrentPoints();
-//            int pointsOfDriver2 = driver2.getCurrentPoints();
-//
-//            return pointsOfDriver2 - pointsOfDriver1;
-//        }
-//    };
-//
-//
-//    @Override
-//    public String toString(){
-//
-//
-//        return "[ Name of the driver : " +  super.getDriverName() + " Team Name: " + super.getTeamOfDriver() +  " Number of Points: " + currentPoints + " ] ";
-//    }
 }

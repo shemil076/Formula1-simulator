@@ -1,18 +1,15 @@
 public interface ChampionshipManager {
 
-//    void createANewDriver(Formula1Driver[] formula1DriversTeam,String[] existingTeamsArray);
+    void createANewDriver(String[] existingTeamsArray);
 
-//    void deleteADriverAndTeam();
-//
-//    void changeTheDriver();
+    void deleteADriverAndTeam();
+    void changeTheDriver();
 
-//    void displayTheVariousStatics();
+    void displayTheVariousStatics();
 
 //    void displayFormula1DriverTable();
 
-//    void addARaceCompleted();
-
-//    void saveInAFile();
+    void addARaceCompleted();
 
     void exitTheProgram();
 }
