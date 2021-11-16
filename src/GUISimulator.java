@@ -5,10 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS;
 
-public class GUISimulator extends JFrame implements ActionListener, Comparable<Formula1Driver> {
+public class GUISimulator extends JFrame implements ActionListener {
     JButton sortStatisticsInDescending;
     JButton sortPointsInAscending;
     JButton firstPositionsDescending;
@@ -48,7 +49,7 @@ public class GUISimulator extends JFrame implements ActionListener, Comparable<F
         setSize(950,600);
         setTitle("Formula1 simulator");
 
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         sortStatisticsInDescending.setToolTipText("Display statistics in descending order of points..");
         sortPointsInAscending.setToolTipText("Sort points of the driver according to ascending order..");
@@ -60,7 +61,8 @@ public class GUISimulator extends JFrame implements ActionListener, Comparable<F
 
 
         sortStatisticsInDescending.addActionListener(this);
-
+        sortPointsInAscending.addActionListener(this);
+        firstPositionsDescending.addActionListener(this);
         add(labelTopic);
         add(driverTableScrollPane).setPreferredSize(new Dimension(900,400));
         add(sortStatisticsInDescending);
@@ -105,19 +107,41 @@ public class GUISimulator extends JFrame implements ActionListener, Comparable<F
         }
     }
 
-
-    @Override
-    public int compareTo(Formula1Driver o) {
-        return 0;
+    public void sortStatisticsInDescending(){
+        removeRows();
+        Collections.sort(Formula1ChampionshipManager.formulaDriverTeams);
+        labelTopic.setText("Formula driver table in descending order according to the points..");
+        insertToTable(driver, driverTable);
     }
+
+
+        public void sortPointsInAscending(){
+        removeRows();
+        Collections.sort(Formula1ChampionshipManager.formulaDriverTeams, Formula1Driver.PointsInAscending);
+        labelTopic.setText("Formula driver table in ascending order according to the points..");
+        insertToTable(driver, driverTable);
+    }
+
+    public void sortPositionsInDescending(){
+        removeRows();
+        Collections.sort(Formula1ChampionshipManager.formulaDriverTeams,Formula1Driver.FirstPositionsDescending);
+        labelTopic.setText("Formula driver table in descending order according to the FIRST POSITIONS..");
+        insertToTable(driver, driverTable);
+
+    }
+
+
 
     @Override
     public  void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(sortStatisticsInDescending)){
-            removeRows();
-            Collections.sort(Formula1ChampionshipManager.formulaDriverTeams);
-            labelTopic.setText("Formula driver table in descending order according to the points..");
-            insertToTable(driver, driverTable);
+            sortStatisticsInDescending();
+
+        }else if(e.getSource().equals(sortPointsInAscending)){
+            sortPointsInAscending();
+
+        }else if(e.getSource().equals(firstPositionsDescending)){
+            sortPositionsInDescending();
         }
     }
 

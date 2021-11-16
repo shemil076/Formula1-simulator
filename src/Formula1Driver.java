@@ -1,4 +1,7 @@
+import java.util.Comparator;
+
 public class Formula1Driver extends Driver implements Comparable<Formula1Driver>{
+//    public static Comparator<? super Formula1Driver> PointsInAscending;
     private int firstPositions;
     private int secondPositions;
     private int thirdPositions;
@@ -81,4 +84,25 @@ public class Formula1Driver extends Driver implements Comparable<Formula1Driver>
     }
 
 
+
+    public static Comparator<Formula1Driver>FirstPositionsDescending = new Comparator<Formula1Driver>(){
+
+        @Override
+        public  int compare(Formula1Driver f1driver1, Formula1Driver f1driver2) {
+            int achievedPositions1 = f1driver1.getFirstPositions();
+            int achievedPositions2 = f1driver2.getFirstPositions();
+            return achievedPositions2-achievedPositions1;
+        }
+    };
+
+
+    public static Comparator<Formula1Driver> PointsInAscending = new Comparator<Formula1Driver>(){
+
+        @Override
+        public int compare(Formula1Driver f1driver1, Formula1Driver f1driver2) {
+            int achievedPoints1 = f1driver1.getCurrentPoints();
+            int achievedPoints2 = f1driver2.getCurrentPoints();
+            return achievedPoints1-achievedPoints2;
+        }
+    };
 }

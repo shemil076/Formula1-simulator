@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.util.*;
 import java.text.SimpleDateFormat;
@@ -32,6 +33,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
             championManager.mainMenu();
         }
         championManager.saveInformationInAFile();
+
     }
 
     /**
@@ -253,11 +255,12 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     /**
      * Exit the program.
      */
-    public void exitTheProgram() {
+    public  void exitTheProgram() {
         thankYou();
         System.out.println(" ");
         logo();
         run = false;
+
     }
 
     /**
@@ -836,6 +839,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         } catch (IOException e) {
             System.out.println("⚠️Something went wrong\n");
         }
+
     }
 
     /**
@@ -852,13 +856,13 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         } catch (FileNotFoundException e) {
             System.out.println("⚠️No file to load!\n");
         } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
             System.out.println("⚠️Something went wrong!\n");
         }
     }
-
-
     public static ArrayList<Formula1Driver> getData(){
         return formulaDriverTeams;
     }
+
 }
 
