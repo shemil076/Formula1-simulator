@@ -23,7 +23,7 @@ public class GUISimulator extends JFrame implements ActionListener {
     JScrollPane driverTableScrollPane;
 
 
-    public GUISimulator(){
+    public GUISimulator() {
 
         labelTopic = new JLabel();
         sortStatisticsInDescending = new JButton("Sort Statistics");
@@ -37,23 +37,21 @@ public class GUISimulator extends JFrame implements ActionListener {
         driverTableScrollPane = new JScrollPane(driverTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 
-
         labelTopic.setText("Formula 1 Driver Table");
         String[] columnNames = {"NAME", "TEAM", "COUNTRY", "NO.OF RACES", "POINTS", "1stPOSES", "2ndPOSES", "3rdPOSES"};
-        driverTable.setModel(new javax.swing.table.DefaultTableModel(new Object [][]{}, columnNames));
+        driverTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, columnNames));
         insertToTable(driver, driverTable);
 
 
-
         setLayout(new FlowLayout());
-        setSize(950,600);
+        setSize(950, 600);
         setTitle("Formula1 simulator");
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         sortStatisticsInDescending.setToolTipText("Display statistics in descending order of points..");
         sortPointsInAscending.setToolTipText("Sort points of the driver according to ascending order..");
-        firstPositionsDescending.setToolTipText("Sort in descending order according to first points.. ");
+        firstPositionsDescending.setToolTipText("Sort in descending order according to the number of first positions.. ");
         generateRandomRace.setToolTipText("Generate (one) random race..");
         generateResults.setToolTipText("Generate results..");
         displayCompleteRace.setToolTipText("Display races in ascending order according to the date");
@@ -63,8 +61,13 @@ public class GUISimulator extends JFrame implements ActionListener {
         sortStatisticsInDescending.addActionListener(this);
         sortPointsInAscending.addActionListener(this);
         firstPositionsDescending.addActionListener(this);
+        generateRandomRace.addActionListener(this);
+        generateResults.addActionListener(this);
+        displayCompleteRace.addActionListener(this);
+        searchRace.addActionListener(this);
+
         add(labelTopic);
-        add(driverTableScrollPane).setPreferredSize(new Dimension(900,400));
+        add(driverTableScrollPane).setPreferredSize(new Dimension(900, 400));
         add(sortStatisticsInDescending);
         add(sortPointsInAscending);
         add(firstPositionsDescending);
@@ -79,9 +82,9 @@ public class GUISimulator extends JFrame implements ActionListener {
 
     }
 
-    public static void insertToTable(ArrayList<Formula1Driver>f1Driver,JTable table){
-        for(Formula1Driver formulaDriverTeams: f1Driver){
-            ((DefaultTableModel)table.getModel()).addRow(new Object[]{
+    public static void insertToTable(ArrayList<Formula1Driver> f1Driver, JTable table) {
+        for (Formula1Driver formulaDriverTeams : f1Driver) {
+            ((DefaultTableModel) table.getModel()).addRow(new Object[]{
                     formulaDriverTeams.getDriverName(),
                     formulaDriverTeams.getTeamOfDriver(),
                     formulaDriverTeams.getDriverLocation(),
@@ -98,16 +101,16 @@ public class GUISimulator extends JFrame implements ActionListener {
 //        Collections.sort(Formula1ChampionshipManager.formulaDriverTeams);
 //    }
 
-    public void removeRows(){
-        DefaultTableModel dm = (DefaultTableModel) driverTable.getModel();
-        int rowCount = dm.getRowCount();
+    public void removeRows() {
+        DefaultTableModel model = (DefaultTableModel) driverTable.getModel();
+        int rowCount = model.getRowCount();
 //Remove rows one by one from the end of the table
         for (int i = rowCount - 1; i >= 0; i--) {
-            dm.removeRow(i);
+            model.removeRow(i);
         }
     }
 
-    public void sortStatisticsInDescending(){
+    public void sortStatisticsInDescending() {
         removeRows();
         Collections.sort(Formula1ChampionshipManager.formulaDriverTeams);
         labelTopic.setText("Formula driver table in descending order according to the points..");
@@ -115,35 +118,98 @@ public class GUISimulator extends JFrame implements ActionListener {
     }
 
 
-        public void sortPointsInAscending(){
+    public void sortPointsInAscending() {
         removeRows();
         Collections.sort(Formula1ChampionshipManager.formulaDriverTeams, Formula1Driver.PointsInAscending);
         labelTopic.setText("Formula driver table in ascending order according to the points..");
         insertToTable(driver, driverTable);
     }
 
-    public void sortPositionsInDescending(){
+    public void sortPositionsInDescending() {
         removeRows();
-        Collections.sort(Formula1ChampionshipManager.formulaDriverTeams,Formula1Driver.FirstPositionsDescending);
+        Collections.sort(Formula1ChampionshipManager.formulaDriverTeams, Formula1Driver.FirstPositionsDescending);
         labelTopic.setText("Formula driver table in descending order according to the FIRST POSITIONS..");
         insertToTable(driver, driverTable);
 
     }
 
 
-
     @Override
-    public  void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(sortStatisticsInDescending)){
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(sortStatisticsInDescending)) {
             sortStatisticsInDescending();
 
-        }else if(e.getSource().equals(sortPointsInAscending)){
+        } else if (e.getSource().equals(sortPointsInAscending)) {
             sortPointsInAscending();
 
-        }else if(e.getSource().equals(firstPositionsDescending)){
+        } else if (e.getSource().equals(firstPositionsDescending)) {
             sortPositionsInDescending();
+        } else if (e.getSource().equals(generateRandomRace)) {
+            new generateRace();
+        } else if (e.getSource().equals(generateResults)) {
+            new generateResults();
+        } else if (e.getSource().equals(displayCompleteRace)) {
+            new displayCompleteRace();
+        }else if (e.getSource().equals(searchRace)) {
+            new searchRace();
+        }
+
+
+    }
+}
+
+    class generateRace extends JFrame {
+        public generateRace() {
+
+            setLayout(new FlowLayout());
+            setSize(950, 600);
+            setTitle("Generate Race");
+
+            setResizable(false);
+            setLocationRelativeTo(null);
+            setVisible(true);
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         }
     }
 
 
+    class generateResults extends JFrame {
+        public generateResults() {
+
+            setLayout(new FlowLayout());
+            setSize(950, 600);
+            setTitle("Generate Results");
+
+            setResizable(false);
+            setLocationRelativeTo(null);
+            setVisible(true);
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        }
+    }
+
+    class displayCompleteRace extends JFrame {
+        public displayCompleteRace() {
+
+            setLayout(new FlowLayout());
+            setSize(950, 600);
+            setTitle("Display Races");
+
+            setResizable(false);
+            setLocationRelativeTo(null);
+            setVisible(true);
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        }
+    }
+class searchRace extends JFrame {
+    public searchRace() {
+
+        setLayout(new FlowLayout());
+        setSize(950, 600);
+        setTitle("Search Race");
+
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
 }

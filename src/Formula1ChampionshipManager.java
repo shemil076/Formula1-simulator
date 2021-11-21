@@ -710,44 +710,54 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                             case 1:
                                                 formulaDriverTeams.get(i).setCurrentPoints(25 + formulaDriverTeams.get(i).getCurrentPoints());
                                                 formulaDriverTeams.get(i).setFirstPositions(1 + formulaDriverTeams.get(i).getFirstPositions());
+                                                formulaDriverTeams.get(i).setNumberOfRaces(1 + formulaDriverTeams.get(i).getNumberOfRaces());
                                                 System.out.println("✨ Congratulations! You won the 1st place\n");
                                                 break;
                                             case 2:
                                                 formulaDriverTeams.get(i).setCurrentPoints(18 + formulaDriverTeams.get(i).getCurrentPoints());
                                                 formulaDriverTeams.get(i).setSecondPositions(1 + formulaDriverTeams.get(i).getSecondPositions());
+                                                formulaDriverTeams.get(i).setNumberOfRaces(1 + formulaDriverTeams.get(i).getNumberOfRaces());
                                                 System.out.println("✨ Congratulations! You won the 2nd place\n");
                                                 break;
                                             case 3:
                                                 formulaDriverTeams.get(i).setCurrentPoints(15 + formulaDriverTeams.get(i).getCurrentPoints());
                                                 formulaDriverTeams.get(i).setThirdPositions(1 + formulaDriverTeams.get(i).getThirdPositions());
+                                                formulaDriverTeams.get(i).setNumberOfRaces(1 + formulaDriverTeams.get(i).getNumberOfRaces());
                                                 System.out.println("✨ Congratulations! You won the 3rd place\n");
                                                 break;
                                             case 4:
                                                 formulaDriverTeams.get(i).setCurrentPoints(12 + formulaDriverTeams.get(i).getCurrentPoints());
+                                                formulaDriverTeams.get(i).setNumberOfRaces(1 + formulaDriverTeams.get(i).getNumberOfRaces());
                                                 System.out.println("✨ Congratulations! You won the 4th place\n");
                                                 break;
                                             case 5:
                                                 formulaDriverTeams.get(i).setCurrentPoints(10 + formulaDriverTeams.get(i).getCurrentPoints());
+                                                formulaDriverTeams.get(i).setNumberOfRaces(1 + formulaDriverTeams.get(i).getNumberOfRaces());
                                                 System.out.println("✨ Congratulations! You won the 5th place\n");
                                                 break;
                                             case 6:
                                                 formulaDriverTeams.get(i).setCurrentPoints(8 + formulaDriverTeams.get(i).getCurrentPoints());
+                                                formulaDriverTeams.get(i).setNumberOfRaces(1 + formulaDriverTeams.get(i).getNumberOfRaces());
                                                 System.out.println("✨ Congratulations! You won the 6th place\n");
                                                 break;
                                             case 7:
                                                 formulaDriverTeams.get(i).setCurrentPoints(6 + formulaDriverTeams.get(i).getCurrentPoints());
+                                                formulaDriverTeams.get(i).setNumberOfRaces(1 + formulaDriverTeams.get(i).getNumberOfRaces());
                                                 System.out.println("✨ Congratulations! You won the 7th place\n");
                                                 break;
                                             case 8:
                                                 formulaDriverTeams.get(i).setCurrentPoints(4 + formulaDriverTeams.get(i).getCurrentPoints());
+                                                formulaDriverTeams.get(i).setNumberOfRaces(1 + formulaDriverTeams.get(i).getNumberOfRaces());
                                                 System.out.println("✨ Congratulations! You won the 8th place\n");
                                                 break;
                                             case 9:
                                                 formulaDriverTeams.get(i).setCurrentPoints(2 + formulaDriverTeams.get(i).getCurrentPoints());
+                                                formulaDriverTeams.get(i).setNumberOfRaces(1 + formulaDriverTeams.get(i).getNumberOfRaces());
                                                 System.out.println("✨ Congratulations! You won the 9th place\n");
                                                 break;
                                             case 10:
                                                 formulaDriverTeams.get(i).setCurrentPoints(1 + formulaDriverTeams.get(i).getCurrentPoints());
+                                                formulaDriverTeams.get(i).setNumberOfRaces(1 + formulaDriverTeams.get(i).getNumberOfRaces());
                                                 System.out.println("✨ Congratulations! You won the 10th place\n");
                                                 break;
                                             case 0:
@@ -755,6 +765,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                                 break;
                                             default:
                                                 System.out.println("We appreciate your participation!\n");
+                                                formulaDriverTeams.get(i).setNumberOfRaces(1 + formulaDriverTeams.get(i).getNumberOfRaces());
                                                 break;
 
                                         }
@@ -839,7 +850,6 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         } catch (IOException e) {
             System.out.println("⚠️Something went wrong\n");
         }
-
     }
 
     /**
