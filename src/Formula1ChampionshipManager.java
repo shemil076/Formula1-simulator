@@ -18,6 +18,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 
     Hashtable<String, String> countries = new Hashtable<String, String>(); // use a hash table to store countries and iso codes
     public static ArrayList<Formula1Driver> formulaDriverTeams = new ArrayList<Formula1Driver>(); // store formula driver teams
+    public static ArrayList<RaceDetails> raceDetailsList = new ArrayList<RaceDetails>();
     ArrayList<String> dateArray = new ArrayList<String>(); // store date of races
     ArrayList<Integer> positionsArrayList = new ArrayList<Integer>(); // store positions (validation purpose)
 
@@ -117,6 +118,11 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     System.out.println("|                             Exit the program                           |");
                     System.out.println("+------------------------------------------------------------------------+");
                     exitTheProgram();  // Exit the program
+                }
+
+                case "200"->{
+
+                    printRaceDetails();
                 }
 
                 default -> System.out.println("⚠️Invalid option selected, 'Input out of range'\n");
@@ -695,15 +701,19 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                     System.out.println("\t\t\t\t\t\t\t\tRace Date:- 🏎️ " + stringDate);
                     System.out.println("");
 
+
+
                     dateArray.add(stringDate); // store the date into an array list
 
 
+
                     for (int i = 0; i < formulaDriverTeams.size(); i++) {
+                    RaceDetails newRace = new RaceDetails(stringDate);
                         while (true) {
                             System.out.println("Enter the position of team : " + formulaDriverTeams.get(i).getTeamOfDriver() + " \n\t\tDriver : " + formulaDriverTeams.get(i).getDriverName() + " :");
                             if (input.hasNextInt()) {
                                 int position = input.nextInt();
-                                if ((position >= 0) && (position <= formulaDriverTeams.size())) { // validate the point to make sure the input position is between the range
+                                if ((position > 0) && (position <= formulaDriverTeams.size())) { // validate the point to make sure the input position is between the range
                                     if (checkPositions(position)) {
 
                                         switch (position) {
@@ -761,15 +771,15 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                                 formulaDriverTeams.get(i).setNumberOfRaces(1 + formulaDriverTeams.get(i).getNumberOfRaces());
                                                 System.out.println("✨ Congratulations! You won the 10th place\n");
                                                 break;
-                                            case 0:
-                                                System.out.println("Participate in the next time\n");
-                                                break;
                                             default:
                                                 System.out.println("We appreciate your participation!\n");
                                                 formulaDriverTeams.get(i).setNumberOfRaces(1 + formulaDriverTeams.get(i).getNumberOfRaces());
                                                 break;
 
                                         }
+
+                                        newRace.setDriverNameTeamNamePosition(formulaDriverTeams.get(i).getDriverName(),formulaDriverTeams.get(i).getTeamOfDriver(),position);
+                                        raceDetailsList.add(newRace);
                                         positionsArrayList.add(position); // add position in to the array list in validation purpose
                                         break;
                                     } else {
@@ -873,6 +883,15 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
     }
     public static ArrayList<Formula1Driver> getData(){
         return formulaDriverTeams;
+    }
+
+
+    public void printRaceDetails(){
+        for (RaceDetails race: raceDetailsList){
+            System.out.println(race.getteamNameInRace() + " " + race.getDriverNameInRace() + " Position : " + race.getPosition());
+
+            System.out.println(race.getRaceDate());
+        }
     }
 
 }

@@ -17,5 +17,30 @@ public class RaceDetails {
         teamNamesInRace.add(teamNameInRace);
         teamPositions.add(teamPosition);
     }
+    public String getRaceDate(){
+        return raceDate;
+    }
+    public String getteamNameInRace(){
+        String teamnames = null;
+        for (String name : teamNamesInRace){
+            teamnames = name;
+        }
+        return teamnames;
+    }
+    public String getDriverNameInRace(){
+        String names = null;
+        for (String name : driverNamesInRace){
+            names = name;
+        }
+        return names;
+    }
+
+    public int getPosition(){
+        int positions = 0;
+        for (int i : teamPositions){
+            positions =  i;
+        }
+        return positions;
+    }
 }
 
