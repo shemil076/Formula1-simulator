@@ -24,7 +24,6 @@ public class GUISimulator extends JFrame implements ActionListener {
 
 
     public GUISimulator() {
-
         labelTopic = new JLabel();
         sortStatisticsInDescending = new JButton("Sort Statistics");
         sortPointsInAscending = new JButton("Sort Points");
@@ -101,10 +100,10 @@ public class GUISimulator extends JFrame implements ActionListener {
 //        Collections.sort(Formula1ChampionshipManager.formulaDriverTeams);
 //    }
 
-    public void removeRows() {
+    public void removeRows() {                                                                                          // reference: https://www.codegrepper.com/code-examples/whatever/java+swing+jtable+remove+all+rows
         DefaultTableModel model = (DefaultTableModel) driverTable.getModel();
         int rowCount = model.getRowCount();
-//Remove rows one by one from the end of the table
+
         for (int i = rowCount - 1; i >= 0; i--) {
             model.removeRow(i);
         }
@@ -144,17 +143,19 @@ public class GUISimulator extends JFrame implements ActionListener {
 
         } else if (e.getSource().equals(firstPositionsDescending)) {
             sortPositionsInDescending();
+
         } else if (e.getSource().equals(generateRandomRace)) {
             new generateRace();
+
         } else if (e.getSource().equals(generateResults)) {
             new generateResults();
+
         } else if (e.getSource().equals(displayCompleteRace)) {
             new displayCompleteRace();
+
         }else if (e.getSource().equals(searchRace)) {
             new searchRace();
         }
-
-
     }
 }
 

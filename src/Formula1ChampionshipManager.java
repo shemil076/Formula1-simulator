@@ -697,6 +697,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
 
                     dateArray.add(stringDate); // store the date into an array list
 
+
                     for (int i = 0; i < formulaDriverTeams.size(); i++) {
                         while (true) {
                             System.out.println("Enter the position of team : " + formulaDriverTeams.get(i).getTeamOfDriver() + " \n\t\tDriver : " + formulaDriverTeams.get(i).getDriverName() + " :");
