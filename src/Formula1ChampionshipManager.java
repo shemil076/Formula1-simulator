@@ -885,6 +885,11 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         return formulaDriverTeams;
     }
 
+    public static ArrayList<RaceDetails> getRaceDateData(){
+        return raceDetailsList;
+    }
+
+/////////////               test method              ////////////////////
 
     public void printRaceDetails(){
         for (RaceDetails race: raceDetailsList){

@@ -145,7 +145,7 @@ public class GUISimulator extends JFrame implements ActionListener {
             sortPositionsInDescending();
 
         } else if (e.getSource().equals(generateRandomRace)) {
-            new generateRace();
+            new GenerateRace() ;
 
         } else if (e.getSource().equals(generateResults)) {
             new generateResults();
@@ -159,19 +159,11 @@ public class GUISimulator extends JFrame implements ActionListener {
     }
 }
 
-    class generateRace extends JFrame {
-        public generateRace() {
 
-            setLayout(new FlowLayout());
-            setSize(950, 600);
-            setTitle("Generate Race");
 
-            setResizable(false);
-            setLocationRelativeTo(null);
-            setVisible(true);
-            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        }
-    }
+
+
+
 
 
     class generateResults extends JFrame {
@@ -188,6 +180,9 @@ public class GUISimulator extends JFrame implements ActionListener {
         }
     }
 
+
+
+
     class displayCompleteRace extends JFrame {
         public displayCompleteRace() {
 
@@ -201,6 +196,12 @@ public class GUISimulator extends JFrame implements ActionListener {
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         }
     }
+
+
+
+
+
+
 class searchRace extends JFrame {
     public searchRace() {
 

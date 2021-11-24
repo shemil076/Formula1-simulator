@@ -5,6 +5,8 @@ public class RaceDetails {
     private ArrayList<String> driverNamesInRace = new ArrayList<String>();
     private ArrayList<String> teamNamesInRace = new ArrayList<String>();
     private ArrayList<Integer> teamPositions = new ArrayList<Integer>();
+
+
 //    private ArrayList<Integer> startPositionInRace = new ArrayList<Integer>();
 
 
@@ -41,6 +43,23 @@ public class RaceDetails {
             positions =  i;
         }
         return positions;
+    }
+
+    @Override
+    public String toString() {
+        return raceDate;
+    }
+
+    public ArrayList<String> getDriverNamesInRace() {
+        return driverNamesInRace;
+    }
+
+    public ArrayList<String> getTeamNamesInRace() {
+        return teamNamesInRace;
+    }
+
+    public ArrayList<Integer> getTeamPositions() {
+        return teamPositions;
     }
 }
 
