@@ -12,9 +12,23 @@ import java.util.Comparator;
 public class DisplayRaces extends JFrame {
 
     public ArrayList<RaceDetails> raceData = Formula1ChampionshipManager.getRaceDateData();
+    JLabel labelTopic;
+    JTable displayRacesTable;
+    JScrollPane displayRacesTableScrollPane;
 
     public DisplayRaces(){
 
+        labelTopic = new JLabel();
+        displayRacesTable = new JTable();
+        sortDate();
+
+        displayRacesTableScrollPane = new JScrollPane(displayRacesTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        String[] displayRacesTableColumnNames = {"DATE", "TEAM NAME", "DRIVER NAME", "POSITION"};
+        labelTopic.setText("Races Detail table sorted according to date");
+        displayRacesTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, displayRacesTableColumnNames));
+        addToDisplayRacesTable(raceData,displayRacesTable);
+        add(labelTopic);
+        add(displayRacesTableScrollPane).setPreferredSize(new Dimension(900, 400));
 
 
         sortDate();
@@ -44,10 +58,17 @@ public class DisplayRaces extends JFrame {
 
     public void sortDate(){
         Collections.sort(Formula1ChampionshipManager.raceDetailsList,raceInfo);
-        for (RaceDetails raceDatum : raceData) {
-            System.out.println( raceDatum.getRaceDate());
-        }
     }
 
+    public static void addToDisplayRacesTable(ArrayList<RaceDetails> raceData, JTable table) {
+        for (RaceDetails raceTeamData : raceData) {
+            ((DefaultTableModel) table.getModel()).addRow(new Object[]{
+                    raceTeamData.getRaceDate(),
+                    raceTeamData.getTeamNamesInRace(),
+                    raceTeamData.getDriverNameInRace(),
+                    raceTeamData.getPosition()
+            });
+        }
+    }
 
 }
