@@ -779,7 +779,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
                                         }
 
                                         newRace.setDriverNameTeamNamePosition(formulaDriverTeams.get(i).getDriverName(),formulaDriverTeams.get(i).getTeamOfDriver(),position);
-                                        raceDetailsList.add(newRace);
+                                        raceDetailsList.add(newRace);      // updating the race details array list
                                         positionsArrayList.add(position); // add position in to the array list in validation purpose
                                         break;
                                     } else {

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class RaceDetails {
-    private String raceDate;
+    private  String raceDate;
     private ArrayList<String> driverNamesInRace = new ArrayList<String>();
     private ArrayList<String> teamNamesInRace = new ArrayList<String>();
     private ArrayList<Integer> teamPositions = new ArrayList<Integer>();
@@ -19,7 +19,7 @@ public class RaceDetails {
         teamNamesInRace.add(teamNameInRace);
         teamPositions.add(teamPosition);
     }
-    public String getRaceDate(){
+    public  String getRaceDate(){
         return raceDate;
     }
     public String getteamNameInRace(){

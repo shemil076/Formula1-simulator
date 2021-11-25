@@ -84,7 +84,9 @@ public class Formula1Driver extends Driver implements Comparable<Formula1Driver>
     }
 
 
-
+    /**
+     * Override the compare method in order to sort in descending order according to the number of first positions
+     */
     public static Comparator<Formula1Driver>FirstPositionsDescending = new Comparator<Formula1Driver>(){
 
         @Override
@@ -96,6 +98,9 @@ public class Formula1Driver extends Driver implements Comparable<Formula1Driver>
     };
 
 
+    /**
+     * Override the compare method in order to sort in ascending order according to the points
+     */
     public static Comparator<Formula1Driver> PointsInAscending = new Comparator<Formula1Driver>(){
 
         @Override
