@@ -21,19 +21,28 @@ public class GUISimulator extends JFrame implements ActionListener {
     public ArrayList<Formula1Driver> driver = Formula1ChampionshipManager.getData();    // accessing an array list in Formula1ChampionshipManager class
     JTable driverTable;
     JScrollPane driverTableScrollPane;
+    ImageIcon iconFrame = new ImageIcon("src/img/fast.png") ;
+    ImageIcon iconSortStatisticsInDescending = new ImageIcon("src/img/descending.png") ;
+    ImageIcon iconSortPointsInAscending = new ImageIcon("src/img/ascending.png") ;
+    ImageIcon iconFirstPositionsDescending = new ImageIcon("src/img/positions.png") ;
+    ImageIcon iconGenerateRandomRace = new ImageIcon("src/img/racing.png") ;
+    ImageIcon iconGenerateResults = new ImageIcon("src/img/stage.png") ;
+    ImageIcon iconDisplayCompleteRace = new ImageIcon("src/img/finish.png") ;
+    ImageIcon iconSearchRace = new ImageIcon("src/img/search.png") ;
 
 
     public GUISimulator() {
         labelTopic = new JLabel();
-        sortStatisticsInDescending = new JButton("Sort Statistics");
-        sortPointsInAscending = new JButton("Sort Points");
-        firstPositionsDescending = new JButton("Sort Positions");
-        generateRandomRace = new JButton("Generate Race");
-        generateResults = new JButton("Generate Results");
-        displayCompleteRace = new JButton("Display Races");
-        searchRace = new JButton("Search Race");
+        sortStatisticsInDescending = new JButton("Sort Statistics",iconSortStatisticsInDescending);
+        sortPointsInAscending = new JButton("Sort Points",iconSortPointsInAscending);
+        firstPositionsDescending = new JButton("Sort Positions",iconFirstPositionsDescending);
+        generateRandomRace = new JButton("Generate Race",iconGenerateRandomRace);
+        generateResults = new JButton("Generate Results",iconGenerateResults);
+        displayCompleteRace = new JButton("Display Races",iconDisplayCompleteRace);
+        searchRace = new JButton("Search Race",iconSearchRace);
         driverTable = new JTable();
         driverTableScrollPane = new JScrollPane(driverTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
 
 
         labelTopic.setText("Formula 1 Driver Table");
@@ -45,8 +54,11 @@ public class GUISimulator extends JFrame implements ActionListener {
         setLayout(new FlowLayout());
         setSize(950, 600);
         setTitle("Formula1 simulator");
+        setIconImage(iconFrame.getImage());
 
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+
+
 
         sortStatisticsInDescending.setToolTipText("Display statistics in descending order of points..");
         sortPointsInAscending.setToolTipText("Sort points of the driver according to ascending order..");
@@ -78,7 +90,7 @@ public class GUISimulator extends JFrame implements ActionListener {
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
-
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**

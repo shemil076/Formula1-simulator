@@ -15,6 +15,7 @@ public class DisplayRaces extends JFrame {
     JLabel labelTopic;
     JTable displayRacesTable;
     JScrollPane displayRacesTableScrollPane;
+    ImageIcon iconFrame = new ImageIcon("src/img/fast.png") ;
 
     public DisplayRaces(){
 
@@ -31,6 +32,8 @@ public class DisplayRaces extends JFrame {
         add(displayRacesTableScrollPane).setPreferredSize(new Dimension(900, 400));
 
 
+
+        setIconImage(iconFrame.getImage());
         sortDate();
         setLayout(new FlowLayout());
         setSize(950, 600);
@@ -39,7 +42,6 @@ public class DisplayRaces extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
     }
 
 

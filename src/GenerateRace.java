@@ -14,6 +14,7 @@ public class GenerateRace extends JFrame {
     JTable raceTable;
     JScrollPane raceTableScrollPane;
     public static String stringDate;
+    ImageIcon iconFrame = new ImageIcon("src/img/fast.png") ;
 
     public GenerateRace() {
         labelDate = new JLabel();
@@ -32,6 +33,7 @@ public class GenerateRace extends JFrame {
         setLayout(new FlowLayout());
         setSize(950, 600);
         setTitle("Generate Race");
+        setIconImage(iconFrame.getImage());
 
         setResizable(false);
         setLocationRelativeTo(null);
