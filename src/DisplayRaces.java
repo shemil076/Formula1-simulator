@@ -16,6 +16,8 @@ public class DisplayRaces extends JFrame {
     JTable displayRacesTable;
     JScrollPane displayRacesTableScrollPane;
     ImageIcon iconFrame = new ImageIcon("src/img/fast.png") ;
+    JLabel warningLabel = new JLabel();
+
 
     public DisplayRaces(){
 
@@ -30,11 +32,10 @@ public class DisplayRaces extends JFrame {
         addToDisplayRacesTable(raceData,displayRacesTable);
         add(labelTopic);
         add(displayRacesTableScrollPane).setPreferredSize(new Dimension(900, 400));
-
-
+        checkData();
+        sortDate();
 
         setIconImage(iconFrame.getImage());
-        sortDate();
         setLayout(new FlowLayout());
         setSize(950, 600);
         setTitle("Display Races");
@@ -73,4 +74,11 @@ public class DisplayRaces extends JFrame {
         }
     }
 
+    public void  checkData(){
+        if (raceData.size() == 0){
+            add(warningLabel);
+            warningLabel.setText("⚠️ Please add races to display Race details");
+            warningLabel.setFont(new Font("Serif",Font.BOLD,20));
+        }
+    }
 }

@@ -16,7 +16,7 @@ public class GUISimulator extends JFrame implements ActionListener {
     JButton generateRandomRace;
     JButton generateResults;
     JButton displayCompleteRace;
-    JButton searchRace;
+    JButton searchDriver;
     JLabel labelTopic;
     public ArrayList<Formula1Driver> driver = Formula1ChampionshipManager.getData();    // accessing an array list in Formula1ChampionshipManager class
     JTable driverTable;
@@ -28,18 +28,39 @@ public class GUISimulator extends JFrame implements ActionListener {
     ImageIcon iconGenerateRandomRace = new ImageIcon("src/img/racing.png") ;
     ImageIcon iconGenerateResults = new ImageIcon("src/img/stage.png") ;
     ImageIcon iconDisplayCompleteRace = new ImageIcon("src/img/finish.png") ;
-    ImageIcon iconSearchRace = new ImageIcon("src/img/search.png") ;
+    ImageIcon iconSearchDriver = new ImageIcon("src/img/search.png") ;
+
+
+
+    JPanel container;
 
 
     public GUISimulator() {
+
+        container = new JPanel();
+
+
         labelTopic = new JLabel();
+        Background newBackground = new Background(Color.CYAN,Color.orange,3);
+
+
+
+        container.setLayout(new BorderLayout());
+        add(container.add(newBackground));
+
+
+
+
+
+
+
         sortStatisticsInDescending = new JButton("Sort Statistics",iconSortStatisticsInDescending);
         sortPointsInAscending = new JButton("Sort Points",iconSortPointsInAscending);
         firstPositionsDescending = new JButton("Sort Positions",iconFirstPositionsDescending);
         generateRandomRace = new JButton("Generate Race",iconGenerateRandomRace);
         generateResults = new JButton("Generate Results",iconGenerateResults);
         displayCompleteRace = new JButton("Display Races",iconDisplayCompleteRace);
-        searchRace = new JButton("Search Race",iconSearchRace);
+        searchDriver = new JButton("Search Race",iconSearchDriver);
         driverTable = new JTable();
         driverTableScrollPane = new JScrollPane(driverTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
@@ -51,10 +72,18 @@ public class GUISimulator extends JFrame implements ActionListener {
         insertToTable(driver, driverTable);                                                                             // insert data by calling the method that create to insert data
 
 
+
+
+
+
+
+
+
         setLayout(new FlowLayout());
         setSize(950, 600);
         setTitle("Formula1 simulator");
         setIconImage(iconFrame.getImage());
+
 
 
 
@@ -66,7 +95,7 @@ public class GUISimulator extends JFrame implements ActionListener {
         generateRandomRace.setToolTipText("Generate (one) random race..");
         generateResults.setToolTipText("Generate results..");
         displayCompleteRace.setToolTipText("Display races in ascending order according to the date");
-        searchRace.setToolTipText("Search details about race");
+        searchDriver.setToolTipText("Search details about race");
 
 
         sortStatisticsInDescending.addActionListener(this);
@@ -75,7 +104,11 @@ public class GUISimulator extends JFrame implements ActionListener {
         generateRandomRace.addActionListener(this);
         generateResults.addActionListener(this);
         displayCompleteRace.addActionListener(this);
-        searchRace.addActionListener(this);
+        searchDriver.addActionListener(this);
+
+
+
+
 
         add(labelTopic);
         add(driverTableScrollPane).setPreferredSize(new Dimension(900, 400));
@@ -85,7 +118,7 @@ public class GUISimulator extends JFrame implements ActionListener {
         add(generateRandomRace);
         add(generateResults);
         add(displayCompleteRace);
-        add(searchRace);
+        add(searchDriver);
 
         setResizable(false);
         setLocationRelativeTo(null);
@@ -182,65 +215,17 @@ public class GUISimulator extends JFrame implements ActionListener {
         } else if (e.getSource().equals(displayCompleteRace)) {
             new  DisplayRaces();
 
-        }else if (e.getSource().equals(searchRace)) {
+        }else if (e.getSource().equals(searchDriver)) {
+            new SearchDriver();
 
         }
     }
+
+
+
+
 }
 
 
 
 
-
-
-
-//
-//    class generateResults extends JFrame {
-//        public generateResults() {
-//
-//            setLayout(new FlowLayout());
-//            setSize(950, 600);
-//            setTitle("Generate Results");
-//
-//            setResizable(false);
-//            setLocationRelativeTo(null);
-//            setVisible(true);
-//            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        }
-//    }
-//
-//
-//
-//
-//    class displayCompleteRace extends JFrame {
-//        public displayCompleteRace() {
-//
-//            setLayout(new FlowLayout());
-//            setSize(950, 600);
-//            setTitle("Display Races");
-//
-//            setResizable(false);
-//            setLocationRelativeTo(null);
-//            setVisible(true);
-//            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        }
-//    }
-//
-//
-//
-//
-//
-//
-//class searchRace extends JFrame {
-//    public searchRace() {
-//
-//        setLayout(new FlowLayout());
-//        setSize(950, 600);
-//        setTitle("Search Race");
-//
-//        setResizable(false);
-//        setLocationRelativeTo(null);
-//        setVisible(true);
-//        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//    }
-//}

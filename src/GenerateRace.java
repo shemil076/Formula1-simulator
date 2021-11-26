@@ -11,14 +11,17 @@ public class GenerateRace extends JFrame {
     ArrayList<Integer> positionsArrayList = new ArrayList<Integer>();
     ArrayList<RaceTeamData> raceTeamData = new ArrayList<RaceTeamData>();
     JLabel labelDate;
+    JLabel successfully;
     JTable raceTable;
     JScrollPane raceTableScrollPane;
     public static String stringDate;
-    ImageIcon iconFrame = new ImageIcon("src/img/fast.png") ;
+    ImageIcon iconFrame = new ImageIcon("src/img/fast.png");
+
 
     public GenerateRace() {
         labelDate = new JLabel();
         raceTable = new JTable();
+        successfully = new JLabel();
         raceNow();
 
         raceTableScrollPane = new JScrollPane(raceTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -27,9 +30,16 @@ public class GenerateRace extends JFrame {
         labelDate.setText("Race table on : " + stringDate);
         addToTable(raceTeamData, raceTable);
 
+
+        successfully.setText(" ✨ Congratulations ✨ You have successfully generate a race ");
+        successfully.setFont(new Font("Serif",Font.BOLD,22));
+
+
 //        labelDate.setText(stringDate);
         add(labelDate);
         add(raceTableScrollPane).setPreferredSize(new Dimension(900, 400));
+        add(successfully);
+
         setLayout(new FlowLayout());
         setSize(950, 600);
         setTitle("Generate Race");
@@ -39,6 +49,7 @@ public class GenerateRace extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//
     }
 
     public void raceNow() {
@@ -153,5 +164,7 @@ public class GenerateRace extends JFrame {
             });
         }
     }
+
+
 
 }
