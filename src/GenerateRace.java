@@ -164,7 +164,4 @@ public class GenerateRace extends JFrame {
             });
         }
     }
-
-
-
 }

@@ -26,8 +26,8 @@ public class DisplayRaces extends JFrame {
         sortDate();
 
         displayRacesTableScrollPane = new JScrollPane(displayRacesTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        String[] displayRacesTableColumnNames = {"DATE", "TEAM NAME", "DRIVER NAME", "POSITION"};
         labelTopic.setText("Races Detail table sorted according to date");
+        String[] displayRacesTableColumnNames = {"DATE", "TEAM NAME", "DRIVER NAME", "POSITION"};
         displayRacesTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, displayRacesTableColumnNames));
         addToDisplayRacesTable(raceData,displayRacesTable);
         add(labelTopic);
@@ -73,6 +73,7 @@ public class DisplayRaces extends JFrame {
             });
         }
     }
+
 
     public void  checkData(){
         if (raceData.size() == 0){
