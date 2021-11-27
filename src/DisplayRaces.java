@@ -32,8 +32,13 @@ public class DisplayRaces extends JFrame {
         add(container.add(newBackground));
         newBackground.setLayout(new FlowLayout());
 
+
+
         labelTopic.setFont(new Font("Serif",Font.BOLD,24));
         labelTopic.setForeground(Color.white);
+
+        warningLabel.setFont(new Font("Serif",Font.BOLD,20));
+        warningLabel.setForeground(Color.white);
 
         sortDate();
 
@@ -43,12 +48,15 @@ public class DisplayRaces extends JFrame {
         displayRacesTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, displayRacesTableColumnNames));
         addToDisplayRacesTable(raceData,displayRacesTable);
 
+        warningLabel.setText(null);
+
 
         displayRacesTable.setBackground(Color.cyan);
         displayRacesTable.setOpaque(true);
 
         newBackground.add(labelTopic);
         newBackground.add(displayRacesTableScrollPane).setPreferredSize(new Dimension(900, 400));
+        newBackground.add(warningLabel);
         checkData();
         sortDate();
 
@@ -94,9 +102,9 @@ public class DisplayRaces extends JFrame {
 
     public void  checkData(){
         if (raceData.size() == 0){
-            add(warningLabel);
-            warningLabel.setText("⚠️ Please add races to display Race details");
-            warningLabel.setFont(new Font("Serif",Font.BOLD,20));
+
+            warningLabel.setText("⚠️ Please add races to display Race details ⚠️");
+
         }
     }
 }

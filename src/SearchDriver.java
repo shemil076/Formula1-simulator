@@ -17,33 +17,55 @@ public class SearchDriver extends JFrame implements ActionListener {
     JButton searchButton;
     JTable racerTable;
     JScrollPane racerTableScrollPane;
+    ImageIcon iconSearchButton = new ImageIcon("src/img/searchName.png") ;
+    JPanel container;
 
     public SearchDriver() {
 
         searchRacer = new JTextField(30);
-        searchButton = new JButton("Search");
+        searchButton = new JButton("Search",iconSearchButton);
         labelTopic = new JLabel();
         labelWarnings = new JLabel();
         racerTable = new JTable();
         racerTableScrollPane = new JScrollPane(racerTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        container = new JPanel();
+
+
+
+
+        Background newBackground = new Background(Color.decode("#360033"), Color.decode("#0b8793"),3);
+        add(container.add(newBackground));
+        newBackground.setLayout(new FlowLayout());
+
+        labelTopic.setText("🔍 Enter the name of the driver 🔍");
+
+        labelTopic.setFont(new Font("Serif",Font.BOLD,30));
+        labelTopic.setForeground(Color.orange);
+        labelWarnings.setFont(new Font("Serif",Font.BOLD,24));
+        labelWarnings.setForeground(Color.YELLOW);
+
+
 
         String[] racerTableColumnNames = {"DRIVER NAME", "TEAM NAME", "DATE", "POSITION"};
         racerTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, racerTableColumnNames));
 
+        racerTable.setBackground(Color.decode("#ffd194"));
+        racerTable.setOpaque(true);
         addToRacerData();
 
-        add(searchRacer).setPreferredSize(new Dimension(100, 25));
-        add(searchButton);
-        add(racerTableScrollPane).setPreferredSize(new Dimension(900, 400));
-        add(labelTopic);
-        add(labelWarnings);
+        newBackground.add(labelTopic);
+        newBackground.add(searchRacer).setPreferredSize(new Dimension(100, 25));
+        newBackground.add(searchButton);
+        newBackground.add(racerTableScrollPane).setPreferredSize(new Dimension(900, 400));
+        newBackground.add(labelWarnings);
 
 
+        searchButton.setToolTipText("Enter the full name of the driver.");
         searchButton.addActionListener(this);
 
         labelWarnings.setFont(new Font("Serif", Font.BOLD, 20));
         setIconImage(iconFrame.getImage());
-        setLayout(new FlowLayout());
+//        setLayout(new FlowLayout());
         setSize(950, 600);
         setTitle("Search Driver");
         setResizable(false);

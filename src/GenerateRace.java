@@ -40,6 +40,9 @@ public class GenerateRace extends JFrame {
 
 
 
+        raceTable.setBackground(Color.magenta);
+        raceTable.setOpaque(true);
+
 
 
         raceTableScrollPane = new JScrollPane(raceTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
