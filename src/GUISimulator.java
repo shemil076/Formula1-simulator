@@ -5,9 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
-import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS;
 
 public class GUISimulator extends JFrame implements ActionListener {
     JButton sortStatisticsInDescending;
@@ -32,6 +30,7 @@ public class GUISimulator extends JFrame implements ActionListener {
 
 
 
+
     JPanel container;
 
 
@@ -41,7 +40,7 @@ public class GUISimulator extends JFrame implements ActionListener {
 
 
         labelTopic = new JLabel();
-        Background newBackground = new Background(Color.CYAN,Color.orange,3);
+        Background newBackground = new Background(Color.cyan,Color.magenta,3);
 
 
 
@@ -66,7 +65,17 @@ public class GUISimulator extends JFrame implements ActionListener {
 
 
 
-        labelTopic.setText("Formula 1 Driver Table");
+
+        driverTable.setBackground(Color.yellow);
+        driverTable.setOpaque(true);
+
+
+
+        labelTopic.setText("🚔 Formula 1 Driver Table 🚔");
+        labelTopic.setFont(new Font("Serif",Font.BOLD,24));
+        labelTopic.setForeground(Color.black);
+
+
         String[] columnNames = {"NAME", "TEAM", "COUNTRY", "NO.OF RACES", "POINTS", "1stPOSES", "2ndPOSES", "3rdPOSES"};
         driverTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, columnNames));                   // setting the model of table
         insertToTable(driver, driverTable);                                                                             // insert data by calling the method that create to insert data
@@ -79,11 +88,13 @@ public class GUISimulator extends JFrame implements ActionListener {
 
 
 
-        setLayout(new FlowLayout());
+//        setLayout(new FlowLayout());
+        newBackground.setLayout(new FlowLayout());
+
+
         setSize(950, 600);
         setTitle("Formula1 simulator");
         setIconImage(iconFrame.getImage());
-
 
 
 
@@ -110,15 +121,15 @@ public class GUISimulator extends JFrame implements ActionListener {
 
 
 
-        add(labelTopic);
-        add(driverTableScrollPane).setPreferredSize(new Dimension(900, 400));
-        add(sortStatisticsInDescending);
-        add(sortPointsInAscending);
-        add(firstPositionsDescending);
-        add(generateRandomRace);
-        add(generateResults);
-        add(displayCompleteRace);
-        add(searchDriver);
+        newBackground.add(labelTopic);
+        newBackground.add(driverTableScrollPane).setPreferredSize(new Dimension(900, 400));
+        newBackground.add(sortStatisticsInDescending);
+        newBackground.add(sortPointsInAscending);
+        newBackground.add(firstPositionsDescending);
+        newBackground.add(generateRandomRace);
+        newBackground.add(generateResults);
+        newBackground.add(displayCompleteRace);
+        newBackground.add(searchDriver);
 
         setResizable(false);
         setLocationRelativeTo(null);
@@ -165,7 +176,7 @@ public class GUISimulator extends JFrame implements ActionListener {
     public void sortStatisticsInDescending() {
         removeRows();
         Collections.sort(Formula1ChampionshipManager.formulaDriverTeams);
-        labelTopic.setText("Formula driver table in descending order according to the points..");
+        labelTopic.setText("🚔 Formula driver table in descending order according to the points 🚔");
         insertToTable(driver, driverTable);
     }
 
@@ -175,7 +186,7 @@ public class GUISimulator extends JFrame implements ActionListener {
     public void sortPointsInAscending() {
         removeRows();
         Collections.sort(Formula1ChampionshipManager.formulaDriverTeams, Formula1Driver.PointsInAscending);
-        labelTopic.setText("Formula driver table in ascending order according to the points..");
+        labelTopic.setText("🚔Formula driver table in ascending order according to the points 🚔");
         insertToTable(driver, driverTable);
     }
 
@@ -185,7 +196,7 @@ public class GUISimulator extends JFrame implements ActionListener {
     public void sortPositionsInDescending() {
         removeRows();
         Collections.sort(Formula1ChampionshipManager.formulaDriverTeams, Formula1Driver.FirstPositionsDescending);
-        labelTopic.setText("Formula driver table in descending order according to the FIRST POSITIONS..");
+        labelTopic.setText("🚔 Formula driver table in descending order according to the FIRST POSITIONS 🚔");
         insertToTable(driver, driverTable);
 
     }
@@ -204,6 +215,7 @@ public class GUISimulator extends JFrame implements ActionListener {
 
         } else if (e.getSource().equals(sortPointsInAscending)) {
             sortPointsInAscending();
+
 
         } else if (e.getSource().equals(firstPositionsDescending)) {
             sortPositionsInDescending();
