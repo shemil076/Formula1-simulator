@@ -29,11 +29,13 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         championManager.welcome();
         championManager.logo();
         championManager.loadTeamDetails();
+        championManager.loadRaceDetailsList();
         while (run) {
             championManager.printMenu();
             championManager.mainMenu();
         }
         championManager.saveInformationInAFile();
+        championManager.saveRaceDetailsList();
 
     }
 
@@ -857,7 +859,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
             writeStream.writeObject(formulaDriverTeams);                                                                // write the objects in the arraylist in tp the file
             writeStream.flush();
             writeStream.close();
-            System.out.println("INFORMATION HAS BEEN SAVED TO A FILE\n");
+            System.out.println("TEAM DETAILS HAS BEEN SAVED TO A FILE\n");
         } catch (IOException e) {
             System.out.println("⚠️Something went wrong\n");
         }
@@ -873,12 +875,12 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
             ObjectInputStream readStream = new ObjectInputStream(readInfo);
             formulaDriverTeams = (ArrayList<Formula1Driver>) readStream.readObject();                                   // assign values to the main array list and casted the values
             readStream.close();                                                                                         // close the reading stream
-            System.out.println("File loaded...\n");
+            System.out.println("TEAM DETAILS FILES HAS BEEN LOADED..\n");
         } catch (FileNotFoundException e) {
-            System.out.println("⚠️No file to load!\n");
+            System.out.println("⚠️TEAM DETAILS FILE NOT FOUND!\n");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-            System.out.println("⚠️Something went wrong!\n");
+            System.out.println("⚠️!OOPS, Something went wrong!\n");
         }
     }
     public static ArrayList<Formula1Driver> getData(){
@@ -899,5 +901,47 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
         }
     }
 
+
+
+
+
+
+
+    /**
+     * Save the final data of the RACES into a file
+     */
+    public void saveRaceDetailsList() {                                                                              // reference https://samderlust.com/dev-blog/java/write-read-arraylist-object-file-java
+        try {
+            FileOutputStream writeInfo = new FileOutputStream("raceDetailsList.ser");                                 // create a file output stream
+            ObjectOutputStream writeStream = new ObjectOutputStream(writeInfo);                                         // handle the object to be written into files that FileOutputStream created
+
+            writeStream.writeObject(raceDetailsList);                                                                // write the objects in the arraylist in tp the file
+            writeStream.flush();
+            writeStream.close();
+            System.out.println("RACE DETAILS HAS BEEN SAVED TO A FILE\n");
+        } catch (IOException e) {
+            System.out.println("⚠️!OOPS, Something went wrong\n");
+        }
+    }
+
+
+    /**
+     * Load the data from the saved file.
+     */
+    public void loadRaceDetailsList(){                                                                                      // reference https://samderlust.com/dev-blog/java/write-read-arraylist-object-file-java
+        try {
+            // read the information in the file to the program
+            FileInputStream readInfo = new FileInputStream("raceDetailsList.ser");
+            ObjectInputStream readStream = new ObjectInputStream(readInfo);
+            raceDetailsList = (ArrayList<RaceDetails>) readStream.readObject();                                   // assign values to the main array list and casted the values
+            readStream.close();                                                                                         // close the reading stream
+            System.out.println("RACE DATA FILE HAS BEEN LOADED..\n");
+        } catch (FileNotFoundException e) {
+            System.out.println("⚠️RACE DATA FILE HAS NOT FOUND..\n");
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("⚠️!OOPS, Something went wrong!\n");
+        }
+    }
 }
 

@@ -41,7 +41,7 @@ public class SearchDriver extends JFrame implements ActionListener {
 
         searchButton.addActionListener(this);
 
-
+        labelWarnings.setFont(new Font("Serif", Font.BOLD, 20));
         setIconImage(iconFrame.getImage());
         setLayout(new FlowLayout());
         setSize(950, 600);
@@ -62,7 +62,7 @@ public class SearchDriver extends JFrame implements ActionListener {
     public void insertToRacerTable(ArrayList<DriverRaceData> racerData, JTable racerTable) {
 
         String getRacerInput = searchRacer.getText().toUpperCase();
-        if(checkInput(getRacerInput)){
+        if (checkInput(getRacerInput)) {
 
             for (DriverRaceData racer : racerData) {
                 String containName = racer.getRacerName();
@@ -77,20 +77,20 @@ public class SearchDriver extends JFrame implements ActionListener {
 
                 }
             }
-        }else {
+        } else {
             labelWarnings.setText("⚠️Sorry incorrect name input ⚠️");
-            labelWarnings.setFont(new Font("Serif",Font.BOLD,20));
+
         }
     }
 
 
-    public boolean  checkInput(String inputName){
+    public boolean checkInput(String inputName) {
         boolean foundName = false;
-        for (DriverRaceData findRacerName :racerData ) {
-            if(findRacerName.getRacerName().equalsIgnoreCase(inputName)){
+        for (DriverRaceData findRacerName : racerData) {
+            if (findRacerName.getRacerName().equalsIgnoreCase(inputName)) {
                 foundName = true;
                 break;
-            }else {
+            } else {
                 foundName = false;
             }
 
@@ -107,13 +107,31 @@ public class SearchDriver extends JFrame implements ActionListener {
         }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(searchButton)) {
-            labelWarnings.setText("");
-            removeRows();
-            insertToRacerTable(racerData, racerTable);
+    public boolean checkTeams() {
+        boolean foundTeams = false;
+        if (racerData.size() > 0) {
+            foundTeams = true;
+        } else {
+            foundTeams = false;
 
         }
+        return foundTeams;
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if (checkTeams()) {
+            if (e.getSource().equals(searchButton)) {
+                labelWarnings.setText("");
+                removeRows();
+                insertToRacerTable(racerData, racerTable);
+            }
+        }else{
+            labelWarnings.setText("⚠️No Races in the system, Please add races⚠️");
+
+        }
+
     }
 }

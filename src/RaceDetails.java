@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RaceDetails {
+public class RaceDetails implements Serializable {
     private  String raceDate;
     private ArrayList<String> driverNamesInRace = new ArrayList<String>();
     private ArrayList<String> teamNamesInRace = new ArrayList<String>();

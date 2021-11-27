@@ -191,6 +191,8 @@ public class GUISimulator extends JFrame implements ActionListener {
     }
 
 
+
+
     /**
      * Overide the actionPerformed method
      * @param e action
@@ -220,10 +222,6 @@ public class GUISimulator extends JFrame implements ActionListener {
 
         }
     }
-
-
-
-
 }
 
 
