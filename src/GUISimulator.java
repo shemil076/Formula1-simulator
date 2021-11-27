@@ -44,14 +44,8 @@ public class GUISimulator extends JFrame implements ActionListener {
 
 
 
-        container.setLayout(new BorderLayout());
+//        container.setLayout(new BorderLayout());
         add(container.add(newBackground));
-
-
-
-
-
-
 
         sortStatisticsInDescending = new JButton("Sort Statistics",iconSortStatisticsInDescending);
         sortPointsInAscending = new JButton("Sort Points",iconSortPointsInAscending);
@@ -64,28 +58,16 @@ public class GUISimulator extends JFrame implements ActionListener {
         driverTableScrollPane = new JScrollPane(driverTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 
-
-
         driverTable.setBackground(Color.yellow);
         driverTable.setOpaque(true);
-
-
 
         labelTopic.setText("🚔 Formula 1 Driver Table 🚔");
         labelTopic.setFont(new Font("Serif",Font.BOLD,24));
         labelTopic.setForeground(Color.black);
 
-
         String[] columnNames = {"NAME", "TEAM", "COUNTRY", "NO.OF RACES", "POINTS", "1stPOSES", "2ndPOSES", "3rdPOSES"};
         driverTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, columnNames));                   // setting the model of table
         insertToTable(driver, driverTable);                                                                             // insert data by calling the method that create to insert data
-
-
-
-
-
-
-
 
 
 //        setLayout(new FlowLayout());
@@ -95,10 +77,6 @@ public class GUISimulator extends JFrame implements ActionListener {
         setSize(950, 600);
         setTitle("Formula1 simulator");
         setIconImage(iconFrame.getImage());
-
-
-
-
 
         sortStatisticsInDescending.setToolTipText("Display statistics in descending order of points..");
         sortPointsInAscending.setToolTipText("Sort points of the driver according to ascending order..");

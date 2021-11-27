@@ -18,25 +18,42 @@ public class DisplayRaces extends JFrame {
     ImageIcon iconFrame = new ImageIcon("src/img/fast.png") ;
     JLabel warningLabel = new JLabel();
 
+    JPanel container;
+
 
     public DisplayRaces(){
 
         labelTopic = new JLabel();
         displayRacesTable = new JTable();
+        container = new JPanel();
+        Background newBackground = new Background(Color.decode("#23074d"), Color.decode("#cc5333"),3);
+
+
+        add(container.add(newBackground));
+        newBackground.setLayout(new FlowLayout());
+
+        labelTopic.setFont(new Font("Serif",Font.BOLD,24));
+        labelTopic.setForeground(Color.white);
+
         sortDate();
 
         displayRacesTableScrollPane = new JScrollPane(displayRacesTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        labelTopic.setText("Races Detail table sorted according to date");
+        labelTopic.setText("🏁 Races Detail table sorted according to date 🏁");
         String[] displayRacesTableColumnNames = {"DATE", "TEAM NAME", "DRIVER NAME", "POSITION"};
         displayRacesTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, displayRacesTableColumnNames));
         addToDisplayRacesTable(raceData,displayRacesTable);
-        add(labelTopic);
-        add(displayRacesTableScrollPane).setPreferredSize(new Dimension(900, 400));
+
+
+        displayRacesTable.setBackground(Color.cyan);
+        displayRacesTable.setOpaque(true);
+
+        newBackground.add(labelTopic);
+        newBackground.add(displayRacesTableScrollPane).setPreferredSize(new Dimension(900, 400));
         checkData();
         sortDate();
 
         setIconImage(iconFrame.getImage());
-        setLayout(new FlowLayout());
+//        setLayout(new FlowLayout());
         setSize(950, 600);
         setTitle("Display Races");
         setResizable(false);

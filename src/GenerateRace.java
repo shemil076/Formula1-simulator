@@ -16,13 +16,31 @@ public class GenerateRace extends JFrame {
     JScrollPane raceTableScrollPane;
     public static String stringDate;
     ImageIcon iconFrame = new ImageIcon("src/img/fast.png");
+    JPanel container;
 
 
     public GenerateRace() {
         labelDate = new JLabel();
         raceTable = new JTable();
         successfully = new JLabel();
+        container = new JPanel();
+        Background newBackground = new Background(Color.decode("#780206"), Color.decode("#061161"),3);
+
+        add(container.add(newBackground));
+        newBackground.setLayout(new FlowLayout());
+
+
+        labelDate.setFont(new Font("Serif",Font.BOLD,30));
+        labelDate.setForeground(Color.ORANGE);
+        successfully.setFont(new Font("Serif",Font.BOLD,24));
+        successfully.setForeground(Color.YELLOW);
+
         raceNow();
+
+
+
+
+
 
         raceTableScrollPane = new JScrollPane(raceTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         String[] raceTableColumnNames = {"TEAM", "NAME", "CURRENT POINTS", "POSITION"};
@@ -31,16 +49,15 @@ public class GenerateRace extends JFrame {
         addToTable(raceTeamData, raceTable);
 
 
-        successfully.setText(" ✨ Congratulations ✨ You have successfully generate a race ");
-        successfully.setFont(new Font("Serif",Font.BOLD,22));
+        successfully.setText("✨ Congratulations You have successfully generate a race ✨");
 
 
 //        labelDate.setText(stringDate);
-        add(labelDate);
-        add(raceTableScrollPane).setPreferredSize(new Dimension(900, 400));
-        add(successfully);
+        newBackground.add(labelDate);
+        newBackground.add(raceTableScrollPane).setPreferredSize(new Dimension(900, 400));
+        newBackground.add(successfully);
 
-        setLayout(new FlowLayout());
+//        setLayout(new FlowLayout());
         setSize(950, 600);
         setTitle("Generate Race");
         setIconImage(iconFrame.getImage());
