@@ -3,9 +3,9 @@ import java.util.ArrayList;
 
 public class RaceDetails implements Serializable {
     private  String raceDate;
-    private ArrayList<String> driverNamesInRace = new ArrayList<String>();
-    private ArrayList<String> teamNamesInRace = new ArrayList<String>();
-    private ArrayList<Integer> teamPositions = new ArrayList<Integer>();
+    private ArrayList<String> driverNamesInRace = new ArrayList<String>();      // add names of the drivers who participated to a race
+    private ArrayList<String> teamNamesInRace = new ArrayList<String>();        // add names of the team which participated to a race
+    private ArrayList<Integer> teamPositions = new ArrayList<Integer>();        // add the positions of the respective positions
 
 
 //    private ArrayList<Integer> startPositionInRace = new ArrayList<Integer>();
@@ -20,9 +20,19 @@ public class RaceDetails implements Serializable {
         teamNamesInRace.add(teamNameInRace);
         teamPositions.add(teamPosition);
     }
+
+    /**
+     *
+     * @return race date
+     */
     public  String getRaceDate(){
         return raceDate;
     }
+
+    /**
+     *
+     * @return the name of the team
+     */
     public String getteamNameInRace(){
         String teamnames = null;
         for (String name : teamNamesInRace){
@@ -30,6 +40,11 @@ public class RaceDetails implements Serializable {
         }
         return teamnames;
     }
+
+    /**
+     *
+     * @return the name of the driver
+     */
     public String getDriverNameInRace(){
         String names = null;
         for (String name : driverNamesInRace){
@@ -38,6 +53,10 @@ public class RaceDetails implements Serializable {
         return names;
     }
 
+    /**
+     *
+     * @return the position of the driver
+     */
     public int getPosition(){
         int positions = 0;
         for (int i : teamPositions){
@@ -50,6 +69,7 @@ public class RaceDetails implements Serializable {
     public String toString() {
         return raceDate;
     }
+
 
     public ArrayList<String> getDriverNamesInRace() {
         return driverNamesInRace;

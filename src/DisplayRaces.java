@@ -26,27 +26,27 @@ public class DisplayRaces extends JFrame {
         labelTopic = new JLabel();
         displayRacesTable = new JTable();
         container = new JPanel();
-        Background newBackground = new Background(Color.decode("#23074d"), Color.decode("#cc5333"),3);
+        Background newBackground = new Background(Color.decode("#23074d"), Color.decode("#cc5333"),3);  // set the background  refered a code
 
 
         add(container.add(newBackground));
-        newBackground.setLayout(new FlowLayout());
+        newBackground.setLayout(new FlowLayout());                              // set the layout
 
 
 
-        labelTopic.setFont(new Font("Serif",Font.BOLD,24));
-        labelTopic.setForeground(Color.white);
+        labelTopic.setFont(new Font("Serif",Font.BOLD,24));         // set the formatting of the text
+        labelTopic.setForeground(Color.white);                                  // change the font colour
 
-        warningLabel.setFont(new Font("Serif",Font.BOLD,20));
-        warningLabel.setForeground(Color.white);
+        warningLabel.setFont(new Font("Serif",Font.BOLD,20));        // set the formatting of the text
+        warningLabel.setForeground(Color.white);                                // change the font colour
 
-        sortDate();
+        sortDate();                                                             // sort the raceData array list according to the date
 
         displayRacesTableScrollPane = new JScrollPane(displayRacesTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         labelTopic.setText("🏁 Races Detail table sorted according to date 🏁");
         String[] displayRacesTableColumnNames = {"DATE", "TEAM NAME", "DRIVER NAME", "POSITION"};
-        displayRacesTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, displayRacesTableColumnNames));
-        addToDisplayRacesTable(raceData,displayRacesTable);
+        displayRacesTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, displayRacesTableColumnNames));        // set the default Table model
+        addToDisplayRacesTable(raceData,displayRacesTable);                                                                         // add data to the table
 
         warningLabel.setText(null);
 
@@ -55,24 +55,27 @@ public class DisplayRaces extends JFrame {
         displayRacesTable.setOpaque(true);
 
         newBackground.add(labelTopic);
-        newBackground.add(displayRacesTableScrollPane).setPreferredSize(new Dimension(900, 400));
+        newBackground.add(displayRacesTableScrollPane).setPreferredSize(new Dimension(900, 400));               // set the scroll pane size
         newBackground.add(warningLabel);
-        checkData();
-        sortDate();
+        checkData();                                                                                                        // the whether the races are available in the system
+        sortDate();                                                                                                         // sort according to the data
 
-        setIconImage(iconFrame.getImage());
+        setIconImage(iconFrame.getImage());         // set an image to the frame
 //        setLayout(new FlowLayout());
-        setSize(950, 600);
-        setTitle("Display Races");
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setVisible(true);
+        setSize(950, 600);             // set the size of the frame
+        setTitle("Display Races");                  // set the frame title
+        setResizable(false);                        // not allowing to stretch or resize
+        setLocationRelativeTo(null);                // set the location to the center of the screen
+        setVisible(true);                           // make the frame visible
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
 
+    /**
+     *
+     */
     public static Comparator<RaceDetails> raceInfo = new Comparator<RaceDetails>(){
-        DateFormat formattedDate = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat formattedDate = new SimpleDateFormat("dd/MM/yyyy");      // set the date format
         @Override
         public int compare(RaceDetails raceDate1, RaceDetails raceDate2) {
             try {
@@ -84,22 +87,35 @@ public class DisplayRaces extends JFrame {
         }
     };
 
+    /**
+     * Sort the array list according to date
+     */
     public void sortDate(){
         Collections.sort(Formula1ChampionshipManager.raceDetailsList,raceInfo);
     }
 
+
+    /**
+     *add data to the table
+     * @param raceData arrayList in RaceDetail class
+     * @param table JTable
+     */
     public static void addToDisplayRacesTable(ArrayList<RaceDetails> raceData, JTable table) {
         for (RaceDetails raceTeamData : raceData) {
-            ((DefaultTableModel) table.getModel()).addRow(new Object[]{
-                    raceTeamData.getRaceDate(),
-                    raceTeamData.getTeamNamesInRace(),
-                    raceTeamData.getDriverNameInRace(),
-                    raceTeamData.getPosition()
+            ((DefaultTableModel) table.getModel()).addRow(new Object[]{         //
+                    raceTeamData.getRaceDate(),                                 //  add race date to the respective row
+                    raceTeamData.getTeamNamesInRace(),                          //  add team name to the respective row
+                    raceTeamData.getDriverNameInRace(),                         //  add driver name to the respective row
+                    raceTeamData.getPosition()                                  //  add position to the respective row
             });
         }
     }
 
 
+    /**
+     * Check the number of races in the system.
+     * because if there is no teams nothing to display
+     */
     public void  checkData(){
         if (raceData.size() == 0){
 

@@ -1,9 +1,8 @@
+// referred from https://pastebin.com/7v6BjccA
 import javax.swing.*;
 import java.awt.*;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
+
 
 
 public class Background extends JPanel {
