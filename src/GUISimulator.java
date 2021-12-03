@@ -19,6 +19,8 @@ public class GUISimulator extends JFrame implements ActionListener {
     public ArrayList<Formula1Driver> driver = Formula1ChampionshipManager.getData();    // accessing an array list in Formula1ChampionshipManager class
     JTable driverTable;
     JScrollPane driverTableScrollPane;
+
+    // get images
     ImageIcon iconFrame = new ImageIcon("src/img/fast.png") ;
     ImageIcon iconSortStatisticsInDescending = new ImageIcon("src/img/descending.png") ;
     ImageIcon iconSortPointsInAscending = new ImageIcon("src/img/ascending.png") ;
@@ -47,6 +49,7 @@ public class GUISimulator extends JFrame implements ActionListener {
 //        container.setLayout(new BorderLayout());
         add(container.add(newBackground));
 
+        // initializing buttons with icons
         sortStatisticsInDescending = new JButton("Sort Statistics",iconSortStatisticsInDescending);
         sortPointsInAscending = new JButton("Sort Points",iconSortPointsInAscending);
         firstPositionsDescending = new JButton("Sort Positions",iconFirstPositionsDescending);
