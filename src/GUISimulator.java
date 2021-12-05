@@ -20,6 +20,7 @@ public class GUISimulator extends JFrame implements ActionListener {
     JTable driverTable;
     JScrollPane driverTableScrollPane;
 
+
     // get images
     ImageIcon iconFrame = new ImageIcon("src/img/fast.png") ;
     ImageIcon iconSortStatisticsInDescending = new ImageIcon("src/img/descending.png") ;
@@ -197,7 +198,6 @@ public class GUISimulator extends JFrame implements ActionListener {
         } else if (e.getSource().equals(sortPointsInAscending)) {
             sortPointsInAscending();
 
-
         } else if (e.getSource().equals(firstPositionsDescending)) {
             sortPositionsInDescending();
 
@@ -205,17 +205,21 @@ public class GUISimulator extends JFrame implements ActionListener {
             new GenerateRace() ;
 
         } else if (e.getSource().equals(generateResults)) {
-
+            new GenerateRacesWithStartingPositions();
 
         } else if (e.getSource().equals(displayCompleteRace)) {
             new  DisplayRaces();
 
         }else if (e.getSource().equals(searchDriver)) {
             new SearchDriver();
-
         }
     }
 }
+
+
+
+
+
 
 
 
