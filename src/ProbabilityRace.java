@@ -69,7 +69,7 @@ public class ProbabilityRace extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
 
-        test();
+//        test();
 
     }
 
@@ -96,7 +96,7 @@ public class ProbabilityRace extends JFrame {
 
 
         for (Formula1Driver driver : driversClone) {
-//            RaceDetails newRace = new RaceDetails(stringDate);
+            RaceDetails newRace = new RaceDetails(stringDate);
             RaceTeamData raceTeam;
 
 
@@ -126,8 +126,8 @@ public class ProbabilityRace extends JFrame {
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
                 raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
 
-//                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
-//                raceData.add(newRace);
+                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
+                raceData.add(newRace);
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
                 otherPositions();
@@ -149,8 +149,8 @@ public class ProbabilityRace extends JFrame {
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
                 raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
 
-//                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
-//                raceData.add(newRace);
+                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
+                raceData.add(newRace);
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
 
@@ -174,8 +174,8 @@ public class ProbabilityRace extends JFrame {
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
                 raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
 
-//                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
-//                raceData.add(newRace);
+                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
+                raceData.add(newRace);
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
 
@@ -199,8 +199,8 @@ public class ProbabilityRace extends JFrame {
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
                 raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
 
-//                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
-//                raceData.add(newRace);
+                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
+                raceData.add(newRace);
 
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
@@ -225,8 +225,8 @@ public class ProbabilityRace extends JFrame {
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
                 raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
 
-//                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
-//                raceData.add(newRace);
+                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
+                raceData.add(newRace);
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
 
@@ -250,8 +250,8 @@ public class ProbabilityRace extends JFrame {
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
                 raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
 
-//                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
-//                raceData.add(newRace);
+                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
+                raceData.add(newRace);
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
 
@@ -275,8 +275,8 @@ public class ProbabilityRace extends JFrame {
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
                 raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
 
-//                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
-//                raceData.add(newRace);
+                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
+                raceData.add(newRace);
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
 
@@ -300,8 +300,8 @@ public class ProbabilityRace extends JFrame {
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
                 raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
 
-//                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
-//                raceData.add(newRace);
+                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
+                raceData.add(newRace);
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
 
@@ -325,8 +325,8 @@ public class ProbabilityRace extends JFrame {
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
                 raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
 
-//                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
-//                raceData.add(newRace);
+                newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
+                raceData.add(newRace);
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
 
@@ -419,8 +419,7 @@ public class ProbabilityRace extends JFrame {
 
     public void test(){
         for (RaceDetails o :raceData ){
-//            System.out.println(o.getRaceDate() + " " + o.getTeamNamesInRace() + " " + o.getDriverNameInRace() + " " + o.getPosition());
-            System.out.println(o.getPosition() );
+            System.out.println(o.getRaceDate() + " " + o.getTeamNamesInRace() + " " + o.getDriverNameInRace() + " " + o.getPosition());
         }
     }
 
