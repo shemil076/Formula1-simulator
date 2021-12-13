@@ -71,24 +71,10 @@ public class RaceDetails implements Serializable {
     }
 
 
-    public ArrayList<String> getDriverNamesInRace() {
-        return driverNamesInRace;
-    }
-
     public ArrayList<String> getTeamNamesInRace() {
         return teamNamesInRace;
     }
 
-    public ArrayList<Integer> getTeamPositions() {
-        return teamPositions;
-    }
 
-    public ArrayList<Integer> getStartPositionInRace() {
-        return startPositionInRace;
-    }
-
-    public void setStartPositionInRace(ArrayList<Integer> startPositionInRace) {
-        this.startPositionInRace = startPositionInRace;
-    }
 }
 

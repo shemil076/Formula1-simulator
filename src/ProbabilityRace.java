@@ -15,12 +15,18 @@ public class ProbabilityRace extends JFrame {
     ImageIcon iconDialogBox = new ImageIcon("src/img/warning.png") ;
     JPanel rSPContainer;
 
-    public int[] startingPositionArray = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 6, 7, 8, 9};
+
+    /*
+        Int array has used to involve probability to the algorithm, there are 20 ones, 15 twos, 5 threes, 5 fours, 1 six, seven, eight, and nine per each
+        20 ones represent 40%, 15 twos represent 30%, 5 threes and fours represent 10% each and 1 six, seven, eight and nine represent 2% each
+        each percentage has simplified  (divide by 2).
+        Generating a random number 1-50 (including 1 and 50) as the index of  startingPositionArray.
+        And the it will assign according to the probability
+    */
+    public int[] startingPositionArray = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 6, 7, 8, 9}; //
     public ArrayList<Formula1Driver> drivers = Formula1ChampionshipManager.getData();                // accessing the array list from Formula1ChampionshipManager
     public ArrayList<RaceDetails> raceData = Formula1ChampionshipManager.getRaceDateData();            //
     public ArrayList<Formula1Driver> driversClone = new ArrayList<Formula1Driver>();
-    ArrayList<RacerStartPositions> RacerStartPositionCollection = new ArrayList<RacerStartPositions>();
-    ArrayList<Integer> positions = new ArrayList<Integer>();
     ArrayList<Integer> startingPositionArrayList = new ArrayList<Integer>();
     ArrayList<RaceTeamData> raceTeamDetails = new ArrayList<RaceTeamData>();
     public static String stringDate;
@@ -76,14 +82,14 @@ public class ProbabilityRace extends JFrame {
     }
 
 
-
-
-
+    /**
+     * Generating the races with the involvement of probability
+     */
     public void startRace() {
 
         raceTeamDetails.clear();
-        driversClone.addAll(drivers);
-        Collections.shuffle(driversClone);
+        driversClone.addAll(drivers);                                   // create a clone of the main array list
+        Collections.shuffle(driversClone);                              // shuffle the array list. in order to randomise the starting positions
         startingPositionArrayList.clear();
 
         int day = (int) (Math.random() * (28 - 1 + 1) + 1);             // set random numbers as a day
@@ -102,104 +108,72 @@ public class ProbabilityRace extends JFrame {
             RaceTeamData raceTeam;
 
 
-//            while (true){
-//                startPos = (int) (Math.random() * driversClone.size()+ 1);
-//                if (!(startingPositionArrayList.contains(startPos))){
-//                    startingPositionArrayList.add(startPos);
-//                    break;
-//                }
-//            }
-
-
-//            while (true){
-            int probability = (int) (Math.random() * 49);
+            int probability = (int) (Math.random() * 49);               // random number generate as the index
 
             int startPos = startingPositionArray[probability];
 
-            if (startPos == 1) {
-
-//                if (probability >= 1 && probability <=40){
+            if (startPos == 1) {                                        // check whether the starting position is 1
                 driver.setFirstPositions(1 + driver.getFirstPositions());
                 driver.setCurrentPoints(25 + driver.getCurrentPoints());
                 driver.setNumberOfRaces(1 + driver.getNumberOfRaces());
                 driversClone.remove(driver);
-//                    startingPositionArrayList.remove(startPos);
 
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
                 raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
 
                 newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
-                raceData.add(newRace);
+                raceData.add(newRace);          // remove the driver, if not it the driver will duplicate
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
-                otherPositions();
+                otherPositions();       // method use to generate other positions of the race
                 break;
-//                }
-//                break;
-
-            } else if (startPos == 2) {
 
 
-//                if (probability >= 41 && probability <=70){
+            } else if (startPos == 2) {                 // check whether the starting position is 2
 
                 driver.setFirstPositions(1 + driver.getFirstPositions());
                 driver.setCurrentPoints(25 + driver.getCurrentPoints());
                 driver.setNumberOfRaces(1 + driver.getNumberOfRaces());
                 driversClone.remove(driver);
-//                    startingPositionArrayList.remove(startPos);
 
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
-                raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
+                raceTeamDetails.add(raceTeam);      // add a new race to the raceTeamData arraylist
 
                 newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
-                raceData.add(newRace);
+                raceData.add(newRace);                   // remove the driver, if not it the driver will duplicate
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
 
-                otherPositions();
+                otherPositions();               // method use to generate other positions of the race
                 break;
-//                }
-//                break;
 
-            } else if (startPos == 3) {
-
-
-//                if (probability >= 71 && probability <=80){
-
+            } else if (startPos == 3) {             // check whether the starting position is 3
 
                 driver.setFirstPositions(1 + driver.getFirstPositions());
                 driver.setCurrentPoints(25 + driver.getCurrentPoints());
                 driver.setNumberOfRaces(1 + driver.getNumberOfRaces());
-                driversClone.remove(driver);
-//                    startingPositionArrayList.remove(startPos);
+                driversClone.remove(driver);        // remove the driver, if not it the driver will duplicate
 
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
-                raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
+                raceTeamDetails.add(raceTeam);      // add a new race to the raceTeamData arraylist
 
                 newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
                 raceData.add(newRace);
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
 
-                otherPositions();
+                otherPositions();               // method use to generate other positions of the race
                 break;
-//                }
-//                break;
 
-            } else if (startPos == 4) {
-
-
-//                if (probability >= 81 && probability <=90){
-
+            } else if (startPos == 4) {             // check whether the starting position is 4
 
                 driver.setFirstPositions(1 + driver.getFirstPositions());
                 driver.setCurrentPoints(25 + driver.getCurrentPoints());
                 driver.setNumberOfRaces(1 + driver.getNumberOfRaces());
-                driversClone.remove(driver);
-//                    startingPositionArrayList.remove(startPos);
+                driversClone.remove(driver);             // remove the driver, if not it the driver will duplicate
 
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
-                raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
+                raceTeamDetails.add(raceTeam);                      // add a new race to the raceTeamData arraylist
 
                 newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
                 raceData.add(newRace);
@@ -207,22 +181,15 @@ public class ProbabilityRace extends JFrame {
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
 
-                otherPositions();
+                otherPositions();            // method use to generate other positions of the race
                 break;
-//                }
-//                break;
 
-            } else if (startPos == 5) {
-
-
-//                if (probability >= 91 && probability <=92){
-
+            } else if (startPos == 5) {             // check whether the starting position is 5
 
                 driver.setFirstPositions(1 + driver.getFirstPositions());
                 driver.setCurrentPoints(25 + driver.getCurrentPoints());
                 driver.setNumberOfRaces(1 + driver.getNumberOfRaces());
-                driversClone.remove(driver);
-//                    startingPositionArrayList.remove(startPos);
+                driversClone.remove(driver);        // remove the driver, if not it the driver will duplicate
 
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
                 raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
@@ -232,47 +199,33 @@ public class ProbabilityRace extends JFrame {
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
 
-                otherPositions();
+                otherPositions();                // method use to generate other positions of the race
                 break;
-//                }
-//                break;
 
             } else if (startPos == 6) {
 
-
-//                if (probability >= 93 && probability <=94){
-
-
                 driver.setFirstPositions(1 + driver.getFirstPositions());
                 driver.setCurrentPoints(25 + driver.getCurrentPoints());
                 driver.setNumberOfRaces(1 + driver.getNumberOfRaces());
-                driversClone.remove(driver);
-//                    startingPositionArrayList.remove(startPos);
+                driversClone.remove(driver);            // remove the driver, if not it the driver will duplicate
 
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
-                raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
+                raceTeamDetails.add(raceTeam);                  // add a new race to the raceTeamData arraylist
 
                 newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
                 raceData.add(newRace);
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
 
-                otherPositions();
+                otherPositions();               // method use to generate other positions of the race
                 break;
-//                }
-//                break;
+
 
             } else if (startPos == 7) {
-
-
-//                if (probability >= 95 && probability <=96){
-
-
                 driver.setFirstPositions(1 + driver.getFirstPositions());
                 driver.setCurrentPoints(25 + driver.getCurrentPoints());
                 driver.setNumberOfRaces(1 + driver.getNumberOfRaces());
-                driversClone.remove(driver);
-//                    startingPositionArrayList.remove(startPos);
+                driversClone.remove(driver);        // remove the driver, if not it the driver will duplicate
 
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
                 raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
@@ -282,17 +235,11 @@ public class ProbabilityRace extends JFrame {
 
                 lblStartPos.setText("Starting position of " + driver.getDriverName() + " = " + startPos);
 
-                otherPositions();
+                otherPositions();             // method use to generate other positions of the race
                 break;
-//                }
-//                break;
 
             } else if (startPos == 8) {
 
-
-//                if (probability >= 97 && probability <=98){
-
-
                 driver.setFirstPositions(1 + driver.getFirstPositions());
                 driver.setCurrentPoints(25 + driver.getCurrentPoints());
                 driver.setNumberOfRaces(1 + driver.getNumberOfRaces());
@@ -300,7 +247,7 @@ public class ProbabilityRace extends JFrame {
 //                    startingPositionArrayList.remove(startPos);
 
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
-                raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
+                raceTeamDetails.add(raceTeam);                  // add a new race to the raceTeamData arraylist
 
                 newRace.setDriverNameTeamNamePosition(driver.getDriverName(), driver.getTeamOfDriver(), 1);
                 raceData.add(newRace);
@@ -309,20 +256,13 @@ public class ProbabilityRace extends JFrame {
 
                 otherPositions();
                 break;
-//                }
-//                break;
 
             } else if (startPos == 9) {
 
-
-//                if (probability >= 99 && probability <=100){
-
-
                 driver.setFirstPositions(1 + driver.getFirstPositions());
                 driver.setCurrentPoints(25 + driver.getCurrentPoints());
                 driver.setNumberOfRaces(1 + driver.getNumberOfRaces());
                 driversClone.remove(driver);
-//                    startingPositionArrayList.remove(startPos);
 
                 raceTeam = new RaceTeamData(driver.getTeamOfDriver(), driver.getDriverName(), driver.getCurrentPoints(), 1);
                 raceTeamDetails.add(raceTeam); // add a new race to the raceTeamData arraylist
@@ -334,68 +274,63 @@ public class ProbabilityRace extends JFrame {
 
                 otherPositions();
                 break;
-
-
-//                }
-//                break;
-
             }
             break;
-//            }
-
         }
     }
-//  raceTeam = new  RaceTeamData(driversClone.get(i).getTeamOfDriver(),driversClone.get(i).getDriverName(),driversClone.get(i).getCurrentPoints(),i+2,startingPositionArrayList.get(i));
 
-
+    /**
+     * generate other positions of the race
+     */
     public void otherPositions() {
 
-        Collections.shuffle(driversClone);
+        Collections.shuffle(driversClone);                  // shuffle the array list in order to make sure that the positions are randomise
         for (Formula1Driver formula1Driver : driversClone) {
 
             RaceDetails newRace1 = new RaceDetails(stringDate);
 
+            // update the details
             if (driversClone.indexOf(formula1Driver) == 0) {
                 formula1Driver.setSecondPositions(1 + formula1Driver.getSecondPositions());
-                formula1Driver.setCurrentPoints(18 + formula1Driver.getCurrentPoints());
+                formula1Driver.setCurrentPoints(18 + formula1Driver.getCurrentPoints());                // 2nd positions
                 formula1Driver.setNumberOfRaces(1 + formula1Driver.getNumberOfRaces());
 
 
             } else if (driversClone.indexOf(formula1Driver) == 1) {
                 formula1Driver.setThirdPositions(1 + formula1Driver.getThirdPositions());
-                formula1Driver.setCurrentPoints(15 + formula1Driver.getCurrentPoints());
+                formula1Driver.setCurrentPoints(15 + formula1Driver.getCurrentPoints());              // 3rd positions
                 formula1Driver.setNumberOfRaces(1 + formula1Driver.getNumberOfRaces());
 
             } else if (driversClone.indexOf(formula1Driver) == 2) {
-                formula1Driver.setCurrentPoints(12 + formula1Driver.getCurrentPoints());
+                formula1Driver.setCurrentPoints(12 + formula1Driver.getCurrentPoints());              // 4th positions
                 formula1Driver.setNumberOfRaces(1 + formula1Driver.getNumberOfRaces());
 
             } else if (driversClone.indexOf(formula1Driver) == 3) {
-                formula1Driver.setCurrentPoints(10 + formula1Driver.getCurrentPoints());
+                formula1Driver.setCurrentPoints(10 + formula1Driver.getCurrentPoints());              // 5th positions
                 formula1Driver.setNumberOfRaces(1 + formula1Driver.getNumberOfRaces());
 
             } else if (driversClone.indexOf(formula1Driver) == 4) {
-                formula1Driver.setCurrentPoints(8 + formula1Driver.getCurrentPoints());
+                formula1Driver.setCurrentPoints(8 + formula1Driver.getCurrentPoints());                  // 6th positions
                 formula1Driver.setNumberOfRaces(1 + formula1Driver.getNumberOfRaces());
 
             } else if (driversClone.indexOf(formula1Driver) == 5) {
-                formula1Driver.setCurrentPoints(6 + formula1Driver.getCurrentPoints());
+                formula1Driver.setCurrentPoints(6 + formula1Driver.getCurrentPoints());                   // 7th positions
                 formula1Driver.setNumberOfRaces(1 + formula1Driver.getNumberOfRaces());
 
             } else if (driversClone.indexOf(formula1Driver) == 6) {
-                formula1Driver.setCurrentPoints(4 + formula1Driver.getCurrentPoints());
+                formula1Driver.setCurrentPoints(4 + formula1Driver.getCurrentPoints());               // 8th positions
                 formula1Driver.setNumberOfRaces(1 + formula1Driver.getNumberOfRaces());
 
             } else if (driversClone.indexOf(formula1Driver) == 7) {
-                formula1Driver.setCurrentPoints(2 + formula1Driver.getCurrentPoints());
+                formula1Driver.setCurrentPoints(2 + formula1Driver.getCurrentPoints());                  // 9th positions
                 formula1Driver.setNumberOfRaces(1 + formula1Driver.getNumberOfRaces());
 
             } else if (driversClone.indexOf(formula1Driver) == 8) {
-                formula1Driver.setCurrentPoints(1 + formula1Driver.getCurrentPoints());
+                formula1Driver.setCurrentPoints(1 + formula1Driver.getCurrentPoints());                   // 10th positions
                 formula1Driver.setNumberOfRaces(1 + formula1Driver.getNumberOfRaces());
 
             } else {
-                formula1Driver.setNumberOfRaces(1 + formula1Driver.getNumberOfRaces());
+                formula1Driver.setNumberOfRaces(1 + formula1Driver.getNumberOfRaces());                 // more than 10th position
 
             }
 
@@ -407,6 +342,11 @@ public class ProbabilityRace extends JFrame {
 
     }
 
+    /**
+     * Add data to the table
+     * @param raceTeamDetails array list of RaceTeamData class
+     * @param table JTable
+     */
     public static void addToTable(ArrayList<RaceTeamData> raceTeamDetails, JTable table) {
         for (RaceTeamData raceTeam : raceTeamDetails) {
             ((DefaultTableModel) table.getModel()).addRow(new Object[]{
@@ -419,7 +359,9 @@ public class ProbabilityRace extends JFrame {
     }
 
 
-
+    /**
+     *  check whether there are teams on the system
+     */
     public void popUpDialog(){
         if (drivers.size() == 0){
             JOptionPane optionPane = new JOptionPane("Please add teams to the system",JOptionPane.WARNING_MESSAGE);

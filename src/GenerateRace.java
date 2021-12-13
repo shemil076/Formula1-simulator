@@ -44,22 +44,14 @@ public class GenerateRace extends JFrame {
 
         raceNow();              // creating random races
 
-
-
-
         raceTable.setBackground(Color.magenta);     // set the table colour
         raceTable.setOpaque(true);                  // set the opacity
-
-
 
         raceTableScrollPane = new JScrollPane(raceTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         String[] raceTableColumnNames = {"TEAM", "NAME", "CURRENT POINTS", "POSITION"};             // column names
         raceTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, raceTableColumnNames));        // setting the default table model
         labelDate.setText("Race table on : " + stringDate);
         addToTable(raceTeamData, raceTable);                                // adding data to the
-
-
-
 
 //        labelDate.setText(stringDate);
         newBackground.add(labelDate);
@@ -82,6 +74,9 @@ public class GenerateRace extends JFrame {
     }
 
 
+    /**
+     * check whether there are teams in the system
+     */
     public void greet(){
         if (driver.size() > 0){
             successfully.setText("✨ Congratulations You have successfully generate a race ✨");
@@ -110,8 +105,8 @@ public class GenerateRace extends JFrame {
         for (int i = 0; i < driver.size(); i++) {
             RaceDetails newRace = new RaceDetails(stringDate);
             while (true) {
-                int position = (int) (Math.random() * (driver.size() - 1 + 1) + 1);
-                if (!(positionsArrayList.contains(position))) {
+                int position = (int) (Math.random() * (driver.size() - 1 + 1) + 1);  // generate random positions
+                if (!(positionsArrayList.contains(position))) {   // prove that there cannot be more than one driver in a single position
                     switch (position) {
                         // update the details such as current points and the number of position of the driver according to the user input
                         case 1:
@@ -199,6 +194,9 @@ public class GenerateRace extends JFrame {
         }
     }
 
+    /**
+     * check whether there are teams on the system
+     */
     public void popUpDialog(){
         if (driver.size() == 0){
             JOptionPane optionPane = new JOptionPane("Please add teams to the system",JOptionPane.WARNING_MESSAGE);

@@ -34,25 +34,13 @@ public class GUISimulator extends JFrame implements ActionListener {
     ImageIcon iconSearchDriver = new ImageIcon("src/img/search.png") ;
     ImageIcon iconDialogBox = new ImageIcon("src/img/warning.png") ;
 
-
-
-
-
     JPanel container;
 
-
     public GUISimulator() {
-
-
-
-
         container = new JPanel();
-
 
         labelTopic = new JLabel();
         Background newBackground = new Background(Color.cyan,Color.magenta,3);             // set the background color
-
-
 
 //        container.setLayout(new BorderLayout());
         add(container.add(newBackground));
@@ -224,7 +212,9 @@ public class GUISimulator extends JFrame implements ActionListener {
 
     }
 
-
+    /**
+     *  check whether there are teams on the system
+     */
     public void popUpDialog(){
         if (driver.size() == 0){
             JOptionPane optionPane = new JOptionPane("Please add teams to the system",JOptionPane.WARNING_MESSAGE);
@@ -256,10 +246,7 @@ public class GUISimulator extends JFrame implements ActionListener {
             new GenerateRace() ;
 
         } else if (e.getSource().equals(generateResults)) {             // if  "Generate Results" button pressed
-//            new GenerateRacesWithStartingPositions();
-//          new RaceWithStartPositions();
             new ProbabilityRace();
-
 
         } else if (e.getSource().equals(displayCompleteRace)) {         // if  "Display Races"  button pressed
             new  DisplayRaces();

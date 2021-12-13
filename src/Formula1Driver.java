@@ -20,51 +20,99 @@ public class Formula1Driver extends Driver implements Comparable<Formula1Driver>
         this.setNumberOfRaces(numberOfRaces);
     }
 
+    /**
+     * get the number of first positions
+     * @return count of first positions
+     */
     public int getFirstPositions() {
         return firstPositions;
     }
 
+    /**
+     * set the first positions
+     * @param firstPositions count of first positions
+     */
     public void setFirstPositions(int firstPositions) {
         this.firstPositions = firstPositions;
     }
 
+    /**
+     * get the count of second positions
+     * @return srcond position count
+     */
     public int getSecondPositions() {
         return secondPositions;
     }
 
+    /**
+     * set the count of the second positions
+     * @param secondPositions count of second positions
+     */
     public void setSecondPositions(int secondPositions) {
         this.secondPositions = secondPositions;
     }
 
+    /**
+     * get the third positions
+     * @return coount of third positions
+     */
     public int getThirdPositions() {
         return thirdPositions;
     }
 
+    /**
+     * set the count of third positions
+     * @param thirdPositions count of third positions
+     */
     public void setThirdPositions(int thirdPositions) {
         this.thirdPositions = thirdPositions;
     }
 
+    /**
+     * get achieved seasons of the driver
+     * @return count of the achieved seasons by the driver
+     */
     public int getAchievedSeasons() {
         return achievedSeasons;
     }
 
+    /**
+     * set achieved seasons of the driver
+     * @param achievedSeasons count of the achieved seasons by the driver
+     */
     public void setAchievedSeasons(int achievedSeasons) {
         this.achievedSeasons = achievedSeasons;
     }
 
+    /**
+     * Get the number of races a driver participated
+     * @return number of races a driver
+     */
     public int getNumberOfRaces() {
         return numberOfRaces;
     }
 
+    /**
+     * set the number of races a driver participated
+     * @param numberOfRaces the number of races a driver participated
+     */
     public void setNumberOfRaces(int numberOfRaces) {
         this.numberOfRaces = numberOfRaces;
     }
 
 
+    /**
+     * Get the count of points
+     * @return count of points
+     */
     public int getCurrentPoints() {
         return currentPoints;
     }
 
+    /**
+     * Set the number of points
+     * @param currentPoints count of points
+     */
     public void setCurrentPoints(int currentPoints) {
         this.currentPoints = currentPoints;
     }

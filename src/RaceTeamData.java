@@ -13,16 +13,6 @@ public class RaceTeamData {
         this.setPosition(position);
     }
 
-    public RaceTeamData(String teamName,String driverName, int currentPoints,int position, int startingPosition){
-        this.setTeamName(teamName);
-        this.setDriverName(driverName);
-        this.setCurrentPoints(currentPoints);
-        this.setPosition(position);
-        this.startingPosition = startingPosition;
-    }
-    public RaceTeamData(){}
-
-
     public String getTeamName() {
         return teamName;
     }

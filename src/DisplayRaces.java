@@ -15,8 +15,8 @@ public class DisplayRaces extends JFrame {
     JLabel labelTopic;
     JTable displayRacesTable;
     JScrollPane displayRacesTableScrollPane;
-    ImageIcon iconFrame = new ImageIcon("src/img/fast.png") ;
-    ImageIcon iconDialogBox = new ImageIcon("src/img/warning.png") ;
+    ImageIcon iconFrame = new ImageIcon("src/img/fast.png") ;       // import an image
+    ImageIcon iconDialogBox = new ImageIcon("src/img/warning.png") ; // // import an image
     JLabel warningLabel = new JLabel();
 
     JPanel container;
@@ -71,7 +71,7 @@ public class DisplayRaces extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
 
-        popUpDialog();
+        popUpDialog();                          // display a dialog box if needed
     }
 
 
@@ -129,11 +129,14 @@ public class DisplayRaces extends JFrame {
     }
 
 
+    /**
+     * check whether there are teams to display. If not display a warning o dialog box
+     */
     public void popUpDialog(){
         if (raceData.size() == 0){
             JOptionPane optionPane = new JOptionPane("Teams not found",JOptionPane.WARNING_MESSAGE);
             JDialog dialog = optionPane.createDialog("404 Warning");
-            dialog.setIconImage(iconDialogBox.getImage());
+            dialog.setIconImage(iconDialogBox.getImage());                  // set a favicon
             dialog.setAlwaysOnTop(true);
             dialog.setVisible(true);
         }

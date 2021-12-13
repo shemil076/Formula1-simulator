@@ -78,6 +78,9 @@ public class SearchDriver extends JFrame implements ActionListener {
         popUpDialog();
     }
 
+    /**
+     * add details DriverRaceData class array
+     */
     public void addToRacerData() {
         for (RaceDetails raceDetails : raceDataList) {
             DriverRaceData newDiverData = new DriverRaceData(raceDetails.getDriverNameInRace(), raceDetails.getteamNameInRace(), raceDetails.getRaceDate(), raceDetails.getPosition());
@@ -85,13 +88,20 @@ public class SearchDriver extends JFrame implements ActionListener {
         }
     }
 
+
+    /**
+     * add data to the table
+     * @param racerData DriverRaceData class array
+     * @param racerTable JTable
+     */
     public void insertToRacerTable(ArrayList<DriverRaceData> racerData, JTable racerTable) {
 
         String getRacerInput = searchRacer.getText().toUpperCase();
-        if (checkInput(getRacerInput)) {
-
+        if (checkInput(getRacerInput)) {                                // check the input gain from the user is valid or not
             for (DriverRaceData racer : racerData) {
-                String containName = racer.getRacerName();
+                String containName = racer.getRacerName();              // find the matching object to the user input
+
+                // add the detail for the table
                 if (containName.equalsIgnoreCase(getRacerInput)) {
                     ((DefaultTableModel) racerTable.getModel()).addRow(new Object[]{
                             racer.getRacerName(),
@@ -104,9 +114,11 @@ public class SearchDriver extends JFrame implements ActionListener {
                 }
             }
         } else {
+
+            // if the user input in not valid, popup a dialog box
             labelWarnings.setText("⚠️Sorry incorrect name input ⚠️");
             JOptionPane optionPane = new JOptionPane("404 Driver Not Found",JOptionPane.WARNING_MESSAGE);
-            JDialog dialog = optionPane.createDialog("Warning");
+            JDialog dialog = optionPane.createDialog("404 Warning");
             dialog.setIconImage(iconDialogBox.getImage());
             dialog.setAlwaysOnTop(true);
             dialog.setVisible(true);
@@ -115,10 +127,15 @@ public class SearchDriver extends JFrame implements ActionListener {
     }
 
 
+    /**
+     * check the input gain from the user is valid or not
+     * @param inputName boolean value
+     * @return a boolean value
+     */
     public boolean checkInput(String inputName) {
         boolean foundName = false;
         for (DriverRaceData findRacerName : racerData) {
-            if (findRacerName.getRacerName().equalsIgnoreCase(inputName)) {
+            if (findRacerName.getRacerName().equalsIgnoreCase(inputName)) {    //   find the matching object
                 foundName = true;
                 break;
             } else {
@@ -129,7 +146,10 @@ public class SearchDriver extends JFrame implements ActionListener {
         return foundName;
     }
 
-    public void removeRows() {                                                                                          // reference: https://www.codegrepper.com/code-examples/whatever/java+swing+jtable+remove+all+rows
+    /**
+     * remove previous rows of the table in order to add new details
+     */
+    public void removeRows() {                                                                         // reference: https://www.codegrepper.com/code-examples/whatever/java+swing+jtable+remove+all+rows
         DefaultTableModel model = (DefaultTableModel) racerTable.getModel();
         int rowCount = model.getRowCount();
 
@@ -138,6 +158,10 @@ public class SearchDriver extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * check whether there are teams in the system
+     * @return boolean value
+     */
     public boolean checkTeams() {
         boolean foundTeams = false;
         if (racerData.size() > 0) {
@@ -150,11 +174,17 @@ public class SearchDriver extends JFrame implements ActionListener {
     }
 
 
+    /**
+     * overide the actionPerformed
+     * @param e event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (checkTeams()) {
             if (e.getSource().equals(searchButton)) {
+
+                // set the output that user request
                 labelWarnings.setText("");
                 removeRows();
                 insertToRacerTable(racerData, racerTable);
@@ -170,6 +200,9 @@ public class SearchDriver extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * pass a dialog box if there are no team in the system
+     */
     public void popUpDialog(){
         if (raceDataList.size() == 0){
             JOptionPane optionPane = new JOptionPane("Please add teams to the system",JOptionPane.WARNING_MESSAGE);
