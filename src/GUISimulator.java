@@ -43,7 +43,7 @@ public class GUISimulator extends JFrame implements ActionListener {
 
 
         labelTopic = new JLabel();
-        Background newBackground = new Background(Color.cyan,Color.magenta,3);
+        Background newBackground = new Background(Color.cyan,Color.magenta,3);             // set the background color
 
 
 
@@ -58,30 +58,33 @@ public class GUISimulator extends JFrame implements ActionListener {
         generateResults = new JButton("Generate Results",iconGenerateResults);
         displayCompleteRace = new JButton("Display Races",iconDisplayCompleteRace);
         searchDriver = new JButton("Search Race",iconSearchDriver);
+
+
         driverTable = new JTable();
         driverTableScrollPane = new JScrollPane(driverTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 
-        driverTable.setBackground(Color.yellow);
+        driverTable.setBackground(Color.yellow);                // set the background colour of the table
         driverTable.setOpaque(true);
 
         labelTopic.setText("🚔 Formula 1 Driver Table 🚔");
-        labelTopic.setFont(new Font("Serif",Font.BOLD,24));
+        labelTopic.setFont(new Font("Serif",Font.BOLD,24));             // set the font style
         labelTopic.setForeground(Color.black);
 
-        String[] columnNames = {"NAME", "TEAM", "COUNTRY", "NO.OF RACES", "POINTS", "1stPOSES", "2ndPOSES", "3rdPOSES"};
+        String[] columnNames = {"NAME", "TEAM", "COUNTRY", "NO.OF RACES", "POINTS", "1stPOSES", "2ndPOSES", "3rdPOSES"};    // column names
         driverTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, columnNames));                   // setting the model of table
         insertToTable(driver, driverTable);                                                                             // insert data by calling the method that create to insert data
 
 
 //        setLayout(new FlowLayout());
-        newBackground.setLayout(new FlowLayout());
+        newBackground.setLayout(new FlowLayout());              // set the layout
 
 
-        setSize(950, 600);
-        setTitle("Formula1 simulator");
-        setIconImage(iconFrame.getImage());
+        setSize(950, 600);              // set the Frame size
+        setTitle("Formula1 simulator");             // set the Frame name
+        setIconImage(iconFrame.getImage());         // set a Favicon
 
+        // setting tool tips
         sortStatisticsInDescending.setToolTipText("Display statistics in descending order of points..");
         sortPointsInAscending.setToolTipText("Sort points of the driver according to ascending order..");
         firstPositionsDescending.setToolTipText("Sort in descending order according to the number of first positions.. ");
@@ -91,6 +94,7 @@ public class GUISimulator extends JFrame implements ActionListener {
         searchDriver.setToolTipText("Search details about race");
 
 
+        // actions
         sortStatisticsInDescending.addActionListener(this);
         sortPointsInAscending.addActionListener(this);
         firstPositionsDescending.addActionListener(this);
@@ -102,9 +106,9 @@ public class GUISimulator extends JFrame implements ActionListener {
 
 
 
-
+        // adding components to the JPanel
         newBackground.add(labelTopic);
-        newBackground.add(driverTableScrollPane).setPreferredSize(new Dimension(900, 400));
+        newBackground.add(driverTableScrollPane).setPreferredSize(new Dimension(900, 400));                 // set the size of the scroll pane
         newBackground.add(sortStatisticsInDescending);
         newBackground.add(sortPointsInAscending);
         newBackground.add(firstPositionsDescending);
@@ -113,10 +117,12 @@ public class GUISimulator extends JFrame implements ActionListener {
         newBackground.add(displayCompleteRace);
         newBackground.add(searchDriver);
 
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setVisible(true);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        setResizable(false);            // not allow to resize
+        setLocationRelativeTo(null);    // show the frame in the center of the screen
+        setVisible(true);               // giving access to show the JFrame
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);      // terminate the program when needed.
+        setAlwaysOnTop(true);
     }
 
     /**
@@ -126,15 +132,15 @@ public class GUISimulator extends JFrame implements ActionListener {
      */
     public static void insertToTable(ArrayList<Formula1Driver> f1Driver, JTable driverTable) {
         for (Formula1Driver formulaDriverTeams : f1Driver) {
-            ((DefaultTableModel) driverTable.getModel()).addRow(new Object[]{
-                    formulaDriverTeams.getDriverName(),
-                    formulaDriverTeams.getTeamOfDriver(),
-                    formulaDriverTeams.getDriverLocation(),
-                    formulaDriverTeams.getNumberOfRaces(),
-                    formulaDriverTeams.getCurrentPoints(),
-                    formulaDriverTeams.getFirstPositions(),
-                    formulaDriverTeams.getSecondPositions(),
-                    formulaDriverTeams.getThirdPositions()
+            ((DefaultTableModel) driverTable.getModel()).addRow(new Object[]{                   // pass the objects to the default table module.
+                    formulaDriverTeams.getDriverName(),                                         //  Driver name
+                    formulaDriverTeams.getTeamOfDriver(),                                       //  Team name of the driver
+                    formulaDriverTeams.getDriverLocation(),                                     //  Location of the driver
+                    formulaDriverTeams.getNumberOfRaces(),                                      //  number of races
+                    formulaDriverTeams.getCurrentPoints(),                                      //  current positions
+                    formulaDriverTeams.getFirstPositions(),                                     // number of first positions
+                    formulaDriverTeams.getSecondPositions(),                                    // number of second positions
+                    formulaDriverTeams.getThirdPositions()                                      // number of third positions
 
             });
         }
@@ -157,9 +163,9 @@ public class GUISimulator extends JFrame implements ActionListener {
      */
     public void sortStatisticsInDescending() {
         removeRows();
-        Collections.sort(Formula1ChampionshipManager.formulaDriverTeams);
+        Collections.sort(Formula1ChampionshipManager.formulaDriverTeams);                                           // calling the sort in descending order according to the number of points
         labelTopic.setText("🚔 Formula driver table in descending order according to the points 🚔");
-        insertToTable(driver, driverTable);
+        insertToTable(driver, driverTable);                                                                         // inserting data to the table
     }
 
     /**
@@ -167,9 +173,9 @@ public class GUISimulator extends JFrame implements ActionListener {
      */
     public void sortPointsInAscending() {
         removeRows();
-        Collections.sort(Formula1ChampionshipManager.formulaDriverTeams, Formula1Driver.PointsInAscending);
+        Collections.sort(Formula1ChampionshipManager.formulaDriverTeams, Formula1Driver.PointsInAscending);            // calling the sort in ascending order according to number of points
         labelTopic.setText("🚔Formula driver table in ascending order according to the points 🚔");
-        insertToTable(driver, driverTable);
+        insertToTable(driver, driverTable);                                                                              // inserting data to the table
     }
 
     /**
@@ -177,9 +183,9 @@ public class GUISimulator extends JFrame implements ActionListener {
      */
     public void sortPositionsInDescending() {
         removeRows();
-        Collections.sort(Formula1ChampionshipManager.formulaDriverTeams, Formula1Driver.FirstPositionsDescending);
+        Collections.sort(Formula1ChampionshipManager.formulaDriverTeams, Formula1Driver.FirstPositionsDescending);      // calling the sort method in descending order according to number of first positions
         labelTopic.setText("🚔 Formula driver table in descending order according to the FIRST POSITIONS 🚔");
-        insertToTable(driver, driverTable);
+        insertToTable(driver, driverTable);                                                                              // inserting data to the table
 
     }
 
@@ -192,25 +198,28 @@ public class GUISimulator extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(sortStatisticsInDescending)) {
+        if (e.getSource().equals(sortStatisticsInDescending)) {         // if  "Sort Statistics"  button pressed
             sortStatisticsInDescending();
 
-        } else if (e.getSource().equals(sortPointsInAscending)) {
+        } else if (e.getSource().equals(sortPointsInAscending)) {       // if  "Sort Points"  button pressed
             sortPointsInAscending();
 
-        } else if (e.getSource().equals(firstPositionsDescending)) {
+        } else if (e.getSource().equals(firstPositionsDescending)) {   // if  "Sort Positions"  button pressed
             sortPositionsInDescending();
 
-        } else if (e.getSource().equals(generateRandomRace)) {
+        } else if (e.getSource().equals(generateRandomRace)) {          // if  "Generate Race"  button pressed
             new GenerateRace() ;
 
-        } else if (e.getSource().equals(generateResults)) {
-            new GenerateRacesWithStartingPositions();
+        } else if (e.getSource().equals(generateResults)) {             // if  "Generate Results" button pressed
+//            new GenerateRacesWithStartingPositions();
+//          new RaceWithStartPositions();
+            new ProbabilityRace();
 
-        } else if (e.getSource().equals(displayCompleteRace)) {
+
+        } else if (e.getSource().equals(displayCompleteRace)) {         // if  "Display Races"  button pressed
             new  DisplayRaces();
 
-        }else if (e.getSource().equals(searchDriver)) {
+        }else if (e.getSource().equals(searchDriver)) {                 // if  "Search Race"  button pressed
             new SearchDriver();
         }
     }

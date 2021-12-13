@@ -8,7 +8,7 @@ public class RaceDetails implements Serializable {
     private ArrayList<Integer> teamPositions = new ArrayList<Integer>();        // add the positions of the respective positions
 
 
-//    private ArrayList<Integer> startPositionInRace = new ArrayList<Integer>();
+    private ArrayList<Integer> startPositionInRace = new ArrayList<Integer>();
 
 
     public RaceDetails(String raceDate){
@@ -81,6 +81,14 @@ public class RaceDetails implements Serializable {
 
     public ArrayList<Integer> getTeamPositions() {
         return teamPositions;
+    }
+
+    public ArrayList<Integer> getStartPositionInRace() {
+        return startPositionInRace;
+    }
+
+    public void setStartPositionInRace(ArrayList<Integer> startPositionInRace) {
+        this.startPositionInRace = startPositionInRace;
     }
 }
 

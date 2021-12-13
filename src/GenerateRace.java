@@ -7,13 +7,18 @@ import java.util.ArrayList;
 
 public class GenerateRace extends JFrame {
     public ArrayList<Formula1Driver> driver = Formula1ChampionshipManager.getData();                // accessing the array list from Formula1ChampionshipManager
-    public ArrayList<RaceDetails> Races = Formula1ChampionshipManager.getRaceDateData();            //
+    public ArrayList<RaceDetails> Races = Formula1ChampionshipManager.getRaceDateData();            //accessing the array list from Formula1ChampionshipManager
     ArrayList<Integer> positionsArrayList = new ArrayList<Integer>();
     ArrayList<RaceTeamData> raceTeamData = new ArrayList<RaceTeamData>();
+
     JLabel labelDate;
     JLabel successfully;
     JTable raceTable;
     JScrollPane raceTableScrollPane;
+
+
+
+
     public static String stringDate;
     ImageIcon iconFrame = new ImageIcon("src/img/fast.png");                // importing the image
     JPanel container;
@@ -27,9 +32,9 @@ public class GenerateRace extends JFrame {
         Background newBackground = new Background(Color.decode("#780206"), Color.decode("#061161"),3);  // set the background
 
         add(container.add(newBackground));                                          // add the JPanel to the JFrame
-        newBackground.setLayout(new FlowLayout());
+        newBackground.setLayout(new FlowLayout());                                  // set the layout
 
-
+        // font styles
         labelDate.setFont(new Font("Serif",Font.BOLD,30));
         labelDate.setForeground(Color.ORANGE);
         successfully.setFont(new Font("Serif",Font.BOLD,24));
@@ -46,10 +51,10 @@ public class GenerateRace extends JFrame {
 
 
         raceTableScrollPane = new JScrollPane(raceTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        String[] raceTableColumnNames = {"TEAM", "NAME", "CURRENT POINTS", "POSITION"};
-        raceTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, raceTableColumnNames));
+        String[] raceTableColumnNames = {"TEAM", "NAME", "CURRENT POINTS", "POSITION"};             // column names
+        raceTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, raceTableColumnNames));        // setting the default table model
         labelDate.setText("Race table on : " + stringDate);
-        addToTable(raceTeamData, raceTable);
+        addToTable(raceTeamData, raceTable);                                // adding data to the
 
 
         successfully.setText("✨ Congratulations You have successfully generate a race ✨");
@@ -69,6 +74,7 @@ public class GenerateRace extends JFrame {
         setLocationRelativeTo(null);                     // set the location to the center of the screen
         setVisible(true);                               // // make the frame visible
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
 //
     }
 
@@ -80,18 +86,17 @@ public class GenerateRace extends JFrame {
         positionsArrayList.clear();
         int day = (int) (Math.random() * (28 - 1 + 1) + 1);             // set random numbers as a day
         int month = (int) (Math.random() * (12 - 1 + 1) + 1);           // set random numbers as a month
-        int year = (int) (Math.random() * (2021 - 2015 + 1) + 2015);    // set random numbers as a year
+//        int year = (int) (Math.random() * (2021 - 2015 + 1) + 2015);    // set random numbers as a year
 
         String stringDay = Integer.toString(day);
         String stringMonth = Integer.toString(month);
-        String stringYear = Integer.toString(year);
+//        String stringYear = Integer.toString(year);
 
-        stringDate = stringDay + "/" + stringMonth + "/" + stringYear;
+        stringDate = stringDay + "/" + stringMonth + "/" + "2021";
 
         // use the same method as in the add race method
         for (int i = 0; i < driver.size(); i++) {
             RaceDetails newRace = new RaceDetails(stringDate);
-            RaceTeamData newRaceTeam;
             while (true) {
                 int position = (int) (Math.random() * (driver.size() - 1 + 1) + 1);
                 if (!(positionsArrayList.contains(position))) {
@@ -154,8 +159,7 @@ public class GenerateRace extends JFrame {
                             break;
                     }
 
-                    newRaceTeam = new RaceTeamData(driver.get(i).getTeamOfDriver(),driver.get(i).getDriverName(),driver.get(i).getCurrentPoints(),position);
-                    raceTeamData.add(newRaceTeam); // add a new race to the raceTeamData arraylist
+                    raceTeamData.add(new RaceTeamData(driver.get(i).getTeamOfDriver(),driver.get(i).getDriverName(),driver.get(i).getCurrentPoints(),position)); // add a new race to the raceTeamData arraylist
                     newRace.setDriverNameTeamNamePosition(driver.get(i).getDriverName(), driver.get(i).getTeamOfDriver(), position);
                     Races.add(newRace);
 
@@ -174,11 +178,11 @@ public class GenerateRace extends JFrame {
      */
     public static void addToTable(ArrayList<RaceTeamData> raceTeamData, JTable table) {
         for (RaceTeamData raceTeam : raceTeamData) {
-            ((DefaultTableModel) table.getModel()).addRow(new Object[]{
-                    raceTeam.getTeamName(),
-                    raceTeam.getDriverName(),
-                    raceTeam.getCurrentPoints(),
-                    raceTeam.getPosition()
+            ((DefaultTableModel) table.getModel()).addRow(new Object[]{                     // pass the objects to the default table module.
+                    raceTeam.getTeamName(),                                                 // Team name
+                    raceTeam.getDriverName(),                                               // Driver Name
+                    raceTeam.getCurrentPoints(),                                            // current points
+                    raceTeam.getPosition()                                                  // positions
             });
         }
     }

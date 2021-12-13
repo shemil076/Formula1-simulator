@@ -72,6 +72,7 @@ public class SearchDriver extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
     }
 
     public void addToRacerData() {

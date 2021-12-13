@@ -68,18 +68,19 @@ public class DisplayRaces extends JFrame {
         setLocationRelativeTo(null);                // set the location to the center of the screen
         setVisible(true);                           // make the frame visible
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
     }
 
 
     /**
-     *
+     *  compare and sort according to date
      */
     public static Comparator<RaceDetails> raceInfo = new Comparator<RaceDetails>(){
         DateFormat formattedDate = new SimpleDateFormat("dd/MM/yyyy");      // set the date format
         @Override
-        public int compare(RaceDetails raceDate1, RaceDetails raceDate2) {
+        public int compare(RaceDetails raceDate1, RaceDetails raceDate2) {          // pass race date from RaceDetail class
             try {
-                return formattedDate.parse(raceDate1.getRaceDate()).compareTo(formattedDate.parse(raceDate2.getRaceDate()));
+                return formattedDate.parse(raceDate1.getRaceDate()).compareTo(formattedDate.parse(raceDate2.getRaceDate()));        // compare the array list according to the date
             } catch (ParseException e) {
                 throw new RuntimeException();
             }
@@ -91,7 +92,7 @@ public class DisplayRaces extends JFrame {
      * Sort the array list according to date
      */
     public void sortDate(){
-        Collections.sort(Formula1ChampionshipManager.raceDetailsList,raceInfo);
+        Collections.sort(Formula1ChampionshipManager.raceDetailsList,raceInfo);         // sort according to the date
     }
 
 
