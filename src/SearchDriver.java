@@ -8,6 +8,7 @@ import java.util.Locale;
 
 public class SearchDriver extends JFrame implements ActionListener {
     ImageIcon iconFrame = new ImageIcon("src/img/fast.png");
+    ImageIcon iconDialogBox = new ImageIcon("src/img/warning.png") ;
     public ArrayList<RaceDetails> raceDataList = Formula1ChampionshipManager.getRaceDateData();
     public ArrayList<DriverRaceData> racerData = new ArrayList<DriverRaceData>();
 
@@ -73,6 +74,8 @@ public class SearchDriver extends JFrame implements ActionListener {
         setVisible(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
+
+        popUpDialog();
     }
 
     public void addToRacerData() {
@@ -102,6 +105,11 @@ public class SearchDriver extends JFrame implements ActionListener {
             }
         } else {
             labelWarnings.setText("⚠️Sorry incorrect name input ⚠️");
+            JOptionPane optionPane = new JOptionPane("404 Driver Not Found",JOptionPane.WARNING_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Warning");
+            dialog.setIconImage(iconDialogBox.getImage());
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
 
         }
     }
@@ -153,8 +161,22 @@ public class SearchDriver extends JFrame implements ActionListener {
             }
         }else{
             labelWarnings.setText("⚠️No Races in the system, Please add races⚠️");
-
+            JOptionPane optionPane = new JOptionPane("Please add races",JOptionPane.WARNING_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Warning");
+            dialog.setIconImage(iconDialogBox.getImage());
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
         }
 
+    }
+
+    public void popUpDialog(){
+        if (raceDataList.size() == 0){
+            JOptionPane optionPane = new JOptionPane("Please add teams to the system",JOptionPane.WARNING_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Warning");
+            dialog.setIconImage(iconDialogBox.getImage());
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
     }
 }

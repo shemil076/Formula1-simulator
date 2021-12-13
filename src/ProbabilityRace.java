@@ -11,7 +11,8 @@ public class ProbabilityRace extends JFrame {
     JTable rspGeneratedTable;
     JScrollPane rspGeneratedTableScrollPane;
 
-    ImageIcon iconFrame = new ImageIcon("src/img/fast.png");                // importing the image
+    ImageIcon iconFrame = new ImageIcon("src/img/fast.png");// importing the image
+    ImageIcon iconDialogBox = new ImageIcon("src/img/warning.png") ;
     JPanel rSPContainer;
 
     public int[] startingPositionArray = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 6, 7, 8, 9};
@@ -68,6 +69,7 @@ public class ProbabilityRace extends JFrame {
         setVisible(true);                               // // make the frame visible
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
+        popUpDialog();
 
 //        test();
 
@@ -417,11 +419,15 @@ public class ProbabilityRace extends JFrame {
     }
 
 
-    public void test(){
-        for (RaceDetails o :raceData ){
-            System.out.println(o.getRaceDate() + " " + o.getTeamNamesInRace() + " " + o.getDriverNameInRace() + " " + o.getPosition());
+
+    public void popUpDialog(){
+        if (drivers.size() == 0){
+            JOptionPane optionPane = new JOptionPane("Please add teams to the system",JOptionPane.WARNING_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Warning");
+            dialog.setIconImage(iconDialogBox.getImage());
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
         }
     }
-
 
 }

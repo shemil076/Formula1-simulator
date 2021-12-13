@@ -11,6 +11,8 @@ public class GenerateRace extends JFrame {
     ArrayList<Integer> positionsArrayList = new ArrayList<Integer>();
     ArrayList<RaceTeamData> raceTeamData = new ArrayList<RaceTeamData>();
 
+    ImageIcon iconDialogBox = new ImageIcon("src/img/warning.png") ;
+
     JLabel labelDate;
     JLabel successfully;
     JTable raceTable;
@@ -57,7 +59,6 @@ public class GenerateRace extends JFrame {
         addToTable(raceTeamData, raceTable);                                // adding data to the
 
 
-        successfully.setText("✨ Congratulations You have successfully generate a race ✨");
 
 
 //        labelDate.setText(stringDate);
@@ -75,7 +76,18 @@ public class GenerateRace extends JFrame {
         setVisible(true);                               // // make the frame visible
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
+
+        greet();
 //
+    }
+
+
+    public void greet(){
+        if (driver.size() > 0){
+            successfully.setText("✨ Congratulations You have successfully generate a race ✨");
+        }else{
+            popUpDialog();
+        }
     }
 
     /**
@@ -184,6 +196,16 @@ public class GenerateRace extends JFrame {
                     raceTeam.getCurrentPoints(),                                            // current points
                     raceTeam.getPosition()                                                  // positions
             });
+        }
+    }
+
+    public void popUpDialog(){
+        if (driver.size() == 0){
+            JOptionPane optionPane = new JOptionPane("Please add teams to the system",JOptionPane.WARNING_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Warning");
+            dialog.setIconImage(iconDialogBox.getImage());
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
         }
     }
 }

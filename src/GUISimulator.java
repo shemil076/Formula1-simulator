@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static com.sun.tools.javac.resources.CompilerProperties.Warnings.Warning;
+
 
 public class GUISimulator extends JFrame implements ActionListener {
     JButton sortStatisticsInDescending;
@@ -30,6 +32,8 @@ public class GUISimulator extends JFrame implements ActionListener {
     ImageIcon iconGenerateResults = new ImageIcon("src/img/stage.png") ;
     ImageIcon iconDisplayCompleteRace = new ImageIcon("src/img/finish.png") ;
     ImageIcon iconSearchDriver = new ImageIcon("src/img/search.png") ;
+    ImageIcon iconDialogBox = new ImageIcon("src/img/warning.png") ;
+
 
 
 
@@ -38,6 +42,9 @@ public class GUISimulator extends JFrame implements ActionListener {
 
 
     public GUISimulator() {
+
+
+
 
         container = new JPanel();
 
@@ -118,11 +125,15 @@ public class GUISimulator extends JFrame implements ActionListener {
         newBackground.add(searchDriver);
 
 
+
         setResizable(false);            // not allow to resize
         setLocationRelativeTo(null);    // show the frame in the center of the screen
         setVisible(true);               // giving access to show the JFrame
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);      // terminate the program when needed.
         setAlwaysOnTop(true);
+
+        popUpDialog();
+
     }
 
     /**
@@ -162,6 +173,14 @@ public class GUISimulator extends JFrame implements ActionListener {
      * Sorting the array list in descending order according to the number of points
      */
     public void sortStatisticsInDescending() {
+        if (driver.size() == 0){
+            JOptionPane optionPane = new JOptionPane("Teams not found \n Add teams before proceeding",JOptionPane.WARNING_MESSAGE);
+            JDialog dialog = optionPane.createDialog("404 Warning");
+            dialog.setIconImage(iconDialogBox.getImage());
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+
         removeRows();
         Collections.sort(Formula1ChampionshipManager.formulaDriverTeams);                                           // calling the sort in descending order according to the number of points
         labelTopic.setText("🚔 Formula driver table in descending order according to the points 🚔");
@@ -172,6 +191,14 @@ public class GUISimulator extends JFrame implements ActionListener {
      * Sorting the array list in ascending order according to the number of points
      */
     public void sortPointsInAscending() {
+        if (driver.size() == 0){
+            JOptionPane optionPane = new JOptionPane("Teams not found \n Add teams before proceeding",JOptionPane.WARNING_MESSAGE);
+            JDialog dialog = optionPane.createDialog("404 Warning");
+            dialog.setIconImage(iconDialogBox.getImage());
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+
         removeRows();
         Collections.sort(Formula1ChampionshipManager.formulaDriverTeams, Formula1Driver.PointsInAscending);            // calling the sort in ascending order according to number of points
         labelTopic.setText("🚔Formula driver table in ascending order according to the points 🚔");
@@ -182,6 +209,14 @@ public class GUISimulator extends JFrame implements ActionListener {
      * Sorting the array list in descending order according to the number of first positions
      */
     public void sortPositionsInDescending() {
+        if (driver.size() == 0){
+            JOptionPane optionPane = new JOptionPane("Teams not found \n Add teams before proceeding",JOptionPane.WARNING_MESSAGE);
+            JDialog dialog = optionPane.createDialog("404 Warning");
+            dialog.setIconImage(iconDialogBox.getImage());
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+
         removeRows();
         Collections.sort(Formula1ChampionshipManager.formulaDriverTeams, Formula1Driver.FirstPositionsDescending);      // calling the sort method in descending order according to number of first positions
         labelTopic.setText("🚔 Formula driver table in descending order according to the FIRST POSITIONS 🚔");
@@ -189,6 +224,16 @@ public class GUISimulator extends JFrame implements ActionListener {
 
     }
 
+
+    public void popUpDialog(){
+        if (driver.size() == 0){
+            JOptionPane optionPane = new JOptionPane("Please add teams to the system",JOptionPane.WARNING_MESSAGE);
+            JDialog dialog = optionPane.createDialog("Warning");
+            dialog.setIconImage(iconDialogBox.getImage());
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        }
+    }
 
 
 
