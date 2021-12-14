@@ -810,7 +810,7 @@ public class Formula1ChampionshipManager<HashTable> implements ChampionshipManag
      *
      * @return true if input is valid, else return false
      */
-    public boolean checkDate() {
+    public boolean checkDate() {                                                                                        // referred https://codebun.com/write-a-java-program-to-validate-the-date-of-birth/
         System.out.println("Enter the date with the following format\n DD/MM/YYYY");
         stringDate = input.next();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // make sure that the date  is taken to an order

@@ -26,7 +26,7 @@ public class ProbabilityRace extends JFrame {
         20 ones represent 40%, 15 twos represent 30%, 5 threes and fours represent 10% each and 1 six, seven, eight and nine represent 2% each
         each percentage has simplified  (divide by 2).
         Generating a random number 1-50 (including 1 and 50) as the index of  startingPositionArray.
-        And the it will assign according to the probability
+        And the number of the array that represent by the index will assign according to the probability
     */
     public int[] startingPositionArray = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 6, 7, 8, 9}; //
     public ArrayList<Formula1Driver> drivers = Formula1ChampionshipManager.getData();                // accessing the array list from Formula1ChampionshipManager
@@ -79,7 +79,6 @@ public class ProbabilityRace extends JFrame {
         newBackground.add(imageLabel2).setPreferredSize(new Dimension(70,60));
 
 
-//        setLayout(new FlowLayout());
         setSize(950, 600);
         setTitle("Generate Race");
         setIconImage(iconFrame.getImage());             // set the frame icon
@@ -91,7 +90,6 @@ public class ProbabilityRace extends JFrame {
         setAlwaysOnTop(true);
         popUpDialog();
 
-//        test();
 
     }
 
@@ -348,7 +346,7 @@ public class ProbabilityRace extends JFrame {
                 formula1Driver.setNumberOfRaces(1 + formula1Driver.getNumberOfRaces());
 
             } else {
-                formula1Driver.setNumberOfRaces(1 + formula1Driver.getNumberOfRaces());                 // more than 10th position
+                formula1Driver.setNumberOfRaces(1 + formula1Driver.getNumberOfRaces());                 // after 10th position
 
             }
 
