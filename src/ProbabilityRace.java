@@ -6,14 +6,19 @@ import java.util.Collections;
 
 public class ProbabilityRace extends JFrame {
     JLabel rSPLabelTopic;
-    JLabel rSPSuccessfully;
     JLabel lblStartPos;
     JTable rspGeneratedTable;
     JScrollPane rspGeneratedTableScrollPane;
 
     ImageIcon iconFrame = new ImageIcon("src/img/fast.png");// importing the image
-    ImageIcon iconDialogBox = new ImageIcon("src/img/warning.png") ;
+    ImageIcon iconDialogBox = new ImageIcon("src/img/warning.png");
+    ImageIcon iconImageLabel = new ImageIcon("src/img/f1.png") ;
+    ImageIcon iconImageLabel2 = new ImageIcon("src/img/f2.png") ;
+    ImageIcon iconImageLabel3 = new ImageIcon("src/img/f3.png") ;
     JPanel rSPContainer;
+    JLabel imageLabel;
+    JLabel imageLabel2;
+    JLabel imageLabel3;
 
 
     /*
@@ -30,25 +35,30 @@ public class ProbabilityRace extends JFrame {
     ArrayList<Integer> startingPositionArrayList = new ArrayList<Integer>();
     ArrayList<RaceTeamData> raceTeamDetails = new ArrayList<RaceTeamData>();
     public static String stringDate;
+    public static int  startPos;
 
 
     public ProbabilityRace() {
         rSPLabelTopic = new JLabel();
         rspGeneratedTable = new JTable();
-        rSPSuccessfully = new JLabel();
         rSPContainer = new JPanel();
         lblStartPos = new JLabel();
-        Background newBackground = new Background(Color.decode("#780206"), Color.decode("#061161"), 3);  // set the background
+        imageLabel = new JLabel();
+        imageLabel2 = new JLabel();
+        imageLabel3 = new JLabel();
+        Background newBackground = new Background(Color.decode("#24c6dc"), Color.decode("#514a9d"), 3);  // set the background
         rspGeneratedTableScrollPane = new JScrollPane(rspGeneratedTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         add(rSPContainer.add(newBackground));                                          // add the JPanel to the JFrame
+        imageLabel.setIcon(iconImageLabel);// set the layout
+        imageLabel2.setIcon(iconImageLabel2);//
+        imageLabel3.setIcon(iconImageLabel3);//
         newBackground.setLayout(new FlowLayout());                                  // set the layout
 
         // font styles
         rSPLabelTopic.setFont(new Font("Serif", Font.BOLD, 40));
         rSPLabelTopic.setForeground(Color.ORANGE);
-        rSPSuccessfully.setFont(new Font("Serif", Font.BOLD, 24));
-        rSPSuccessfully.setForeground(Color.YELLOW);
+
 
         startRace();
         lblStartPos.setFont(new Font("Serif", Font.BOLD, 20));             // set the font style
@@ -60,10 +70,14 @@ public class ProbabilityRace extends JFrame {
         addToTable(raceTeamDetails, rspGeneratedTable);
 
 
+        newBackground.add(imageLabel).setPreferredSize(new Dimension(60, 50));
         newBackground.add(rSPLabelTopic);
         newBackground.add(lblStartPos);
         newBackground.add(rspGeneratedTableScrollPane).setPreferredSize(new Dimension(900, 400));
-        newBackground.add(rSPSuccessfully);
+        newBackground.add(imageLabel).setPreferredSize(new Dimension(70,60));
+        newBackground.add(imageLabel3).setPreferredSize(new Dimension(70,60));
+        newBackground.add(imageLabel2).setPreferredSize(new Dimension(70,60));
+
 
 //        setLayout(new FlowLayout());
         setSize(950, 600);
@@ -107,10 +121,14 @@ public class ProbabilityRace extends JFrame {
             RaceDetails newRace = new RaceDetails(stringDate);
             RaceTeamData raceTeam;
 
+            while (true) {
+                int probability = (int) (Math.random() * 49);               // random number generate as the index
 
-            int probability = (int) (Math.random() * 49);               // random number generate as the index
-
-            int startPos = startingPositionArray[probability];
+                if (startingPositionArray[probability] <= driversClone.size()){
+                     startPos = startingPositionArray[probability];
+                    break;
+                }
+            }
 
             if (startPos == 1) {                                        // check whether the starting position is 1
                 driver.setFirstPositions(1 + driver.getFirstPositions());
@@ -344,8 +362,9 @@ public class ProbabilityRace extends JFrame {
 
     /**
      * Add data to the table
+     *
      * @param raceTeamDetails array list of RaceTeamData class
-     * @param table JTable
+     * @param table           JTable
      */
     public static void addToTable(ArrayList<RaceTeamData> raceTeamDetails, JTable table) {
         for (RaceTeamData raceTeam : raceTeamDetails) {
@@ -360,11 +379,11 @@ public class ProbabilityRace extends JFrame {
 
 
     /**
-     *  check whether there are teams on the system
+     * check whether there are teams on the system
      */
-    public void popUpDialog(){
-        if (drivers.size() == 0){
-            JOptionPane optionPane = new JOptionPane("Please add teams to the system",JOptionPane.WARNING_MESSAGE);
+    public void popUpDialog() {
+        if (drivers.size() == 0) {
+            JOptionPane optionPane = new JOptionPane("Please add teams to the system", JOptionPane.WARNING_MESSAGE);
             JDialog dialog = optionPane.createDialog("Warning");
             dialog.setIconImage(iconDialogBox.getImage());
             dialog.setAlwaysOnTop(true);

@@ -7,18 +7,24 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class SearchDriver extends JFrame implements ActionListener {
-    ImageIcon iconFrame = new ImageIcon("src/img/fast.png");
-    ImageIcon iconDialogBox = new ImageIcon("src/img/warning.png") ;
     public ArrayList<RaceDetails> raceDataList = Formula1ChampionshipManager.getRaceDateData();
     public ArrayList<DriverRaceData> racerData = new ArrayList<DriverRaceData>();
 
     JLabel labelTopic;
     JLabel labelWarnings;
+    JLabel imageLabel;
+    JLabel imageLabel2;
+    JLabel imageLabel3;
     JTextField searchRacer;
     JButton searchButton;
     JTable racerTable;
     JScrollPane racerTableScrollPane;
     ImageIcon iconSearchButton = new ImageIcon("src/img/searchName.png") ;
+    ImageIcon iconFrame = new ImageIcon("src/img/fast.png");
+    ImageIcon iconDialogBox = new ImageIcon("src/img/warning.png") ;
+    ImageIcon iconImageLabel = new ImageIcon("src/img/f1.png") ;
+    ImageIcon iconImageLabel2 = new ImageIcon("src/img/f2.png") ;
+    ImageIcon iconImageLabel3 = new ImageIcon("src/img/f3.png") ;
     JPanel container;
 
     public SearchDriver() {
@@ -30,6 +36,9 @@ public class SearchDriver extends JFrame implements ActionListener {
         racerTable = new JTable();
         racerTableScrollPane = new JScrollPane(racerTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         container = new JPanel();
+        imageLabel = new JLabel();
+        imageLabel2 = new JLabel();
+        imageLabel3 = new JLabel();
 
 
 
@@ -37,6 +46,9 @@ public class SearchDriver extends JFrame implements ActionListener {
         Background newBackground = new Background(Color.decode("#360033"), Color.decode("#0b8793"),3);
         add(container.add(newBackground));
         newBackground.setLayout(new FlowLayout());
+        imageLabel.setIcon(iconImageLabel);// set the layout
+        imageLabel2.setIcon(iconImageLabel2);//
+        imageLabel3.setIcon(iconImageLabel3);//
 
         labelTopic.setText("🔍 Enter the name of the driver 🔍");
 
@@ -54,11 +66,15 @@ public class SearchDriver extends JFrame implements ActionListener {
         racerTable.setOpaque(true);
         addToRacerData();
 
+
         newBackground.add(labelTopic);
         newBackground.add(searchRacer).setPreferredSize(new Dimension(100, 25));
         newBackground.add(searchButton);
         newBackground.add(racerTableScrollPane).setPreferredSize(new Dimension(900, 400));
         newBackground.add(labelWarnings);
+        newBackground.add(imageLabel).setPreferredSize(new Dimension(70,60));
+        newBackground.add(imageLabel3).setPreferredSize(new Dimension(70,60));
+        newBackground.add(imageLabel2).setPreferredSize(new Dimension(70,60));
 
 
         searchButton.setToolTipText("Enter the full name of the driver.");
@@ -205,7 +221,7 @@ public class SearchDriver extends JFrame implements ActionListener {
      */
     public void popUpDialog(){
         if (raceDataList.size() == 0){
-            JOptionPane optionPane = new JOptionPane("Please add teams to the system",JOptionPane.WARNING_MESSAGE);
+            JOptionPane optionPane = new JOptionPane("Please add Races to the system",JOptionPane.WARNING_MESSAGE);
             JDialog dialog = optionPane.createDialog("Warning");
             dialog.setIconImage(iconDialogBox.getImage());
             dialog.setAlwaysOnTop(true);

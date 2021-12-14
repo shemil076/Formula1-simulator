@@ -18,6 +18,7 @@ public class GUISimulator extends JFrame implements ActionListener {
     JButton displayCompleteRace;
     JButton searchDriver;
     JLabel labelTopic;
+    JLabel imageLabel;
     public ArrayList<Formula1Driver> driver = Formula1ChampionshipManager.getData();    // accessing an array list in Formula1ChampionshipManager class
     JTable driverTable;
     JScrollPane driverTableScrollPane;
@@ -33,6 +34,7 @@ public class GUISimulator extends JFrame implements ActionListener {
     ImageIcon iconDisplayCompleteRace = new ImageIcon("src/img/finish.png") ;
     ImageIcon iconSearchDriver = new ImageIcon("src/img/search.png") ;
     ImageIcon iconDialogBox = new ImageIcon("src/img/warning.png") ;
+    ImageIcon iconImageLabel = new ImageIcon("src/img/f1.png") ;
 
     JPanel container;
 
@@ -40,6 +42,7 @@ public class GUISimulator extends JFrame implements ActionListener {
         container = new JPanel();
 
         labelTopic = new JLabel();
+        imageLabel = new JLabel();
         Background newBackground = new Background(Color.cyan,Color.magenta,3);             // set the background color
 
 //        container.setLayout(new BorderLayout());
@@ -50,7 +53,7 @@ public class GUISimulator extends JFrame implements ActionListener {
         sortPointsInAscending = new JButton("Sort Points",iconSortPointsInAscending);
         firstPositionsDescending = new JButton("Sort Positions",iconFirstPositionsDescending);
         generateRandomRace = new JButton("Generate Race",iconGenerateRandomRace);
-        generateResults = new JButton("Generate Results",iconGenerateResults);
+        generateResults = new JButton("Probability Race",iconGenerateResults);
         displayCompleteRace = new JButton("Display Races",iconDisplayCompleteRace);
         searchDriver = new JButton("Search Race",iconSearchDriver);
 
@@ -63,13 +66,14 @@ public class GUISimulator extends JFrame implements ActionListener {
         driverTable.setOpaque(true);
 
         labelTopic.setText("🚔 Formula 1 Driver Table 🚔");
-        labelTopic.setFont(new Font("Serif",Font.BOLD,24));             // set the font style
+        labelTopic.setFont(new Font("Serif",Font.BOLD,20));             // set the font style
         labelTopic.setForeground(Color.black);
 
         String[] columnNames = {"NAME", "TEAM", "COUNTRY", "NO.OF RACES", "POINTS", "1stPOSES", "2ndPOSES", "3rdPOSES"};    // column names
         driverTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, columnNames));                   // setting the model of table
         insertToTable(driver, driverTable);                                                                             // insert data by calling the method that create to insert data
 
+        imageLabel.setIcon(iconImageLabel);
 
 //        setLayout(new FlowLayout());
         newBackground.setLayout(new FlowLayout());              // set the layout
@@ -84,7 +88,7 @@ public class GUISimulator extends JFrame implements ActionListener {
         sortPointsInAscending.setToolTipText("Sort points of the driver according to ascending order..");
         firstPositionsDescending.setToolTipText("Sort in descending order according to the number of first positions.. ");
         generateRandomRace.setToolTipText("Generate (one) random race..");
-        generateResults.setToolTipText("Generate results..");
+        generateResults.setToolTipText("Generate a race with random starting positions..");
         displayCompleteRace.setToolTipText("Display races in ascending order according to the date");
         searchDriver.setToolTipText("Search details about race");
 
@@ -102,6 +106,7 @@ public class GUISimulator extends JFrame implements ActionListener {
 
 
         // adding components to the JPanel
+        newBackground.add(imageLabel).setPreferredSize(new Dimension(60,50));
         newBackground.add(labelTopic);
         newBackground.add(driverTableScrollPane).setPreferredSize(new Dimension(900, 400));                 // set the size of the scroll pane
         newBackground.add(sortStatisticsInDescending);

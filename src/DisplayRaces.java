@@ -17,8 +17,14 @@ public class DisplayRaces extends JFrame {
     JScrollPane displayRacesTableScrollPane;
     ImageIcon iconFrame = new ImageIcon("src/img/fast.png") ;       // import an image
     ImageIcon iconDialogBox = new ImageIcon("src/img/warning.png") ; // // import an image
+    ImageIcon iconImageLabel = new ImageIcon("src/img/f1.png") ;
+    ImageIcon iconImageLabel2 = new ImageIcon("src/img/f2.png") ;
+    ImageIcon iconImageLabel3 = new ImageIcon("src/img/f3.png") ;
     JLabel warningLabel = new JLabel();
 
+    JLabel imageLabel;
+    JLabel imageLabel2;
+    JLabel imageLabel3;
     JPanel container;
 
 
@@ -27,11 +33,17 @@ public class DisplayRaces extends JFrame {
         labelTopic = new JLabel();
         displayRacesTable = new JTable();
         container = new JPanel();
+        imageLabel = new JLabel();
+        imageLabel2 = new JLabel();
+        imageLabel3 = new JLabel();
         Background newBackground = new Background(Color.decode("#23074d"), Color.decode("#cc5333"),3);  // set the background  refered a code
 
 
         add(container.add(newBackground));
         newBackground.setLayout(new FlowLayout());                              // set the layout
+        imageLabel.setIcon(iconImageLabel);// set the layout
+        imageLabel2.setIcon(iconImageLabel2);//
+        imageLabel3.setIcon(iconImageLabel3);//
 
 
 
@@ -55,9 +67,13 @@ public class DisplayRaces extends JFrame {
         displayRacesTable.setBackground(Color.cyan);
         displayRacesTable.setOpaque(true);
 
+        newBackground.add(imageLabel).setPreferredSize(new Dimension(60,50));
         newBackground.add(labelTopic);
         newBackground.add(displayRacesTableScrollPane).setPreferredSize(new Dimension(900, 400));               // set the scroll pane size
         newBackground.add(warningLabel);
+        newBackground.add(imageLabel).setPreferredSize(new Dimension(70,60));
+        newBackground.add(imageLabel3).setPreferredSize(new Dimension(70,60));
+        newBackground.add(imageLabel2).setPreferredSize(new Dimension(70,60));
         checkData();                                                                                                        // the whether the races are available in the system
         sortDate();                                                                                                         // sort according to the data
 

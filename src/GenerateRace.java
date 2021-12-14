@@ -17,12 +17,17 @@ public class GenerateRace extends JFrame {
     JLabel successfully;
     JTable raceTable;
     JScrollPane raceTableScrollPane;
-
+    JLabel imageLabel;
+    JLabel imageLabel2;
+    JLabel imageLabel3;
 
 
 
     public static String stringDate;
     ImageIcon iconFrame = new ImageIcon("src/img/fast.png");                // importing the image
+    ImageIcon iconImageLabel = new ImageIcon("src/img/f1.png") ;
+    ImageIcon iconImageLabel2 = new ImageIcon("src/img/f2.png") ;
+    ImageIcon iconImageLabel3 = new ImageIcon("src/img/f3.png") ;
     JPanel container;
 
 
@@ -31,10 +36,18 @@ public class GenerateRace extends JFrame {
         raceTable = new JTable();
         successfully = new JLabel();
         container = new JPanel();
+        imageLabel = new JLabel();
+        imageLabel2 = new JLabel();
+        imageLabel3 = new JLabel();
         Background newBackground = new Background(Color.decode("#780206"), Color.decode("#061161"),3);  // set the background
 
         add(container.add(newBackground));                                          // add the JPanel to the JFrame
-        newBackground.setLayout(new FlowLayout());                                  // set the layout
+        newBackground.setLayout(new FlowLayout());
+        imageLabel.setIcon(iconImageLabel);// set the layout
+        imageLabel2.setIcon(iconImageLabel2);//
+        imageLabel3.setIcon(iconImageLabel3);//
+
+
 
         // font styles
         labelDate.setFont(new Font("Serif",Font.BOLD,30));
@@ -56,7 +69,10 @@ public class GenerateRace extends JFrame {
 //        labelDate.setText(stringDate);
         newBackground.add(labelDate);
         newBackground.add(raceTableScrollPane).setPreferredSize(new Dimension(900, 400));
-        newBackground.add(successfully);
+//        newBackground.add(successfully);
+        newBackground.add(imageLabel).setPreferredSize(new Dimension(70,60));
+        newBackground.add(imageLabel3).setPreferredSize(new Dimension(70,60));
+        newBackground.add(imageLabel2).setPreferredSize(new Dimension(70,60));
 
 //        setLayout(new FlowLayout());
         setSize(950, 600);

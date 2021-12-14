@@ -3,7 +3,6 @@ public class RaceTeamData {
     private String driverName;
     private int currentPoints;
     private int position;
-    private int startingPosition;
 
 
     public RaceTeamData(String teamName,String driverName, int currentPoints,int position){
@@ -45,13 +44,7 @@ public class RaceTeamData {
         this.position = position;
     }
 
-    public  int getStartingPosition(){
-        return startingPosition;
-    }
 
-    public void setStartingPosition(int startingPosition){
-        this.startingPosition = startingPosition;
-    }
 
 
 }
